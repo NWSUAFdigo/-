@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "WDTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +21,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    self.window.rootViewController = [[ViewController alloc] init];
+    self.window.rootViewController = [[WDTabBarController alloc] init];
     
     [self.window makeKeyAndVisible];
     

@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		870DC7B21D1B7B4E008D72ED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7B11D1B7B4E008D72ED /* main.m */; };
 		870DC7B51D1B7B4E008D72ED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7B41D1B7B4E008D72ED /* AppDelegate.m */; };
-		870DC7B81D1B7B4E008D72ED /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7B71D1B7B4E008D72ED /* ViewController.m */; };
 		870DC7BD1D1B7B4E008D72ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 870DC7BC1D1B7B4E008D72ED /* Assets.xcassets */; };
 		870DC7C01D1B7B4E008D72ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 870DC7BE1D1B7B4E008D72ED /* LaunchScreen.storyboard */; };
 		870DC7CB1D1B7B4E008D72ED /* _25_________Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7CA1D1B7B4E008D72ED /* _25_________Tests.m */; };
 		870DC7D61D1B7B4E008D72ED /* _25_________UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7D51D1B7B4E008D72ED /* _25_________UITests.m */; };
+		870DC7E61D1B8639008D72ED /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7E51D1B8639008D72ED /* UIImage+Category.m */; };
+		870DC7E91D1B8927008D72ED /* WDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7E81D1B8927008D72ED /* WDTabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +39,6 @@
 		870DC7B11D1B7B4E008D72ED /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		870DC7B31D1B7B4E008D72ED /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		870DC7B41D1B7B4E008D72ED /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		870DC7B61D1B7B4E008D72ED /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		870DC7B71D1B7B4E008D72ED /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		870DC7BC1D1B7B4E008D72ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		870DC7BF1D1B7B4E008D72ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		870DC7C11D1B7B4E008D72ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +48,10 @@
 		870DC7D11D1B7B4E008D72ED /* 125 项目:百思不得姐UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "125 项目:百思不得姐UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		870DC7D51D1B7B4E008D72ED /* _25_________UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "_25_________UITests.m"; sourceTree = "<group>"; };
 		870DC7D71D1B7B4E008D72ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		870DC7E41D1B8639008D72ED /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
+		870DC7E51D1B8639008D72ED /* UIImage+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
+		870DC7E71D1B8927008D72ED /* WDTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDTabBarController.h; sourceTree = "<group>"; };
+		870DC7E81D1B8927008D72ED /* WDTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDTabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +104,9 @@
 			children = (
 				870DC7B31D1B7B4E008D72ED /* AppDelegate.h */,
 				870DC7B41D1B7B4E008D72ED /* AppDelegate.m */,
-				870DC7B61D1B7B4E008D72ED /* ViewController.h */,
-				870DC7B71D1B7B4E008D72ED /* ViewController.m */,
+				870DC7E71D1B8927008D72ED /* WDTabBarController.h */,
+				870DC7E81D1B8927008D72ED /* WDTabBarController.m */,
+				870DC7E31D1B8628008D72ED /* Category */,
 				870DC7B01D1B7B4E008D72ED /* Supporting Files */,
 			);
 			path = "125 项目:百思不得姐";
@@ -135,6 +139,15 @@
 				870DC7D71D1B7B4E008D72ED /* Info.plist */,
 			);
 			path = "125 项目:百思不得姐UITests";
+			sourceTree = "<group>";
+		};
+		870DC7E31D1B8628008D72ED /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				870DC7E41D1B8639008D72ED /* UIImage+Category.h */,
+				870DC7E51D1B8639008D72ED /* UIImage+Category.m */,
+			);
+			name = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +212,7 @@
 		870DC7A51D1B7B4E008D72ED /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = WD;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = wudi;
 				TargetAttributes = {
@@ -269,9 +283,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				870DC7B81D1B7B4E008D72ED /* ViewController.m in Sources */,
 				870DC7B51D1B7B4E008D72ED /* AppDelegate.m in Sources */,
 				870DC7B21D1B7B4E008D72ED /* main.m in Sources */,
+				870DC7E91D1B8927008D72ED /* WDTabBarController.m in Sources */,
+				870DC7E61D1B8639008D72ED /* UIImage+Category.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +504,7 @@
 				870DC7DC1D1B7B4E008D72ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		870DC7DD1D1B7B4F008D72ED /* Build configuration list for PBXNativeTarget "125 项目:百思不得姐Tests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +513,7 @@
 				870DC7DF1D1B7B4F008D72ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		870DC7E01D1B7B4F008D72ED /* Build configuration list for PBXNativeTarget "125 项目:百思不得姐UITests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +522,7 @@
 				870DC7E21D1B7B4F008D72ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

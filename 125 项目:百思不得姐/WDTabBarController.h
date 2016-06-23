@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  WDTabBarController.h
 //  125 项目:百思不得姐
 //
 //  Created by wudi on 16/6/23.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface WDTabBarController : UITabBarController
 
 @end
-
