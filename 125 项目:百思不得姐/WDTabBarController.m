@@ -48,12 +48,6 @@
     
     vc.tabBarItem.title = title;
     
-//    NSMutableDictionary *attr = [NSMutableDictionary dictionary];
-//    
-//    attr[NSForegroundColorAttributeName] = [UIColor darkGrayColor];
-//    
-//    [vc.tabBarItem setTitleTextAttributes:attr forState:UIControlStateSelected];
-    
     vc.tabBarItem.image = [UIImage originalImageWithName:imageName];
     
     vc.tabBarItem.selectedImage = [UIImage originalImageWithName:selectedImageName];
