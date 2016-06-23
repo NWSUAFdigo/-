@@ -14,6 +14,10 @@
 		870DC7D61D1B7B4E008D72ED /* _25_________UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7D51D1B7B4E008D72ED /* _25_________UITests.m */; };
 		870DC7E61D1B8639008D72ED /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7E51D1B8639008D72ED /* UIImage+Category.m */; };
 		870DC7E91D1B8927008D72ED /* WDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7E81D1B8927008D72ED /* WDTabBarController.m */; };
+		870DC7EC1D1B93EC008D72ED /* WDEssenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7EB1D1B93EC008D72ED /* WDEssenceViewController.m */; };
+		870DC7EF1D1B93FF008D72ED /* WDNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7EE1D1B93FF008D72ED /* WDNewViewController.m */; };
+		870DC7F21D1B941D008D72ED /* WDFriendTrendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7F11D1B941D008D72ED /* WDFriendTrendsViewController.m */; };
+		870DC7F51D1B942A008D72ED /* WDMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7F41D1B942A008D72ED /* WDMeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,14 @@
 		870DC7E51D1B8639008D72ED /* UIImage+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
 		870DC7E71D1B8927008D72ED /* WDTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDTabBarController.h; sourceTree = "<group>"; };
 		870DC7E81D1B8927008D72ED /* WDTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDTabBarController.m; sourceTree = "<group>"; };
+		870DC7EA1D1B93EC008D72ED /* WDEssenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDEssenceViewController.h; sourceTree = "<group>"; };
+		870DC7EB1D1B93EC008D72ED /* WDEssenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDEssenceViewController.m; sourceTree = "<group>"; };
+		870DC7ED1D1B93FF008D72ED /* WDNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDNewViewController.h; sourceTree = "<group>"; };
+		870DC7EE1D1B93FF008D72ED /* WDNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDNewViewController.m; sourceTree = "<group>"; };
+		870DC7F01D1B941D008D72ED /* WDFriendTrendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDFriendTrendsViewController.h; sourceTree = "<group>"; };
+		870DC7F11D1B941D008D72ED /* WDFriendTrendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDFriendTrendsViewController.m; sourceTree = "<group>"; };
+		870DC7F31D1B942A008D72ED /* WDMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDMeViewController.h; sourceTree = "<group>"; };
+		870DC7F41D1B942A008D72ED /* WDMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDMeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +116,14 @@
 				870DC7B41D1B7B4E008D72ED /* AppDelegate.m */,
 				870DC7E71D1B8927008D72ED /* WDTabBarController.h */,
 				870DC7E81D1B8927008D72ED /* WDTabBarController.m */,
+				870DC7EA1D1B93EC008D72ED /* WDEssenceViewController.h */,
+				870DC7EB1D1B93EC008D72ED /* WDEssenceViewController.m */,
+				870DC7ED1D1B93FF008D72ED /* WDNewViewController.h */,
+				870DC7EE1D1B93FF008D72ED /* WDNewViewController.m */,
+				870DC7F01D1B941D008D72ED /* WDFriendTrendsViewController.h */,
+				870DC7F11D1B941D008D72ED /* WDFriendTrendsViewController.m */,
+				870DC7F31D1B942A008D72ED /* WDMeViewController.h */,
+				870DC7F41D1B942A008D72ED /* WDMeViewController.m */,
 				870DC7E31D1B8628008D72ED /* Category */,
 				870DC7B01D1B7B4E008D72ED /* Supporting Files */,
 			);
@@ -281,7 +301,11 @@
 			files = (
 				870DC7B51D1B7B4E008D72ED /* AppDelegate.m in Sources */,
 				870DC7B21D1B7B4E008D72ED /* main.m in Sources */,
+				870DC7F21D1B941D008D72ED /* WDFriendTrendsViewController.m in Sources */,
+				870DC7F51D1B942A008D72ED /* WDMeViewController.m in Sources */,
 				870DC7E91D1B8927008D72ED /* WDTabBarController.m in Sources */,
+				870DC7EC1D1B93EC008D72ED /* WDEssenceViewController.m in Sources */,
+				870DC7EF1D1B93FF008D72ED /* WDNewViewController.m in Sources */,
 				870DC7E61D1B8639008D72ED /* UIImage+Category.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

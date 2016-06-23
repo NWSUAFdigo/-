@@ -9,6 +9,11 @@
 #import "WDTabBarController.h"
 #import "UIImage+Category.h"
 
+#import "WDEssenceViewController.h"
+#import "WDNewViewController.h"
+#import "WDFriendTrendsViewController.h"
+#import "WDMeViewController.h"
+
 @implementation WDTabBarController
 
 - (void)viewDidLoad{
@@ -16,13 +21,13 @@
     [super viewDidLoad];
     
     // 创建子控制器
-    [self creatChildViewControllerWithBackgroundColor:[UIColor grayColor] tabBarItemTitle:@"精华" tabBarItemImageName:@"tabBar_essence_icon" tabBarItemSelectedImageName:@"tabBar_essence_click_icon"];
+    [self setUpChildViewController:[[WDEssenceViewController alloc] init] backgroundColor:[UIColor grayColor] tabBarItemTitle:@"精华" tabBarItemImageName:@"tabBar_essence_icon" tabBarItemSelectedImageName:@"tabBar_essence_click_icon"];
     
-    [self creatChildViewControllerWithBackgroundColor:[UIColor greenColor] tabBarItemTitle:@"新帖" tabBarItemImageName:@"tabBar_new_icon" tabBarItemSelectedImageName:@"tabBar_new_click_icon"];
+    [self setUpChildViewController:[[WDNewViewController alloc] init] backgroundColor:[UIColor greenColor] tabBarItemTitle:@"新帖" tabBarItemImageName:@"tabBar_new_icon" tabBarItemSelectedImageName:@"tabBar_new_click_icon"];
     
-    [self creatChildViewControllerWithBackgroundColor:[UIColor blueColor] tabBarItemTitle:@"关注" tabBarItemImageName:@"tabBar_friendTrends_icon" tabBarItemSelectedImageName:@"tabBar_friendTrends_click_icon"];
+    [self setUpChildViewController:[[WDFriendTrendsViewController alloc] init] backgroundColor:[UIColor blueColor] tabBarItemTitle:@"关注" tabBarItemImageName:@"tabBar_friendTrends_icon" tabBarItemSelectedImageName:@"tabBar_friendTrends_click_icon"];
     
-    [self creatChildViewControllerWithBackgroundColor:[UIColor orangeColor] tabBarItemTitle:@"我" tabBarItemImageName:@"tabBar_me_icon" tabBarItemSelectedImageName:@"tabBar_me_click_icon"];
+    [self setUpChildViewController:[[WDMeViewController alloc] init] backgroundColor:[UIColor orangeColor] tabBarItemTitle:@"我" tabBarItemImageName:@"tabBar_me_icon" tabBarItemSelectedImageName:@"tabBar_me_click_icon"];
     
     // 如果在系统某个方法的后面含有如下宏:UI_APPEARANCE_SELECTOR,表示可以通过appearance来对这个方法进行统一设置
     // 本例中,可以通过appearance来对tabBarItem的setTitleTextAttributes: forState:方法进行统一设置
@@ -37,9 +42,7 @@
 
 
 /** 创建子控制器并添加到tabBar中 */
-- (void)creatChildViewControllerWithBackgroundColor:(UIColor *)backgroundColor tabBarItemTitle:(NSString *)title tabBarItemImageName:(NSString *)imageName tabBarItemSelectedImageName:(NSString *)selectedImageName{
-    
-    UIViewController *vc = [[UIViewController alloc] init];
+- (void)setUpChildViewController:(UIViewController *)vc backgroundColor:(UIColor *)backgroundColor tabBarItemTitle:(NSString *)title tabBarItemImageName:(NSString *)imageName tabBarItemSelectedImageName:(NSString *)selectedImageName{
     
     vc.view.backgroundColor = backgroundColor;
     
