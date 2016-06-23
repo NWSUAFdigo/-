@@ -8,6 +8,7 @@
 
 #import "WDTabBarController.h"
 #import "UIImage+Category.h"
+#import "WDTabBar.h"
 
 #import "WDEssenceViewController.h"
 #import "WDNewViewController.h"
@@ -19,6 +20,14 @@
 - (void)viewDidLoad{
     
     [super viewDidLoad];
+    
+    // 修改WDTabBarController的tabBar为自定义的WDTabBar
+    // 由于tabBar属性为只读属性,所以可以采用KVC的方式进行赋值
+    // 也可以参考 110 项目:网易彩票的做法,在tabBar上面添加一个view,让这个view实现tabBar的功能
+    WDTabBar *tabBar = [[WDTabBar alloc] init];
+    
+    [self setValue:tabBar forKey:@"tabBar"];
+    
     
     // 创建子控制器
     [self setUpChildViewController:[[WDEssenceViewController alloc] init] backgroundColor:[UIColor grayColor] tabBarItemTitle:@"精华" tabBarItemImageName:@"tabBar_essence_icon" tabBarItemSelectedImageName:@"tabBar_essence_click_icon"];
