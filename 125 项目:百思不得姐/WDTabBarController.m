@@ -60,7 +60,12 @@
     
     vc.tabBarItem.selectedImage = [UIImage originalImageWithName:selectedImageName];
     
-    [self addChildViewController:vc];
+//    [self addChildViewController:vc];
+    
+    // 将导航栏作为tabBarController的子控制器
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
+    
+    [self addChildViewController:navi];
 }
 
 @end

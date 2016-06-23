@@ -12,4 +12,15 @@
 #import "UIImage+Category.h"
 #import "UIView+Category.h"
 
+// 自定义一个打印宏,在调试阶段打印,在发布阶段不打印
+#if DEBUG
+#define WDLog(...) NSLog(__VA_ARGS__)
+#else
+#define WDLog(...) 
+#endif
+
+// 定义一个宏,用于打印 __func__
+#define WDLogFunc WDLog(@"%s", __func__)
+
+
 #endif /* PrefixHeader_pch */
