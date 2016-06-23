@@ -23,6 +23,16 @@
     [self creatChildViewControllerWithBackgroundColor:[UIColor blueColor] tabBarItemTitle:@"关注" tabBarItemImageName:@"tabBar_friendTrends_icon" tabBarItemSelectedImageName:@"tabBar_friendTrends_click_icon"];
     
     [self creatChildViewControllerWithBackgroundColor:[UIColor orangeColor] tabBarItemTitle:@"我" tabBarItemImageName:@"tabBar_me_icon" tabBarItemSelectedImageName:@"tabBar_me_click_icon"];
+    
+    // 如果在系统某个方法的后面含有如下宏:UI_APPEARANCE_SELECTOR,表示可以通过appearance来对这个方法进行统一设置
+    // 本例中,可以通过appearance来对tabBarItem的setTitleTextAttributes: forState:方法进行统一设置
+    UITabBarItem *item = [UITabBarItem appearance];
+    
+    NSMutableDictionary *attr = [NSMutableDictionary dictionary];
+    
+    attr[NSForegroundColorAttributeName] = [UIColor darkGrayColor];
+    
+    [item setTitleTextAttributes:attr forState:UIControlStateSelected];
 }
 
 
@@ -35,11 +45,11 @@
     
     vc.tabBarItem.title = title;
     
-    NSMutableDictionary * attr = [NSMutableDictionary dictionary];
-    
-    attr[NSForegroundColorAttributeName] = [UIColor darkGrayColor];
-    
-    [vc.tabBarItem setTitleTextAttributes:attr forState:UIControlStateSelected];
+//    NSMutableDictionary *attr = [NSMutableDictionary dictionary];
+//    
+//    attr[NSForegroundColorAttributeName] = [UIColor darkGrayColor];
+//    
+//    [vc.tabBarItem setTitleTextAttributes:attr forState:UIControlStateSelected];
     
     vc.tabBarItem.image = [UIImage originalImageWithName:imageName];
     

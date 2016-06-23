@@ -10,7 +10,6 @@
 		870DC7B21D1B7B4E008D72ED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7B11D1B7B4E008D72ED /* main.m */; };
 		870DC7B51D1B7B4E008D72ED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7B41D1B7B4E008D72ED /* AppDelegate.m */; };
 		870DC7BD1D1B7B4E008D72ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 870DC7BC1D1B7B4E008D72ED /* Assets.xcassets */; };
-		870DC7C01D1B7B4E008D72ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 870DC7BE1D1B7B4E008D72ED /* LaunchScreen.storyboard */; };
 		870DC7CB1D1B7B4E008D72ED /* _25_________Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7CA1D1B7B4E008D72ED /* _25_________Tests.m */; };
 		870DC7D61D1B7B4E008D72ED /* _25_________UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7D51D1B7B4E008D72ED /* _25_________UITests.m */; };
 		870DC7E61D1B8639008D72ED /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7E51D1B8639008D72ED /* UIImage+Category.m */; };
@@ -40,7 +39,6 @@
 		870DC7B31D1B7B4E008D72ED /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		870DC7B41D1B7B4E008D72ED /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		870DC7BC1D1B7B4E008D72ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		870DC7BF1D1B7B4E008D72ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		870DC7C11D1B7B4E008D72ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		870DC7C61D1B7B4E008D72ED /* 125 项目:百思不得姐Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "125 项目:百思不得姐Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		870DC7CA1D1B7B4E008D72ED /* _25_________Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "_25_________Tests.m"; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				870DC7BC1D1B7B4E008D72ED /* Assets.xcassets */,
-				870DC7BE1D1B7B4E008D72ED /* LaunchScreen.storyboard */,
 				870DC7C11D1B7B4E008D72ED /* Info.plist */,
 				870DC7B11D1B7B4E008D72ED /* main.m */,
 			);
@@ -257,7 +254,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				870DC7C01D1B7B4E008D72ED /* LaunchScreen.storyboard in Resources */,
 				870DC7BD1D1B7B4E008D72ED /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,17 +316,6 @@
 			targetProxy = 870DC7D21D1B7B4E008D72ED /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		870DC7BE1D1B7B4E008D72ED /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				870DC7BF1D1B7B4E008D72ED /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		870DC7D81D1B7B4E008D72ED /* Debug */ = {
