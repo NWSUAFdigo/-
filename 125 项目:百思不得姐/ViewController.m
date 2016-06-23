@@ -18,6 +18,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor redColor];
+    NSLog(@"项目初始化完成");
 }
 
 @end
