@@ -10,7 +10,7 @@
 
 @interface WDTabBar ()
 
-@property (nonatomic,weak) UIButton * publishBtn;
+@property (nonatomic,weak) UIButton *publishBtn;
 
 @end
 
@@ -34,7 +34,7 @@
     
     [btn setImage:[UIImage imageNamed:@"tabBar_publish_icon"] forState:UIControlStateNormal];
     
-    [btn setImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
+    [btn setImage:[UIImage imageNamed:@"tabBar_publish_click_icon"] forState:UIControlStateHighlighted];
     
     [self addSubview:btn];
     
@@ -54,15 +54,15 @@
     // 首先布局 +号按钮
     self.publishBtn.bounds = CGRectMake(0, 0, self.publishBtn.currentImage.size.width, self.publishBtn.currentImage.size.height);
     
-    self.publishBtn.center = CGPointMake(self.bounds.size.width * 0.5, self.bounds.size.height * 0.5);
+    self.publishBtn.center = CGPointMake(self.width * 0.5, self.height * 0.5);
     
     // 布局其他tabBarButton
     // 打印self.subviews可以看到,其他按钮的类为UITabBarButton,这是一个私有类,所以需要通过NSClassFromString来获得类名
     NSInteger count = 0;
     
     CGFloat y = 0;
-    CGFloat width = self.bounds.size.width / 5;
-    CGFloat height = self.bounds.size.height;
+    CGFloat width = self.width / 5;
+    CGFloat height = self.height;
     
     for (UIButton *btn in self.subviews) {
         

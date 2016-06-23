@@ -7,7 +7,6 @@
 //
 
 #import "WDTabBarController.h"
-#import "UIImage+Category.h"
 #import "WDTabBar.h"
 
 #import "WDEssenceViewController.h"

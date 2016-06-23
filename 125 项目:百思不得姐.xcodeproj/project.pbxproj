@@ -19,6 +19,7 @@
 		870DC7F21D1B941D008D72ED /* WDFriendTrendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7F11D1B941D008D72ED /* WDFriendTrendsViewController.m */; };
 		870DC7F51D1B942A008D72ED /* WDMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7F41D1B942A008D72ED /* WDMeViewController.m */; };
 		870DC7F81D1BBA43008D72ED /* WDTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7F71D1BBA43008D72ED /* WDTabBar.m */; };
+		870DC7FB1D1BC386008D72ED /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7FA1D1BC386008D72ED /* UIView+Category.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,9 @@
 		870DC7F41D1B942A008D72ED /* WDMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDMeViewController.m; sourceTree = "<group>"; };
 		870DC7F61D1BBA43008D72ED /* WDTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDTabBar.h; sourceTree = "<group>"; };
 		870DC7F71D1BBA43008D72ED /* WDTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDTabBar.m; sourceTree = "<group>"; };
+		870DC7F91D1BC386008D72ED /* UIView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
+		870DC7FA1D1BC386008D72ED /* UIView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
+		870DC7FC1D1BC50C008D72ED /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,7 @@
 				870DC7F11D1B941D008D72ED /* WDFriendTrendsViewController.m */,
 				870DC7F31D1B942A008D72ED /* WDMeViewController.h */,
 				870DC7F41D1B942A008D72ED /* WDMeViewController.m */,
+				870DC7FC1D1BC50C008D72ED /* PrefixHeader.pch */,
 				870DC7E31D1B8628008D72ED /* Category */,
 				870DC7B01D1B7B4E008D72ED /* Supporting Files */,
 			);
@@ -168,6 +173,8 @@
 			children = (
 				870DC7E41D1B8639008D72ED /* UIImage+Category.h */,
 				870DC7E51D1B8639008D72ED /* UIImage+Category.m */,
+				870DC7F91D1BC386008D72ED /* UIView+Category.h */,
+				870DC7FA1D1BC386008D72ED /* UIView+Category.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -312,6 +319,7 @@
 				870DC7E91D1B8927008D72ED /* WDTabBarController.m in Sources */,
 				870DC7EC1D1B93EC008D72ED /* WDEssenceViewController.m in Sources */,
 				870DC7EF1D1B93FF008D72ED /* WDNewViewController.m in Sources */,
+				870DC7FB1D1BC386008D72ED /* UIView+Category.m in Sources */,
 				870DC7E61D1B8639008D72ED /* UIImage+Category.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,6 +443,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LanchImage;
+				GCC_PREFIX_HEADER = "125 项目:百思不得姐/PrefixHeader.pch";
 				INFOPLIST_FILE = "125 项目:百思不得姐/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.nwsuaf.-25---------";
@@ -447,6 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LanchImage;
+				GCC_PREFIX_HEADER = "125 项目:百思不得姐/PrefixHeader.pch";
 				INFOPLIST_FILE = "125 项目:百思不得姐/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.nwsuaf.-25---------";
