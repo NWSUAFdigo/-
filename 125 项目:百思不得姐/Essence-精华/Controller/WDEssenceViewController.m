@@ -40,6 +40,13 @@
 - (void)tagBtnClick{
     
     WDLogFunc;
+    
+    // 测试:控制器的跳转
+    UIViewController *vc = [[UIViewController alloc] init];
+    
+    vc.view.backgroundColor = [UIColor blueColor];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

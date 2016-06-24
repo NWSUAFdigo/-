@@ -8,6 +8,7 @@
 
 #import "WDTabBarController.h"
 #import "WDTabBar.h"
+#import "WDNavigationController.h"
 
 #import "WDEssenceViewController.h"
 #import "WDNewViewController.h"
@@ -64,7 +65,7 @@
 //    [self addChildViewController:vc];
     
     // 将导航栏作为tabBarController的子控制器
-    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
+    WDNavigationController *navi = [[WDNavigationController alloc] initWithRootViewController:vc];
     
     [self addChildViewController:navi];
     
