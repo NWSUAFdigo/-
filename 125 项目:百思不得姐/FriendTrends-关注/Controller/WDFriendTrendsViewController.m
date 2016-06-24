@@ -7,6 +7,7 @@
 //
 
 #import "WDFriendTrendsViewController.h"
+#import "WDRecommendViewController.h"
 
 @implementation WDFriendTrendsViewController
 
@@ -44,7 +45,9 @@
 
 - (void)friendsRecBtnClick{
     
-    WDLogFunc;
+    WDRecommendViewController *recommendVC = [[WDRecommendViewController alloc] init];
+    
+    [self.navigationController pushViewController:recommendVC animated:YES];
 }
 
 
