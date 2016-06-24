@@ -40,6 +40,7 @@
     
     // 如果在系统某个方法的后面含有如下宏:UI_APPEARANCE_SELECTOR,表示可以通过appearance来对这个方法进行统一设置
     // 本例中,可以通过appearance来对tabBarItem的setTitleTextAttributes: forState:方法进行统一设置
+    // 使用appearance方法表示对项目中任何的UITabBarItem进行统一设置
     UITabBarItem *item = [UITabBarItem appearance];
     
     NSMutableDictionary *attr = [NSMutableDictionary dictionary];
@@ -68,9 +69,6 @@
     WDNavigationController *navi = [[WDNavigationController alloc] initWithRootViewController:vc];
     
     [self addChildViewController:navi];
-    
-    // 设置导航栏背景图片
-    [navi.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationbarBackgroundWhite"] forBarMetrics:UIBarMetricsDefault];
 }
 
 @end

@@ -10,6 +10,18 @@
 
 @implementation WDNavigationController
 
++ (void)initialize{
+
+    // 不需要在本方法中调用父类的该方法
+    
+    // 获得该类的所有UINavigationBar,并对其进行设置
+    UINavigationBar *naviBar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[self class]]];
+    
+    // 设置导航栏背景图片
+    [naviBar setBackgroundImage:[UIImage imageNamed:@"navigationbarBackgroundWhite"] forBarMetrics:UIBarMetricsDefault];
+}
+
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     
     // 设置非栈底控制器的导航栏左侧为返回
