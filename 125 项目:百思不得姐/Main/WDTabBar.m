@@ -22,6 +22,9 @@
     if ([super initWithFrame:frame]) {
         
         [self setUpPublishBtn];
+        
+        // 设置tabBar背景图片
+        [self setBackgroundImage:[UIImage imageNamed:@"tabbar-light"]];
     }
     return self;
 }
@@ -35,6 +38,8 @@
     [btn setImage:[UIImage imageNamed:@"tabBar_publish_icon"] forState:UIControlStateNormal];
     
     [btn setImage:[UIImage imageNamed:@"tabBar_publish_click_icon"] forState:UIControlStateHighlighted];
+    
+    btn.size = btn.currentImage.size;
     
     [self addSubview:btn];
     
@@ -52,7 +57,6 @@
     
     // 重新布局子控件
     // 首先布局 +号按钮
-    self.publishBtn.bounds = CGRectMake(0, 0, self.publishBtn.currentImage.size.width, self.publishBtn.currentImage.size.height);
     
     self.publishBtn.center = CGPointMake(self.width * 0.5, self.height * 0.5);
     

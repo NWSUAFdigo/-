@@ -23,5 +23,11 @@
 // 定义一个宏,用于打印 __func__
 #define WDLogFunc WDLog(@"%s", __func__)
 
+// 定义一个设置颜色的宏
+#define WDColor(r,g,b,alp) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(alp)]
+
+// 定义一个背景颜色宏
+#define WDViewBackgroundColor WDColor(223,223,223,1)
+
 
 #endif /* PrefixHeader_pch */

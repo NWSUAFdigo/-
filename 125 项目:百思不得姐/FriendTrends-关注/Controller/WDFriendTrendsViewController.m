@@ -37,6 +37,8 @@
 //    [friendsRecBtn addTarget:self action:@selector(friendsRecBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithImageName:@"friendsRecommentIcon" highlightedImageName:@"friendsRecommentIcon-click" target:self action:@selector(friendsRecBtnClick)];
+    
+    self.view.backgroundColor = WDViewBackgroundColor;
 }
 
 

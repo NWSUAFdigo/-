@@ -32,6 +32,8 @@
 //    [tagBtn addTarget:self action:@selector(tagBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithImageName:@"MainTagSubIcon" highlightedImageName:@"MainTagSubIconClick" target:self action:@selector(tagBtnClick)];
+    
+    self.view.backgroundColor = WDViewBackgroundColor;
 }
 
 

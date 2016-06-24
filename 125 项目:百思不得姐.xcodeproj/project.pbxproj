@@ -14,13 +14,13 @@
 		870DC82C1D1BDE49008D72ED /* WDFriendTrendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC8091D1BDE49008D72ED /* WDFriendTrendsViewController.m */; };
 		870DC82D1D1BDE49008D72ED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC80E1D1BDE49008D72ED /* main.m */; };
 		870DC82E1D1BDE49008D72ED /* WDTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC8111D1BDE49008D72ED /* WDTabBar.m */; };
-		870DC82F1D1BDE49008D72ED /* WDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC8131D1BDE49008D72ED /* WDTabBarController.m */; };
 		870DC8301D1BDE49008D72ED /* WDMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC8171D1BDE49008D72ED /* WDMeViewController.m */; };
 		870DC8311D1BDE49008D72ED /* WDNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC81D1D1BDE49008D72ED /* WDNewViewController.m */; };
 		870DC8321D1BDE49008D72ED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC8221D1BDE49008D72ED /* AppDelegate.m */; };
 		870DC8331D1BDE49008D72ED /* UIBarButtonItem+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC8251D1BDE49008D72ED /* UIBarButtonItem+Category.m */; };
 		870DC8341D1BDE49008D72ED /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC8271D1BDE49008D72ED /* UIImage+Category.m */; };
 		870DC8351D1BDE49008D72ED /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC8291D1BDE49008D72ED /* UIView+Category.m */; };
+		870DC8381D1BE5FF008D72ED /* WDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC8371D1BE5FF008D72ED /* WDTabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +57,6 @@
 		870DC80E1D1BDE49008D72ED /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		870DC8101D1BDE49008D72ED /* WDTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDTabBar.h; sourceTree = "<group>"; };
 		870DC8111D1BDE49008D72ED /* WDTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDTabBar.m; sourceTree = "<group>"; };
-		870DC8121D1BDE49008D72ED /* WDTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDTabBarController.h; sourceTree = "<group>"; };
-		870DC8131D1BDE49008D72ED /* WDTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDTabBarController.m; sourceTree = "<group>"; };
 		870DC8161D1BDE49008D72ED /* WDMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDMeViewController.h; sourceTree = "<group>"; };
 		870DC8171D1BDE49008D72ED /* WDMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDMeViewController.m; sourceTree = "<group>"; };
 		870DC81C1D1BDE49008D72ED /* WDNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDNewViewController.h; sourceTree = "<group>"; };
@@ -72,6 +70,8 @@
 		870DC8281D1BDE49008D72ED /* UIView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
 		870DC8291D1BDE49008D72ED /* UIView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
 		870DC82A1D1BDE49008D72ED /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		870DC8361D1BE5FF008D72ED /* WDTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDTabBarController.h; sourceTree = "<group>"; };
+		870DC8371D1BE5FF008D72ED /* WDTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDTabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,13 +229,11 @@
 		870DC80C1D1BDE49008D72ED /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				870DC80D1D1BDE49008D72ED /* Controller */,
 				870DC80E1D1BDE49008D72ED /* main.m */,
+				870DC80D1D1BDE49008D72ED /* Controller */,
 				870DC80F1D1BDE49008D72ED /* View */,
 				870DC8101D1BDE49008D72ED /* WDTabBar.h */,
 				870DC8111D1BDE49008D72ED /* WDTabBar.m */,
-				870DC8121D1BDE49008D72ED /* WDTabBarController.h */,
-				870DC8131D1BDE49008D72ED /* WDTabBarController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -243,6 +241,8 @@
 		870DC80D1D1BDE49008D72ED /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				870DC8361D1BE5FF008D72ED /* WDTabBarController.h */,
+				870DC8371D1BE5FF008D72ED /* WDTabBarController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -476,7 +476,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				870DC82F1D1BDE49008D72ED /* WDTabBarController.m in Sources */,
 				870DC8311D1BDE49008D72ED /* WDNewViewController.m in Sources */,
 				870DC8331D1BDE49008D72ED /* UIBarButtonItem+Category.m in Sources */,
 				870DC8351D1BDE49008D72ED /* UIView+Category.m in Sources */,
@@ -487,6 +486,7 @@
 				870DC82D1D1BDE49008D72ED /* main.m in Sources */,
 				870DC82C1D1BDE49008D72ED /* WDFriendTrendsViewController.m in Sources */,
 				870DC8341D1BDE49008D72ED /* UIImage+Category.m in Sources */,
+				870DC8381D1BE5FF008D72ED /* WDTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

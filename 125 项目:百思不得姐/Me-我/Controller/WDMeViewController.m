@@ -52,6 +52,8 @@
     
     self.navigationItem.rightBarButtonItems = @[settingItem, moonItem];
     // 注意:rightBarButtonItems数组中,先添加的Item位于右侧,后添加的Item位于先添加的Item的左侧
+    
+    self.view.backgroundColor = WDViewBackgroundColor;
 }
 
 
