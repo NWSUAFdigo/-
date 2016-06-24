@@ -22,6 +22,7 @@
 		870DC8351D1BDE49008D72ED /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC8291D1BDE49008D72ED /* UIView+Category.m */; };
 		870DC8381D1BE5FF008D72ED /* WDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC8371D1BE5FF008D72ED /* WDTabBarController.m */; };
 		87FC3C401D1CC8C7001013E0 /* WDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC3C3F1D1CC8C7001013E0 /* WDNavigationController.m */; };
+		87FC3C421D1CE109001013E0 /* WDFriendTrendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FC3C411D1CE109001013E0 /* WDFriendTrendsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		870DC8371D1BE5FF008D72ED /* WDTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDTabBarController.m; sourceTree = "<group>"; };
 		87FC3C3E1D1CC8C7001013E0 /* WDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDNavigationController.h; sourceTree = "<group>"; };
 		87FC3C3F1D1CC8C7001013E0 /* WDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDNavigationController.m; sourceTree = "<group>"; };
+		87FC3C411D1CE109001013E0 /* WDFriendTrendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDFriendTrendsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 		870DC80B1D1BDE49008D72ED /* View */ = {
 			isa = PBXGroup;
 			children = (
+				87FC3C411D1CE109001013E0 /* WDFriendTrendsViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87FC3C421D1CE109001013E0 /* WDFriendTrendsViewController.xib in Resources */,
 				870DC7BD1D1B7B4E008D72ED /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

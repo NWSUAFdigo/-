@@ -48,4 +48,8 @@
 }
 
 
+/** 登录/注册 按钮点击 */
+- (IBAction)loginOrRegisterClick:(id)sender {
+}
+
 @end

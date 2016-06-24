@@ -32,6 +32,9 @@
         
         viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
         // 注意:此时不能使用backBarButtonItem来作为导航栏左侧内容,因为backBarButtonItem不能使用initWithCustomView:方法来设置左侧内容.那么就不能对左侧按钮进行自定义,限制比较多
+        
+        // 非栈底控制器隐藏tabBar
+        viewController.hidesBottomBarWhenPushed = YES;
     }
     
     [super pushViewController:viewController animated:animated];
