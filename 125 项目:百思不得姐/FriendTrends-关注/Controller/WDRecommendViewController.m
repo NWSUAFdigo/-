@@ -8,15 +8,18 @@
 
 #import "WDRecommendViewController.h"
 #import "WDRightTableViewCellView.h"
+#import "WDLeftTableViewData.h"
+#import "WDLeftTableViewCell.h"
 #import <AFNetworking.h>
 #import <SVProgressHUD.h>
 #import <UIImageView+WebCache.h>
+#import <MJExtension.h>
 
 
 @interface WDRecommendViewController ()<UITableViewDelegate, UITableViewDataSource>
 /** 左侧tableView */
 @property (weak, nonatomic) IBOutlet UITableView *leftTableView;
-@property (nonatomic,strong) NSMutableArray<NSDictionary *> *leftTableViewData;
+@property (nonatomic,strong) NSMutableArray<WDLeftTableViewData *> *leftTableViewData;
 /** 右侧tableView */
 @property (weak, nonatomic) IBOutlet UITableView *rightTableView;
 @property (nonatomic,strong) NSMutableArray<NSDictionary *> *rightTableViewData;
@@ -25,17 +28,6 @@
 
 
 @implementation WDRecommendViewController
-
-
-- (NSMutableArray<NSDictionary *> *)leftTableViewData{
-    
-    if (!_leftTableViewData){
-        
-        _leftTableViewData = [NSMutableArray array];
-    }
-    return _leftTableViewData;
-}
-
 
 - (NSMutableArray<NSDictionary *> *)rightTableViewData{
     
@@ -57,27 +49,27 @@ static NSString *IDRightCell = @"rightTableViewCell";
     self.view.backgroundColor = WDViewBackgroundColor;
     
     // 对左侧tableView进行设置
+    // 已经在xib中通过连线指定leftTableView的delegate和datasource
     self.leftTableView.backgroundColor = WDColor(233, 233, 233, 1);
-    self.leftTableView.delegate = self;
-    self.leftTableView.dataSource = self;
-    self.leftTableView.separatorColor = [UIColor whiteColor];
     
+    // 给footerView添加一个UIView,目的是如果tableView的内容不能填满整个tableView的高度时,多余的cell不再显示
     self.leftTableView.tableFooterView = [[UIView alloc] init];
     
-    // 注册cell
-    [self.leftTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:IDLeftCell];
+    // 取消左侧滚动条
+    self.leftTableView.showsVerticalScrollIndicator = NO;
+    
+    // 注册cell.加载xib中的cell,并给其绑定标识
+    [self.leftTableView registerNib:[UINib nibWithNibName:@"WDLeftTableViewCell" bundle:nil] forCellReuseIdentifier:IDLeftCell];
     
     
     // 对右侧tableView进行设置
-    self.rightTableView.delegate = self;
-    self.rightTableView.dataSource = self;
-    
+    // 已经在xib中通过连线指定rightTableView的delegate和datasource
     self.rightTableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     
     self.rightTableView.tableFooterView = [[UIView alloc] init];
     
+    // 注册cell
     [self.rightTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:IDRightCell];
-    
     
     
     // 添加HUD
@@ -109,8 +101,12 @@ static NSString *IDRightCell = @"rightTableViewCell";
     
     [[AFHTTPSessionManager manager] GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //        WDLog(@"%@", responseObject);
-        
-        self.leftTableViewData = responseObject[@"list"];
+
+        // 使用MJExtension将字典数组转换为模型数组
+        [WDLeftTableViewData mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+            return @{@"ID":@"id"};
+        }];
+        self.leftTableViewData = [WDLeftTableViewData mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
         
         // 刷新表格
         [self.leftTableView reloadData];
@@ -150,26 +146,21 @@ static NSString *IDRightCell = @"rightTableViewCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell *cell;
-    
     if (tableView == self.leftTableView) {
         
-        cell = [tableView dequeueReusableCellWithIdentifier:IDLeftCell];
+        WDLeftTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:IDLeftCell];
         
-        cell.backgroundColor = [UIColor clearColor];
+        WDLeftTableViewData *data = self.leftTableViewData[indexPath.row];
         
-        NSDictionary *data = self.leftTableViewData[indexPath.row];
+        cell.data = data;
         
-        cell.textLabel.text = data[@"name"];
+        // 无网络加载时测试
+//        cell.textLabel.text = [NSString stringWithFormat:@"%luabc", indexPath.row];
         
-        cell.textLabel.font = [UIFont systemFontOfSize:15.0];
-        
-        cell.textLabel.textColor = [UIColor darkGrayColor];
-        
-        cell.textLabel.highlightedTextColor = [UIColor redColor];
+        return cell;
     }else {
         
-        cell = [tableView dequeueReusableCellWithIdentifier:IDRightCell];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:IDRightCell];
         
         WDRightTableViewCellView *cellView;
         
@@ -193,9 +184,10 @@ static NSString *IDRightCell = @"rightTableViewCell";
         cellView.fansCount = [data[@"fans_count"] integerValue];
         
         cellView.screenName = data[@"screen_name"];
+       
+        return cell;
     }
     
-    return cell;
 }
 
 
@@ -204,12 +196,12 @@ static NSString *IDRightCell = @"rightTableViewCell";
     
     if (tableView == self.leftTableView) {
         
-        NSDictionary *data = self.leftTableViewData[indexPath.row];
+        WDLeftTableViewData *data = self.leftTableViewData[indexPath.row];
         
         NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
         parameters[@"a"] = @"list";
         parameters[@"c"] = @"subscribe";
-        parameters[@"category_id"] = data[@"id"];
+        parameters[@"category_id"] = @(data.ID);
         
         [[AFHTTPSessionManager manager] GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //            WDLog(@"%@", responseObject);
