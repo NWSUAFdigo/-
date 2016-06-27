@@ -7,12 +7,13 @@
 //
 
 #import "WDRecommendViewController.h"
-#import "WDRightTableViewCellView.h"
 #import "WDLeftTableViewData.h"
 #import "WDLeftTableViewCell.h"
+#import "WDRightTableViewData.h"
+#import "WDRightTableViewCell.h"
+
 #import <AFNetworking.h>
 #import <SVProgressHUD.h>
-#import <UIImageView+WebCache.h>
 #import <MJExtension.h>
 
 
@@ -22,21 +23,12 @@
 @property (nonatomic,strong) NSMutableArray<WDLeftTableViewData *> *leftTableViewData;
 /** 右侧tableView */
 @property (weak, nonatomic) IBOutlet UITableView *rightTableView;
-@property (nonatomic,strong) NSMutableArray<NSDictionary *> *rightTableViewData;
+@property (nonatomic,strong) NSMutableArray<WDRightTableViewData *> *rightTableViewData;
 
 @end
 
 
 @implementation WDRecommendViewController
-
-- (NSMutableArray<NSDictionary *> *)rightTableViewData{
-    
-    if (!_rightTableViewData){
-        
-        _rightTableViewData = [NSMutableArray array];
-    }
-    return _rightTableViewData;
-}
 
 
 static NSString *IDLeftCell = @"leftTableViewCell";
@@ -64,12 +56,17 @@ static NSString *IDRightCell = @"rightTableViewCell";
     
     // 对右侧tableView进行设置
     // 已经在xib中通过连线指定rightTableView的delegate和datasource
-    self.rightTableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
-    
     self.rightTableView.tableFooterView = [[UIView alloc] init];
     
     // 注册cell
-    [self.rightTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:IDRightCell];
+//    [self.rightTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:IDRightCell];
+    [self.rightTableView registerNib:[UINib nibWithNibName:@"WDRightTableViewCell" bundle:nil] forCellReuseIdentifier:IDRightCell];
+    
+    // 对tableView的contentInset进行统一设置
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.leftTableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+    self.rightTableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     
     
     // 添加HUD
@@ -160,30 +157,11 @@ static NSString *IDRightCell = @"rightTableViewCell";
         return cell;
     }else {
         
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:IDRightCell];
+        WDRightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:IDRightCell];
         
-        WDRightTableViewCellView *cellView;
+        WDRightTableViewData *data = self.rightTableViewData[indexPath.row];
         
-        if (cell.contentView.subviews.count == 0) {
-            
-            cellView = [WDRightTableViewCellView rightTableViewCellView];
-            
-            cellView.frame = cell.contentView.bounds;
-            
-            [cell.contentView addSubview:cellView];
-        }else {
-            
-            cellView = [cell.contentView.subviews lastObject];
-        }
-        
-        
-        NSDictionary *data = self.rightTableViewData[indexPath.row];
-        
-        [cellView.icon sd_setImageWithURL:data[@"header"]];
-        
-        cellView.fansCount = [data[@"fans_count"] integerValue];
-        
-        cellView.screenName = data[@"screen_name"];
+        cell.data = data;
        
         return cell;
     }
@@ -206,7 +184,7 @@ static NSString *IDRightCell = @"rightTableViewCell";
         [[AFHTTPSessionManager manager] GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //            WDLog(@"%@", responseObject);
             
-            self.rightTableViewData = responseObject[@"list"];
+            self.rightTableViewData = [WDRightTableViewData mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
             
             // 刷新右侧表格
             [self.rightTableView reloadData];

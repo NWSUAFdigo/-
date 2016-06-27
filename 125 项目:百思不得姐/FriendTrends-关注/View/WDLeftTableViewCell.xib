@@ -11,18 +11,18 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Byt-hR-cXS">
-                        <rect key="frame" x="0.0" y="0.0" width="5" height="43.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="5" height="43"/>
                         <color key="backgroundColor" red="0.85490196078431369" green="0.086274509803921567" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="5" id="18R-N4-bzN"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nNe-DZ-A0l" userLabel="SeparatorLine">
-                        <rect key="frame" x="0.0" y="42.5" width="320" height="1"/>
+                        <rect key="frame" x="0.0" y="42" width="320" height="1"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="9sI-Iv-2V1"/>
