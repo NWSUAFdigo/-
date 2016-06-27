@@ -17,5 +17,9 @@
 
 // 给左侧表格模型添加一个属性,用来记录左侧表格中某个cell所对应的右侧数据
 @property (nonatomic,strong) NSMutableArray<WDRightTableViewData *> *rightTableViewData;
+// 记录右边表格总共有多少数据
+@property (nonatomic,assign) NSInteger total;
+// 记录当前页面
+@property (nonatomic,assign) NSInteger currentPage;
 
 @end
