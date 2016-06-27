@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class WDRightTableViewData;
+
 @interface WDLeftTableViewData : NSObject
 @property (nonatomic,assign) NSInteger ID;
 @property (nonatomic,copy) NSString * name;
 @property (nonatomic,assign) NSInteger count;
+
+// 给左侧表格模型添加一个属性,用来记录左侧表格中某个cell所对应的右侧数据
+@property (nonatomic,strong) NSMutableArray<WDRightTableViewData *> *rightTableViewData;
+
 @end

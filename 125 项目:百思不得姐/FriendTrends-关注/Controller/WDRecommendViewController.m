@@ -23,7 +23,8 @@
 @property (nonatomic,strong) NSMutableArray<WDLeftTableViewData *> *leftTableViewData;
 /** 右侧tableView */
 @property (weak, nonatomic) IBOutlet UITableView *rightTableView;
-@property (nonatomic,strong) NSMutableArray<WDRightTableViewData *> *rightTableViewData;
+@property (nonatomic,weak) NSMutableArray<WDRightTableViewData *> *rightTableViewData;
+// 由于self.rightTableViewData属性是通过WDLeftTableViewData模型中的rightTableViewData属性(strong强指针)获得,所以可以将本属性设为weak
 
 @end
 
@@ -176,22 +177,43 @@ static NSString *IDRightCell = @"rightTableViewCell";
         
         WDLeftTableViewData *data = self.leftTableViewData[indexPath.row];
         
-        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-        parameters[@"a"] = @"list";
-        parameters[@"c"] = @"subscribe";
-        parameters[@"category_id"] = @(data.ID);
-        
-        [[AFHTTPSessionManager manager] GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//            WDLog(@"%@", responseObject);
+        // 判断data中的rightTableViewData属性是否有值,来决定是否进行网络请求
+        if (data.rightTableViewData) {
             
-            self.rightTableViewData = [WDRightTableViewData mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
-            
-            // 刷新右侧表格
+            self.rightTableViewData = data.rightTableViewData;
             [self.rightTableView reloadData];
-
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//            WDLog(@"%@", error);
-        }];
+        } else {
+            
+            // 点击tableView的任一行,无论网络加载是否完成,都需要将之前点击的数据从视图中清除
+            // 通过将self.rightTableViewData置空,并且刷新表格的方式将之前的表格数据从视图中清除
+            self.rightTableViewData = nil;
+            [self.rightTableView reloadData];
+            
+            // 模拟网速慢时的情况
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+                parameters[@"a"] = @"list";
+                parameters[@"c"] = @"subscribe";
+                parameters[@"category_id"] = @(data.ID);
+                
+                [[AFHTTPSessionManager manager] GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                WDLog(@"%@", responseObject);
+                    
+                    // 将加载的数据存入左侧表格模型的rightTableViewData属性中
+                    data.rightTableViewData = [WDRightTableViewData mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
+                    
+                    self.rightTableViewData = data.rightTableViewData;
+                    
+                    // 刷新右侧表格
+                    [self.rightTableView reloadData];
+                    
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    //            WDLog(@"%@", error);
+                }];
+                
+            });
+        }
     }
 }
 
