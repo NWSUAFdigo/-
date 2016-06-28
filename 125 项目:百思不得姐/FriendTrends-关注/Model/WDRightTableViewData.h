@@ -11,7 +11,7 @@
 @interface WDRightTableViewData : NSObject
 
 @property (nonatomic,assign) NSInteger fans_count;
-@property (nonatomic,strong) NSURL * header;
-@property (nonatomic,copy) NSString * screen_name;
+@property (nonatomic,strong) NSURL *header;
+@property (nonatomic,copy) NSString *screen_name;
 
 @end

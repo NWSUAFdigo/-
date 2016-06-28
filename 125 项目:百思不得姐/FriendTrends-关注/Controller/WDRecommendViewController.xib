@@ -34,7 +34,6 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Ds9-bV-dth"/>
-                        <outlet property="delegate" destination="-1" id="kLB-zB-ZT1"/>
                     </connections>
                 </tableView>
             </subviews>

@@ -27,10 +27,22 @@
 @property (nonatomic,weak) NSMutableArray<WDRightTableViewData *> *rightTableViewData;
 // 由于self.rightTableViewData属性是通过WDLeftTableViewData模型中的rightTableViewData属性(strong强指针)获得,所以可以将本属性设为weak
 
+@property (nonatomic,strong) NSMutableDictionary *parameters;
+@property (nonatomic,strong) AFHTTPSessionManager *manager;
+
 @end
 
 
 @implementation WDRecommendViewController
+
+- (AFHTTPSessionManager *)manager{
+    
+    if (!_manager){
+        
+        _manager = [AFHTTPSessionManager manager];
+    }
+    return _manager;
+}
 
 
 static NSString *IDLeftCell = @"leftTableViewCell";
@@ -64,9 +76,11 @@ static NSString *IDRightCell = @"rightTableViewCell";
 //    [self.rightTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:IDRightCell];
     [self.rightTableView registerNib:[UINib nibWithNibName:@"WDRightTableViewCell" bundle:nil] forCellReuseIdentifier:IDRightCell];
     
-    // 使用MJRefresh框架对右侧表格添加 上拉加载更多数据功能
-    self.rightTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-    self.rightTableView.mj_footer.hidden = NO;
+    // 使用MJRefresh框架对右侧表格底部添加 上拉加载更多数据功能
+    self.rightTableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
+    // 右侧表格顶部添加 下拉刷新功能
+    self.rightTableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadData)];
     
     // 对tableView的contentInset进行统一设置
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -102,7 +116,7 @@ static NSString *IDRightCell = @"rightTableViewCell";
      <true/></dict>
      */
     
-    [[AFHTTPSessionManager manager] GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //        WDLog(@"%@", responseObject);
 
         // 使用MJExtension将字典数组转换为模型数组
@@ -145,8 +159,8 @@ static NSString *IDRightCell = @"rightTableViewCell";
     parameters[@"category_id"] = @(data.ID);
     parameters[@"page"] = @(++data.currentPage);
     
-    [[AFHTTPSessionManager manager] GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        //                    WDLog(@"%@", responseObject);
+    [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        WDLog(@"%@", responseObject);
         
         // 将加载的数据存入左侧表格模型的rightTableViewData属性中
         NSArray *newData = [WDRightTableViewData mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
@@ -158,19 +172,76 @@ static NSString *IDRightCell = @"rightTableViewCell";
         // 刷新右侧表格
         [self.rightTableView reloadData];
         
-//        if (data.total == data.rightTableViewData.count) {
-//            
-//            [self.rightTableView.mj_footer endRefreshingWithNoMoreData];
-//        }else {
-//            
-//            // 将上拉刷新控件复原(结束刷新)
-//            [self.rightTableView.mj_footer endRefreshing];
-//        }
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //                    WDLog(@"%@", error);
+//        WDLog(@"%@", error);
+        
+        // 显示请求失败
+        [SVProgressHUD setMinimumDismissTimeInterval:2.0f];
+        [SVProgressHUD showErrorWithStatus:@"请求失败"];
     }];
     
+}
+
+
+/** 右侧表格顶部的下拉刷新功能 */
+- (void)reloadData{
+    
+    WDLeftTableViewData *data = self.leftTableViewData[[self.leftTableView indexPathForSelectedRow].row];
+
+    // 模拟网速慢时的情况
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        parameters[@"a"] = @"list";
+        parameters[@"c"] = @"subscribe";
+        parameters[@"category_id"] = @(data.ID);
+        parameters[@"page"] = @(1);
+        
+        self.parameters = parameters;
+        
+        [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//            WDLog(@"%@", responseObject);
+                
+            // 将加载的数据存入左侧表格模型的rightTableViewData属性中
+            data.rightTableViewData = [WDRightTableViewData mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
+            
+            data.total = [responseObject[@"total"] integerValue];
+            
+            // 任何cell在初次网络请求时都需要将当前页面设置为1
+            data.currentPage = 1;
+            
+//            WDLog(@"%@", data.name);
+            
+            // mj_header停止刷新
+            [self.rightTableView.header endRefreshing];
+
+            // 获取请求成功后,当前所在的左侧表格的cell的数据
+            WDLeftTableViewData *currentData = self.leftTableViewData[[self.leftTableView indexPathForSelectedRow].row];
+            
+            self.rightTableViewData = currentData.rightTableViewData;
+            
+//            WDLog(@"%@", currentData.name);
+            // 通过打印请求成功后的两个data的name属性,可以看到,两个data是不同的
+            // 因为data是在block外面定义的,当block执行时,所操作的仍然是外面的data
+            // 而currentData是在block中定义的,会在block执行时去获得
+            // 两者是不同的
+            
+            // 刷新右侧表格
+            [self.rightTableView reloadData];
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            WDLog(@"%@", error);
+            
+            // 如果刷新失败,mj_header也需要停止刷新
+            [self.rightTableView.header endRefreshing];
+            
+            // 显示请求失败
+            [SVProgressHUD setMinimumDismissTimeInterval:2.0f];
+            [SVProgressHUD showErrorWithStatus:@"请求失败"];
+        }];
+        
+    });
+
 }
 
 
@@ -185,18 +256,17 @@ static NSString *IDRightCell = @"rightTableViewCell";
         // 在这个方法中对右边表格的底部的隐藏和显示进行设置,右边表格有数据时,显示mj_footer,没有数据时,隐藏mj_footer
         // 因为mj_footer的隐藏是需要self.rightTableViewData为空,而self.rightTableViewData的数值一旦发生变化,都需要reloadData
         // 而reloadData就会来到该方法,所以在该方法中进行设置
-        self.rightTableView.mj_footer.hidden = (self.rightTableViewData == nil);
+        self.rightTableView.footer.hidden = (self.rightTableViewData == nil);
         
-        // 将mj_footer内容的判断写在这里不太好,有显示问题
+        // 将mj_footer内容的判断写在这里
         WDLeftTableViewData *data = self.leftTableViewData[[self.leftTableView indexPathForSelectedRow].row];
-        
         
         if (data.total == data.rightTableViewData.count) {
             
-            [self.rightTableView.mj_footer endRefreshingWithNoMoreData];
+            [self.rightTableView.footer noticeNoMoreData];
         }else {
             
-            [self.rightTableView.mj_footer endRefreshing];
+            [self.rightTableView.footer endRefreshing];
         }
         
         return self.rightTableViewData.count;
@@ -228,88 +298,37 @@ static NSString *IDRightCell = @"rightTableViewCell";
        
         return cell;
     }
-    
 }
 
 
 #pragma mark - <UITableViewDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (tableView == self.leftTableView) {
+    WDLeftTableViewData *data = self.leftTableViewData[indexPath.row];
+    [self.rightTableView.header endRefreshing];
+    
+    // 判断data中的rightTableViewData属性是否有值,来决定是否进行网络请求
+    if (data.rightTableViewData) {
         
-        WDLeftTableViewData *data = self.leftTableViewData[indexPath.row];
+        self.rightTableViewData = data.rightTableViewData;
+        [self.rightTableView reloadData];
+    } else {
         
-        // 判断data中的rightTableViewData属性是否有值,来决定是否进行网络请求
-        if (data.rightTableViewData) {
-            
-            self.rightTableViewData = data.rightTableViewData;
-            [self.rightTableView reloadData];
-            
-            // 进入这里说明点击的cell已经从网络上请求了一些数据
-//            if (data.total == data.rightTableViewData.count) {
-//                
-//                // 进入这里说明点击的cell的所有数据已经请求完成,那么mj_footer需要显示:数据加载完毕
-//                [self.rightTableView.mj_footer endRefreshingWithNoMoreData];
-//            }else {
-//                
-//                // 进入这里说明点击的cell只有部分数据请求完成,那么mj_footer需要显示:上拉加载更多数据
-//                [self.rightTableView.mj_footer endRefreshing];
-//            }
-            /*
-             注意:
-                上面的if判断语句在三个地方出现: 
-                    1 loadMoreData方法
-                    2 本例if (data.rightTableViewData)
-                    3 本例else
-                三个地方都有reloadData,可以将其统一放在numberOfRowsInSection方法中进行设置
-             */
-        } else {
-            
-            // 点击tableView的任一行,无论网络加载是否完成,都需要将之前点击的数据从视图中清除
-            // 通过将self.rightTableViewData置空,并且刷新表格的方式将之前的表格数据从视图中清除
-            self.rightTableViewData = nil;
-            [self.rightTableView reloadData];
-            
-            // 模拟网速慢时的情况
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-                parameters[@"a"] = @"list";
-                parameters[@"c"] = @"subscribe";
-                parameters[@"category_id"] = @(data.ID);
-                
-                [[AFHTTPSessionManager manager] GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                    WDLog(@"%@", responseObject);
-                    
-                    // 将加载的数据存入左侧表格模型的rightTableViewData属性中
-                    data.rightTableViewData = [WDRightTableViewData mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
-                    
-                    data.total = [responseObject[@"total"] integerValue];
-                    
-                    // 任何cell在初次网络请求时都需要将当前页面设置为1
-                    data.currentPage = 1;
-                    
-                    self.rightTableViewData = data.rightTableViewData;
-                    
-                    // 判断当前返回的右侧表格行数和总行数是否相等
-//                    if (data.total == data.rightTableViewData.count) {
-//                    
-//                        [self.rightTableView.mj_footer endRefreshingWithNoMoreData];
-//                    }else {
-//                        
-//                        [self.rightTableView.mj_footer endRefreshing];
-//                    }
-                    
-                    // 刷新右侧表格
-                    [self.rightTableView reloadData];
-                    
-                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//                    WDLog(@"%@", error);
-                }];
-                
-            });
-        }
+        // 点击tableView的任一行,无论网络加载是否完成,都需要将之前点击的数据从视图中清除
+        // 通过将self.rightTableViewData置空,并且刷新表格的方式将之前的表格数据从视图中清除
+        self.rightTableViewData = nil;
+        [self.rightTableView reloadData];
+
+        // 调用mj_header的刷新功能,进行数据加载
+        [self.rightTableView.header beginRefreshing];
     }
+}
+
+
+- (void)dealloc{
+    
+    // 当控制器销毁时(如点击了左上角的返回),需要将所有正在进行的请求任务取消
+    [self.manager.operationQueue cancelAllOperations];
 }
 
 
