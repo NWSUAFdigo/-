@@ -7,16 +7,24 @@
 //
 
 #import "WDLoginRegisterViewController.h"
+#import "WDTextField.h"
+#import "WDTextFieldTwo.h"
 
 @interface WDLoginRegisterViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *phoneField;
-@property (weak, nonatomic) IBOutlet UITextField *pwdField;
+@property (weak, nonatomic) IBOutlet WDTextField *phoneField;
+@property (weak, nonatomic) IBOutlet WDTextFieldTwo *pwdField;
 
 @end
 
 
 @implementation WDLoginRegisterViewController
+
+// 点击屏幕退出键盘
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,7 +34,10 @@
     [self setUpLoginBtn];
 
     // 设置textField的占位文字(颜色\字体\大小)
-    [self setUpTextFieldHolder];
+//    [self setUpTextFieldHolder];
+    
+    // 设置占位文字颜色
+    [self setUpTextField];
 }
 
 
@@ -59,6 +70,25 @@
     
     self.phoneField.attributedPlaceholder = holder;
     
+}
+
+
+// 设置textField的占位文字颜色\光标等属性
+- (void)setUpTextField{
+    
+    self.phoneField.placeholderColor = [UIColor grayColor];
+    // 设置textField弹出键盘时,占位文字的颜色
+    self.phoneField.placeholderHighlightedColor = [UIColor lightGrayColor];
+    // 设置textField光标的颜色
+    self.phoneField.cursorColor = self.phoneField.placeholderHighlightedColor;
+    // 设置textField输入的文字颜色
+    self.phoneField.textColor = self.phoneField.placeholderHighlightedColor;
+    
+    
+    self.pwdField.placeholderColor = [UIColor grayColor];
+    self.pwdField.placeholderHighlightedColor = [UIColor lightGrayColor];
+    self.pwdField.cursorColor = self.pwdField.placeholderHighlightedColor;
+    self.pwdField.textColor = self.pwdField.placeholderHighlightedColor;
 }
 
 
