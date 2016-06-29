@@ -8,6 +8,7 @@
 
 #import "WDFriendTrendsViewController.h"
 #import "WDRecommendViewController.h"
+#import "WDLoginRegisterViewController.h"
 
 @implementation WDFriendTrendsViewController
 
@@ -21,21 +22,6 @@
         此时不能使用self.title来设置导航栏标题,因为self.title会同时设置导航栏和tabBar的标题
         而此时导航栏和tabBar的标题是不同的
      */
-    
-    
-//    // 设置左边按钮 friendsRecommentIcon
-//    UIButton *friendsRecBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    
-//    [friendsRecBtn setImage:[UIImage imageNamed:@"friendsRecommentIcon"] forState:UIControlStateNormal];
-//    
-//    [friendsRecBtn setImage:[UIImage imageNamed:@"friendsRecommentIcon-click"] forState:UIControlStateHighlighted];
-//    
-//    friendsRecBtn.size = friendsRecBtn.currentImage.size;
-//    
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:friendsRecBtn];
-//    
-//    // 设置按钮点击
-//    [friendsRecBtn addTarget:self action:@selector(friendsRecBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithImageName:@"friendsRecommentIcon" highlightedImageName:@"friendsRecommentIcon-click" target:self action:@selector(friendsRecBtnClick)];
     
@@ -53,6 +39,10 @@
 
 /** 登录/注册 按钮点击 */
 - (IBAction)loginOrRegisterClick:(id)sender {
+    
+    WDLoginRegisterViewController *loginRegisterVC = [[WDLoginRegisterViewController alloc] init];
+    
+    [self presentViewController:loginRegisterVC animated:YES completion:nil];
 }
 
 @end
