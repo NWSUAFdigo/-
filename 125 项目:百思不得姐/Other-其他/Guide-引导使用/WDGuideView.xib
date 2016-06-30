@@ -7,10 +7,58 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view alpha="0.59999999999999998" contentMode="scaleToFill" id="iN0-l3-epB" customClass="WDGuideView">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WDGuideView">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pushguidemid" translatesAutoresizingMaskIntoConstraints="NO" id="yjS-rj-tJH">
+                    <rect key="frame" x="180" y="238" width="240" height="125"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="125" id="Gfg-hm-PE9"/>
+                        <constraint firstAttribute="width" constant="240" id="ZYV-s8-afk"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pushguidebot" translatesAutoresizingMaskIntoConstraints="NO" id="DRu-l2-lvx">
+                    <rect key="frame" x="240" y="363" width="130" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="130" id="5XI-WV-Pn9"/>
+                        <constraint firstAttribute="height" constant="90" id="V2n-0m-Qxh"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxM-LG-4lj">
+                    <rect key="frame" x="240" y="414" width="100" height="39"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="39" id="aDq-GF-CJo"/>
+                        <constraint firstAttribute="width" constant="100" id="oqJ-7k-wrI"/>
+                    </constraints>
+                    <connections>
+                        <action selector="buttonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="yLj-RR-uG5"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pushguidetop" translatesAutoresizingMaskIntoConstraints="NO" id="bTe-n4-z9o">
+                    <rect key="frame" x="175" y="143" width="250" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="ICv-DI-ALw"/>
+                        <constraint firstAttribute="height" constant="55" id="Xjs-du-KtW"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.67702047413793098" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="DRu-l2-lvx" firstAttribute="top" secondItem="yjS-rj-tJH" secondAttribute="bottom" id="32I-6x-cHu"/>
+                <constraint firstItem="bTe-n4-z9o" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8Rh-mT-5ua"/>
+                <constraint firstItem="yjS-rj-tJH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="FAI-I2-tDH"/>
+                <constraint firstItem="yjS-rj-tJH" firstAttribute="top" secondItem="bTe-n4-z9o" secondAttribute="bottom" constant="40" id="FAS-wi-kEc"/>
+                <constraint firstItem="yjS-rj-tJH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ysp-Mn-HLU"/>
+                <constraint firstItem="DRu-l2-lvx" firstAttribute="trailing" secondItem="yjS-rj-tJH" secondAttribute="trailing" constant="-50" id="Z9A-GY-SVL"/>
+                <constraint firstItem="KxM-LG-4lj" firstAttribute="bottom" secondItem="DRu-l2-lvx" secondAttribute="bottom" id="Zvn-Ek-ibQ"/>
+                <constraint firstItem="KxM-LG-4lj" firstAttribute="leading" secondItem="DRu-l2-lvx" secondAttribute="leading" id="lWE-r0-iY6"/>
+            </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="pushguidebot" width="130" height="90"/>
+        <image name="pushguidemid" width="240" height="125"/>
+        <image name="pushguidetop" width="250" height="55"/>
+    </resources>
 </document>
