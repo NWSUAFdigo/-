@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "WDTabBarController.h"
+#import "WDGuideView.h"
 
 @interface AppDelegate ()
 
@@ -24,6 +25,9 @@
     self.window.rootViewController = [[WDTabBarController alloc] init];
     
     [self.window makeKeyAndVisible];
+    
+    // 判断是否显示引导使用页
+    [WDGuideView show];
     
     return YES;
 }

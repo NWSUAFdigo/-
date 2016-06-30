@@ -35,6 +35,8 @@
 		87B877C81D22650B00C53116 /* WDRecommendTagData.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B877C71D22650B00C53116 /* WDRecommendTagData.m */; };
 		87B877CC1D2266EA00C53116 /* WDRecommendTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B877CA1D2266EA00C53116 /* WDRecommendTagCell.m */; };
 		87B877CD1D2266EA00C53116 /* WDRecommendTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87B877CB1D2266EA00C53116 /* WDRecommendTagCell.xib */; };
+		87D40A351D24BE0600C54DEB /* WDGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D40A341D24BE0600C54DEB /* WDGuideView.m */; };
+		87D40A371D24BE1700C54DEB /* WDGuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D40A361D24BE1700C54DEB /* WDGuideView.xib */; };
 		87FC3C401D1CC8C7001013E0 /* WDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC3C3F1D1CC8C7001013E0 /* WDNavigationController.m */; };
 		87FC3C421D1CE109001013E0 /* WDFriendTrendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FC3C411D1CE109001013E0 /* WDFriendTrendsViewController.xib */; };
 		87FC3C461D1D1110001013E0 /* WDRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC3C441D1D1110001013E0 /* WDRecommendViewController.m */; };
@@ -117,6 +119,9 @@
 		87B877C91D2266EA00C53116 /* WDRecommendTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDRecommendTagCell.h; sourceTree = "<group>"; };
 		87B877CA1D2266EA00C53116 /* WDRecommendTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDRecommendTagCell.m; sourceTree = "<group>"; };
 		87B877CB1D2266EA00C53116 /* WDRecommendTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDRecommendTagCell.xib; sourceTree = "<group>"; };
+		87D40A331D24BE0600C54DEB /* WDGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGuideView.h; sourceTree = "<group>"; };
+		87D40A341D24BE0600C54DEB /* WDGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGuideView.m; sourceTree = "<group>"; };
+		87D40A361D24BE1700C54DEB /* WDGuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDGuideView.xib; sourceTree = "<group>"; };
 		87FC3C3E1D1CC8C7001013E0 /* WDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDNavigationController.h; sourceTree = "<group>"; };
 		87FC3C3F1D1CC8C7001013E0 /* WDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDNavigationController.m; sourceTree = "<group>"; };
 		87FC3C411D1CE109001013E0 /* WDFriendTrendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDFriendTrendsViewController.xib; sourceTree = "<group>"; };
@@ -416,6 +421,7 @@
 		870DC8201D1BDE49008D72ED /* Other-其他 */ = {
 			isa = PBXGroup;
 			children = (
+				87D40A321D24BDF700C54DEB /* Guide-引导使用 */,
 				870DC8211D1BDE49008D72ED /* AppDelegate.h */,
 				870DC8221D1BDE49008D72ED /* AppDelegate.m */,
 				870DC82A1D1BDE49008D72ED /* PrefixHeader.pch */,
@@ -477,6 +483,16 @@
 				87A97B451D2414260066CCF8 /* WDTextFieldThree.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		87D40A321D24BDF700C54DEB /* Guide-引导使用 */ = {
+			isa = PBXGroup;
+			children = (
+				87D40A331D24BE0600C54DEB /* WDGuideView.h */,
+				87D40A341D24BE0600C54DEB /* WDGuideView.m */,
+				87D40A361D24BE1700C54DEB /* WDGuideView.xib */,
+			);
+			path = "Guide-引导使用";
 			sourceTree = "<group>";
 		};
 		CD913786496EBC52F97ADB07 /* Pods */ = {
@@ -602,6 +618,7 @@
 				87FC3C541D1D8845001013E0 /* WDLeftTableViewCell.xib in Resources */,
 				87FC3C471D1D1110001013E0 /* WDRecommendViewController.xib in Resources */,
 				87923DDC1D20C886002C496D /* WDRightTableViewCell.xib in Resources */,
+				87D40A371D24BE1700C54DEB /* WDGuideView.xib in Resources */,
 				87FC3C421D1CE109001013E0 /* WDFriendTrendsViewController.xib in Resources */,
 				87B877CD1D2266EA00C53116 /* WDRecommendTagCell.xib in Resources */,
 				870DC7BD1D1B7B4E008D72ED /* Assets.xcassets in Resources */,
@@ -699,6 +716,7 @@
 				870DC82C1D1BDE49008D72ED /* WDFriendTrendsViewController.m in Sources */,
 				870DC8341D1BDE49008D72ED /* UIImage+Category.m in Sources */,
 				87923DD71D20C5F7002C496D /* WDRightTableViewData.m in Sources */,
+				87D40A351D24BE0600C54DEB /* WDGuideView.m in Sources */,
 				87FC3C401D1CC8C7001013E0 /* WDNavigationController.m in Sources */,
 				870DC8381D1BE5FF008D72ED /* WDTabBarController.m in Sources */,
 				87A97B391D2390E90066CCF8 /* WDLoginRegisterViewController.m in Sources */,

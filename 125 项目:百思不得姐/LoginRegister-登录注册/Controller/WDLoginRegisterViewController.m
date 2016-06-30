@@ -13,7 +13,12 @@
 @interface WDLoginRegisterViewController ()
 
 @property (weak, nonatomic) IBOutlet WDTextField *phoneField;
-@property (weak, nonatomic) IBOutlet WDTextFieldTwo *pwdField;
+@property (weak, nonatomic) IBOutlet WDTextField *pwdField;
+@property (weak, nonatomic) IBOutlet WDTextField *registerPhoneField;
+@property (weak, nonatomic) IBOutlet WDTextField *registerPwdField;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginViewLeadingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginViewTrailingConstraint;
+@property (weak, nonatomic) IBOutlet UIView *loginView;
 
 @end
 
@@ -75,20 +80,25 @@
 
 // 设置textField的占位文字颜色\光标等属性
 - (void)setUpTextField{
+
+    // 设置textField的holder,使用默认样式
+    [self setUpHolderUsingDefaultColor:self.phoneField];
+    [self setUpHolderUsingDefaultColor:self.pwdField];
+    [self setUpHolderUsingDefaultColor:self.registerPhoneField];
+    [self setUpHolderUsingDefaultColor:self.registerPwdField];
+}
+
+
+// 设置textField的holder,使用默认样式
+- (void)setUpHolderUsingDefaultColor:(WDTextField *)textField{
     
-    self.phoneField.placeholderColor = [UIColor grayColor];
+    textField.placeholderColor = [UIColor grayColor];
     // 设置textField弹出键盘时,占位文字的颜色
-    self.phoneField.placeholderHighlightedColor = [UIColor lightGrayColor];
+    textField.placeholderHighlightedColor = [UIColor lightGrayColor];
     // 设置textField光标的颜色
-    self.phoneField.cursorColor = self.phoneField.placeholderHighlightedColor;
+    textField.cursorColor = self.phoneField.placeholderHighlightedColor;
     // 设置textField输入的文字颜色
-    self.phoneField.textColor = self.phoneField.placeholderHighlightedColor;
-    
-    
-    self.pwdField.placeholderColor = [UIColor grayColor];
-    self.pwdField.placeholderHighlightedColor = [UIColor lightGrayColor];
-    self.pwdField.cursorColor = self.pwdField.placeholderHighlightedColor;
-    self.pwdField.textColor = self.pwdField.placeholderHighlightedColor;
+    textField.textColor = self.phoneField.placeholderHighlightedColor;
 }
 
 
@@ -98,4 +108,45 @@
     return UIStatusBarStyleLightContent;
 }
 
+
+- (IBAction)loginRegisterClick:(UIButton *)sender {
+    
+    // 每次点击按钮,都需要将键盘隐藏
+     [self.view endEditing:YES];
+    
+    // 通过判断sender是否处于selected状态来决定显示登陆View还是注册View
+    // 在xib中设置按钮selected状态下的文字内容,达到选中和非选中状态的内容不同
+    if (sender.selected == NO) {
+        
+        // 修改登录View的约束
+        self.loginViewLeadingConstraint.constant = - self.view.width;
+        self.loginViewTrailingConstraint.constant = - self.view.width;
+        
+        // 将sender设置selected
+        sender.selected = YES;
+    } else {
+        
+        // 修改登录View的约束
+        self.loginViewLeadingConstraint.constant = 0;
+        self.loginViewTrailingConstraint.constant = 0;
+        
+        // 将sender设置selected
+        sender.selected = NO;
+    }
+    
+    [UIView animateWithDuration:0.2f animations:^{
+        
+        [self.view layoutIfNeeded];
+        
+        // 通过修改transform也可以达到移动的效果
+//        self.loginView.transform = CGAffineTransformMakeTranslation(- self.view.width, 0);
+    }];
+}
+
+
+// 点击关闭按钮,退出登录\注册界面
+- (IBAction)closeClick:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

@@ -45,6 +45,17 @@
     
     // 通过打印UITextField的属性列表,可以查找到一个名为_placeholderLabel的属性
     // 说明在UITextField内部,占位文字是通过一个UILabel来设置的
+    
+    // 运行时机制使用完成后,需要手动将数组释放
+    free(ivars);
+    
+    // runtime不仅可以获得成员变量,还可以获得方法\属性等信息
+    // copy方法列表
+    // class_copyMethodList(<#__unsafe_unretained Class cls#>, <#unsigned int *outCount#>);
+    // copy属性列表
+    // class_copyPropertyList(<#__unsafe_unretained Class cls#>, <#unsigned int *outCount#>);
+    // copy协议列表
+    // class_copyProtocolList(<#__unsafe_unretained Class cls#>, <#unsigned int *outCount#>);
 }
 
 
