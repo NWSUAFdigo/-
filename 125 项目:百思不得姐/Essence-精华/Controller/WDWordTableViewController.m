@@ -8,6 +8,7 @@
 
 #import "WDWordTableViewController.h"
 #import "WDWordData.h"
+#import "WDWordTableViewCell.h"
 
 #import <MJRefresh.h>
 #import <AFNetworking.h>
@@ -29,17 +30,13 @@
 
 @implementation WDWordTableViewController
 
+
+static NSString * const ID = @"wordCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // 设置tableView
-    CGFloat topInset = 64 + channelViewHeight;
-    CGFloat bottomInset = self.tabBarController.tabBar.height;
-    
-    self.tableView.contentInset = UIEdgeInsetsMake(topInset, 0, bottomInset, 0);
-    
-    // 如果tableView设置了contentInset,最好将滚动条的contentInset也进行响应设置
-    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    [self setUpTableView];
     
     // 使用MJRefresh给tableView添加一个页头
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
@@ -54,6 +51,26 @@
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
     self.tableView.rowHeight = 50;
+}
+
+
+- (void)setUpTableView{
+    
+    // 设置tableView
+    CGFloat topInset = 64 + channelViewHeight;
+    CGFloat bottomInset = self.tabBarController.tabBar.height;
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(topInset, 0, bottomInset, 0);
+    
+    // 如果tableView设置了contentInset,最好将滚动条的contentInset也进行响应设置
+    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    
+    // 注册cell
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WDWordTableViewCell class]) bundle:nil] forCellReuseIdentifier:ID];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.tableView.backgroundColor = [UIColor clearColor];
 }
 
 
@@ -152,25 +169,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    
-    if (cell == nil) {
-        
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-    }
+    WDWordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
     
     // 取出对应模型
     WDWordData *data = self.datas[indexPath.row];
     
-    // 对cell进行设置
-    cell.textLabel.text = data.name;
-    cell.detailTextLabel.text = data.text;
-    
-    // 使用SDWebImage加载网络图片
-    [cell.imageView sd_setImageWithURL:data.profile_image placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
+    cell.data = data;
+//
+//    // 对cell进行设置
+//    cell.textLabel.text = data.name;
+//    cell.detailTextLabel.text = data.text;
+//    
+//    // 使用SDWebImage加载网络图片
+//    [cell.imageView sd_setImageWithURL:data.profile_image placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
     
     return cell;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 150;
 }
 
 @end

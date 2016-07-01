@@ -41,11 +41,11 @@
     // 取消自动调整scrollViewInsets
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    // 添加顶部频道View
-    [self setUpChannelView];
-
     // 给控制器添加子控制器
     [self setUpChildViewController];
+    
+    // 添加顶部频道View
+    [self setUpChannelView];
 
     // 添加一个scrollView,作为内容的展示区
     [self setUpContentScrollView];
@@ -60,19 +60,19 @@
     view.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
     
     // 添加单个频道按钮
-    NSArray *channelArray = @[@"全部", @"视频", @"图片", @"段子", @"声音"];
-    
     CGFloat y = 0;
     
-    CGFloat width = view.width / channelArray.count;
+    CGFloat width = view.width / self.childViewControllers.count;
     
     CGFloat height = view.height;
     
-    for (int i = 0; i < channelArray.count; i++) {
+    for (int i = 0; i < self.childViewControllers.count; i++) {
+        
+        UIViewController *vc = self.childViewControllers[i];
         
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        [btn setTitle:channelArray[i] forState:UIControlStateNormal];
+        [btn setTitle:vc.title forState:UIControlStateNormal];
         
         [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         
@@ -168,19 +168,24 @@
 
 - (void)setUpChildViewController{
     
+    WDWordTableViewController *wordVC = [[WDWordTableViewController alloc] init];
+    wordVC.title = @"段子";
+    [self addChildViewController:wordVC];
+    
     WDAllTableViewController *allVC = [[WDAllTableViewController alloc] init];
+    allVC.title = @"全部";
     [self addChildViewController:allVC];
     
     WDVideoTableViewController *videoVC = [[WDVideoTableViewController alloc] init];
+    videoVC.title = @"视频";
     [self addChildViewController:videoVC];
     
     WDPictureTableViewController *pictureVC = [[WDPictureTableViewController alloc] init];
+    pictureVC.title = @"图片";
     [self addChildViewController:pictureVC];
     
-    WDWordTableViewController *wordVC = [[WDWordTableViewController alloc] init];
-    [self addChildViewController:wordVC];
-    
     WDSoundTableViewController *soundVC = [[WDSoundTableViewController alloc] init];
+    soundVC.title = @"声音";
     [self addChildViewController:soundVC];
 }
 

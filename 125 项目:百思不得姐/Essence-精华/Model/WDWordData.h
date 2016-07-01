@@ -16,5 +16,15 @@
 @property (nonatomic,copy) NSString *name;
 /** 内容 */
 @property (nonatomic,copy) NSString *text;
+/** 创建时间 */
+@property (nonatomic,copy) NSString *create_time;
+/** 顶 */
+@property (nonatomic,copy) NSString *ding;
+/** 踩 */
+@property (nonatomic,copy) NSString *cai;
+/** 分享 */
+@property (nonatomic,copy) NSString *repost;
+/** 评论 */
+@property (nonatomic,copy) NSString *comment;
 
 @end
