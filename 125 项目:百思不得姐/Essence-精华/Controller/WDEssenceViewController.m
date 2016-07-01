@@ -55,7 +55,7 @@
 
 - (void)setUpChannelView{
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, 35)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, channelViewHeight)];
     
     view.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
     
@@ -159,20 +159,7 @@
     UITableViewController *tableVC = self.childViewControllers[0];
     
     tableVC.tableView.frame = scrollView.bounds;
-    
-    // 设置tableView的contentInset
-    // contentInset属性应该在最后一个能够滚动的视图上
-    // 本例中需要在垂直方向上设置contentInset,而最后一个能够滚动的视图是scrollView里面的tableView
-    // 由于tableView需要在垂直方向上滚动,那么其父控件scrollView就尽量不要设置垂直方向上的滚动
-    // 如果contentInset设置在scrollView上,那么tableView是无法实现穿透效果的
-    CGFloat topInset = CGRectGetMaxY(self.channelView.frame);
-    CGFloat bottomInset = self.tabBarController.tabBar.height;
-    
-    tableVC.tableView.contentInset = UIEdgeInsetsMake(topInset, 0, bottomInset, 0);
-    
-    // 如果tableView设置了contentInset,最好将滚动条的contentInset也进行响应设置
-    tableVC.tableView.scrollIndicatorInsets = tableVC.tableView.contentInset;
-    
+
     [scrollView addSubview:tableVC.tableView];
     
     self.scrollView = scrollView;
@@ -248,12 +235,12 @@
     // 来到这里说明tableVC.tableView还没有添加到scrollView的子视图中
     tableVC.tableView.frame = CGRectMake(index * scrollView.width, 0, scrollView.width, scrollView.height);
     
-    // 设置tableView的contentInset
-    CGFloat topInset = CGRectGetMaxY(self.channelView.frame);
-    CGFloat bottomInset = self.tabBarController.tabBar.height;
-    
-    tableVC.tableView.contentInset = UIEdgeInsetsMake(topInset, 0, bottomInset, 0);
-    tableVC.tableView.scrollIndicatorInsets = tableVC.tableView.contentInset;
+//    // 设置tableView的contentInset
+//    CGFloat topInset = CGRectGetMaxY(self.channelView.frame);
+//    CGFloat bottomInset = self.tabBarController.tabBar.height;
+//    
+//    tableVC.tableView.contentInset = UIEdgeInsetsMake(topInset, 0, bottomInset, 0);
+//    tableVC.tableView.scrollIndicatorInsets = tableVC.tableView.contentInset;
     
     [scrollView addSubview:tableVC.tableView];
 }

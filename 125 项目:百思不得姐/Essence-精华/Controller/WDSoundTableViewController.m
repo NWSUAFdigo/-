@@ -17,17 +17,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    // 设置tableView的contentInset
+    // contentInset属性应该在最后一个能够滚动的视图上
+    // 本例中需要在垂直方向上设置contentInset,而最后一个能够滚动的视图是scrollView里面的tableView
+    // 由于tableView需要在垂直方向上滚动,那么其父控件scrollView就尽量不要设置垂直方向上的滚动
+    // 如果contentInset设置在scrollView上,那么tableView是无法实现穿透效果的
+    CGFloat topInset = 64 + channelViewHeight;
+    CGFloat bottomInset = self.tabBarController.tabBar.height;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.contentInset = UIEdgeInsetsMake(topInset, 0, bottomInset, 0);
+    
+    // 如果tableView设置了contentInset,最好将滚动条的contentInset也进行响应设置
+    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
 

@@ -189,6 +189,8 @@ static NSString *IDRightCell = @"rightTableViewCell";
     WDLeftTableViewData *data = self.leftTableViewData[[self.leftTableView indexPathForSelectedRow].row];
 
     // 模拟网速慢时的情况
+    // 注意:网速慢的模拟需要将延迟代码放在网络请求的前一句,而不是本例中的情况
+    // 具体可以参考精华模块中的WDWordTableViewController.m文件里面的refresh方法
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     
         NSMutableDictionary *parameters = [NSMutableDictionary dictionary];

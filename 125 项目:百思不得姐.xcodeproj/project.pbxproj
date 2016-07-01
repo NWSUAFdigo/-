@@ -22,6 +22,8 @@
 		870DC8341D1BDE49008D72ED /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC8271D1BDE49008D72ED /* UIImage+Category.m */; };
 		870DC8351D1BDE49008D72ED /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC8291D1BDE49008D72ED /* UIView+Category.m */; };
 		870DC8381D1BE5FF008D72ED /* WDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC8371D1BE5FF008D72ED /* WDTabBarController.m */; };
+		87233BDE1D2615E500B0AA36 /* WDWordData.m in Sources */ = {isa = PBXBuildFile; fileRef = 87233BDD1D2615E500B0AA36 /* WDWordData.m */; };
+		87233BE11D2646DD00B0AA36 /* WDConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 87233BE01D2646DD00B0AA36 /* WDConst.m */; };
 		87923DD71D20C5F7002C496D /* WDRightTableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 87923DD61D20C5F7002C496D /* WDRightTableViewData.m */; };
 		87923DDB1D20C886002C496D /* WDRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87923DD91D20C886002C496D /* WDRightTableViewCell.m */; };
 		87923DDC1D20C886002C496D /* WDRightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87923DDA1D20C886002C496D /* WDRightTableViewCell.xib */; };
@@ -101,6 +103,10 @@
 		870DC82A1D1BDE49008D72ED /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		870DC8361D1BE5FF008D72ED /* WDTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDTabBarController.h; sourceTree = "<group>"; };
 		870DC8371D1BE5FF008D72ED /* WDTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDTabBarController.m; sourceTree = "<group>"; };
+		87233BDC1D2615E500B0AA36 /* WDWordData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDWordData.h; sourceTree = "<group>"; };
+		87233BDD1D2615E500B0AA36 /* WDWordData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDWordData.m; sourceTree = "<group>"; };
+		87233BDF1D2646DD00B0AA36 /* WDConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDConst.h; sourceTree = "<group>"; };
+		87233BE01D2646DD00B0AA36 /* WDConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDConst.m; sourceTree = "<group>"; };
 		87923DD51D20C5F7002C496D /* WDRightTableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDRightTableViewData.h; sourceTree = "<group>"; };
 		87923DD61D20C5F7002C496D /* WDRightTableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDRightTableViewData.m; sourceTree = "<group>"; };
 		87923DD81D20C885002C496D /* WDRightTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDRightTableViewCell.h; sourceTree = "<group>"; };
@@ -286,6 +292,8 @@
 			children = (
 				87B877C61D22650B00C53116 /* WDRecommendTagData.h */,
 				87B877C71D22650B00C53116 /* WDRecommendTagData.m */,
+				87233BDC1D2615E500B0AA36 /* WDWordData.h */,
+				87233BDD1D2615E500B0AA36 /* WDWordData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -450,6 +458,8 @@
 				870DC8211D1BDE49008D72ED /* AppDelegate.h */,
 				870DC8221D1BDE49008D72ED /* AppDelegate.m */,
 				870DC82A1D1BDE49008D72ED /* PrefixHeader.pch */,
+				87233BDF1D2646DD00B0AA36 /* WDConst.h */,
+				87233BE01D2646DD00B0AA36 /* WDConst.m */,
 				870DC8231D1BDE49008D72ED /* Category-分类 */,
 			);
 			path = "Other-其他";
@@ -720,6 +730,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87B877CC1D2266EA00C53116 /* WDRecommendTagCell.m in Sources */,
+				87233BE11D2646DD00B0AA36 /* WDConst.m in Sources */,
 				87FC3C4F1D1D822A001013E0 /* WDLeftTableViewData.m in Sources */,
 				87A97B3D1D23A46A0066CCF8 /* WDVerticalButton.m in Sources */,
 				870DC8311D1BDE49008D72ED /* WDNewViewController.m in Sources */,
@@ -743,6 +754,7 @@
 				870DC8341D1BDE49008D72ED /* UIImage+Category.m in Sources */,
 				87923DD71D20C5F7002C496D /* WDRightTableViewData.m in Sources */,
 				87D40A351D24BE0600C54DEB /* WDGuideView.m in Sources */,
+				87233BDE1D2615E500B0AA36 /* WDWordData.m in Sources */,
 				87D40A431D251C6800C54DEB /* WDWordTableViewController.m in Sources */,
 				87D40A3D1D251C5800C54DEB /* WDVideoTableViewController.m in Sources */,
 				87D40A461D251C6E00C54DEB /* WDSoundTableViewController.m in Sources */,
