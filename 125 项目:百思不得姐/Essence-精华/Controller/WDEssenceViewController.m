@@ -9,10 +9,18 @@
 #import "WDEssenceViewController.h"
 #import "WDRecommendTagTableViewController.h"
 
-@interface WDEssenceViewController ()
+#import "WDAllTableViewController.h"
+#import "WDVideoTableViewController.h"
+#import "WDPictureTableViewController.h"
+#import "WDWordTableViewController.h"
+#import "WDSoundTableViewController.h"
+
+@interface WDEssenceViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic,weak) UIView *redBar;
 @property (nonatomic,weak) UIButton *lastChannelBtn;
+@property (nonatomic,weak) UIView *channelView;
+@property (nonatomic,weak) UIScrollView * scrollView;
 
 @end
 
@@ -30,8 +38,18 @@
     
     self.view.backgroundColor = WDViewBackgroundColor;
     
+    // 取消自动调整scrollViewInsets
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     // 添加顶部频道View
     [self setUpChannelView];
+
+    // 给控制器添加子控制器
+    [self setUpChildViewController];
+
+    // 添加一个scrollView,作为内容的展示区
+    [self setUpContentScrollView];
+    
 }
 
 
@@ -61,6 +79,9 @@
         [btn setTitleColor:WDColor(222, 20, 0, 1) forState:UIControlStateDisabled];
         
         btn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+        
+        // 给btn绑定tag.tag为0-4
+        btn.tag = i;
         
         CGFloat x = width * i;
         
@@ -92,6 +113,8 @@
     
     [self.view addSubview:view];
     
+    self.channelView = view;
+    
     
     // 强制布局初始的lastChannelBtn(第一个频道按钮)
     [self.lastChannelBtn layoutSubviews];
@@ -105,8 +128,78 @@
 }
 
 
-- (void)channelBtnClick:(UIButton *)btn{
+- (void)setUpContentScrollView{
+    
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    
+    // 设置scrollView的frame为整个窗口
+    scrollView.frame = self.view.bounds;
+    
+    // scrollView设置分页
+    scrollView.pagingEnabled = YES;
+    
+//    // 设置scrollView的contentInset
+//    CGFloat topInset = CGRectGetMaxY(self.channelView.frame);
+//    CGFloat bottomInset = self.tabBarController.tabBar.height;
+    
+//     contentInset就相当于在contentSize的基础上多增加或减少部分内容
+//    scrollView.contentInset = UIEdgeInsetsMake(topInset, 0, bottomInset, 0);
+    
+    // 设置scrollView
+    scrollView.backgroundColor = WDViewBackgroundColor;
+    scrollView.contentSize = CGSizeMake(self.view.width * 5, 0);
+    scrollView.bounces = NO;
+    
+    // 将scrollView插入到self.view的子控件底部
+    [self.view insertSubview:scrollView atIndex:0];
+    
+    scrollView.delegate = self;
+    
+    // 将"全部"频道的tableView添加到scrollView上面
+    UITableViewController *tableVC = self.childViewControllers[0];
+    
+    tableVC.tableView.frame = scrollView.bounds;
+    
+    // 设置tableView的contentInset
+    // contentInset属性应该在最后一个能够滚动的视图上
+    // 本例中需要在垂直方向上设置contentInset,而最后一个能够滚动的视图是scrollView里面的tableView
+    // 由于tableView需要在垂直方向上滚动,那么其父控件scrollView就尽量不要设置垂直方向上的滚动
+    // 如果contentInset设置在scrollView上,那么tableView是无法实现穿透效果的
+    CGFloat topInset = CGRectGetMaxY(self.channelView.frame);
+    CGFloat bottomInset = self.tabBarController.tabBar.height;
+    
+    tableVC.tableView.contentInset = UIEdgeInsetsMake(topInset, 0, bottomInset, 0);
+    
+    // 如果tableView设置了contentInset,最好将滚动条的contentInset也进行响应设置
+    tableVC.tableView.scrollIndicatorInsets = tableVC.tableView.contentInset;
+    
+    [scrollView addSubview:tableVC.tableView];
+    
+    self.scrollView = scrollView;
+}
 
+
+- (void)setUpChildViewController{
+    
+    WDAllTableViewController *allVC = [[WDAllTableViewController alloc] init];
+    [self addChildViewController:allVC];
+    
+    WDVideoTableViewController *videoVC = [[WDVideoTableViewController alloc] init];
+    [self addChildViewController:videoVC];
+    
+    WDPictureTableViewController *pictureVC = [[WDPictureTableViewController alloc] init];
+    [self addChildViewController:pictureVC];
+    
+    WDWordTableViewController *wordVC = [[WDWordTableViewController alloc] init];
+    [self addChildViewController:wordVC];
+    
+    WDSoundTableViewController *soundVC = [[WDSoundTableViewController alloc] init];
+    [self addChildViewController:soundVC];
+}
+
+
+- (void)channelBtnClick:(UIButton *)btn{
+    
     // 将上次选中的按钮变为可用
     // 将这次选中的按钮变为不可用
     self.lastChannelBtn.enabled = YES;
@@ -118,6 +211,14 @@
         self.redBar.width = btn.titleLabel.width + 10;
         self.redBar.x = btn.center.x - self.redBar.width * 0.5;
     }];
+    
+    // 修改self.scrollView的contentOffset
+    CGPoint contentOffset = CGPointMake(btn.tag * self.scrollView.width, 0);
+    
+    // 重新设置scrollView的contentOffset
+    // 非手动滑动引起的contentOffset改变,将会调用scrollView的scrollViewDidEndScrollingAnimation方法
+    // 手动滑动引起的contentOffset改变,将会调用scrollView的scrollViewDidEndDecelerating方法
+    [self.scrollView setContentOffset:contentOffset animated:YES];
 }
 
 
@@ -129,5 +230,56 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+
+#pragma mark - <UIScrollViewDelegate>
+/** 非手动滑动引起的contentOffset改变将会来到这个方法 */
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+
+    // 计算出当前索引
+    NSInteger index = scrollView.contentOffset.x / scrollView.width;
+    
+    // 取出当前索引所对应的UITableViewController对象
+    UITableViewController *tableVC = self.childViewControllers[index];
+    
+    // 如果在scrollView的子视图中已经有了tableVC的tableView,那么直接返回
+    if ([scrollView.subviews containsObject:tableVC.tableView]) return;
+    
+    
+    // 来到这里说明tableVC.tableView还没有添加到scrollView的子视图中
+    tableVC.tableView.frame = CGRectMake(index * scrollView.width, 0, scrollView.width, scrollView.height);
+    
+    // 设置tableView的contentInset
+    CGFloat topInset = CGRectGetMaxY(self.channelView.frame);
+    CGFloat bottomInset = self.tabBarController.tabBar.height;
+    
+    tableVC.tableView.contentInset = UIEdgeInsetsMake(topInset, 0, bottomInset, 0);
+    tableVC.tableView.scrollIndicatorInsets = tableVC.tableView.contentInset;
+    
+    [scrollView addSubview:tableVC.tableView];
+}
+
+
+/** 手动滑动引起的contentOffset改变将会来到这个方法 */
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    [self scrollViewDidEndScrollingAnimation:scrollView];
+    
+    // 计算出当前索引
+    NSInteger index = scrollView.contentOffset.x / scrollView.width;
+ 
+    // 找出当前索引所对应的频道按钮,并调用其点击方法
+    for (UIButton *btn in self.channelView.subviews) {
+        
+        // 由于在self.channelView中,底部的红色bar没有绑定tag,所以默认其tag值为0
+        // 因此除了要判断btn的tag值是否为index外,还需要判断btn的类型是否是UIButton
+        if (btn.tag == index && [btn isKindOfClass:[UIButton class]]) {
+            
+            [self channelBtnClick:self.channelView.subviews[index]];
+            
+            break;
+        }
+    }
+    
+}
 
 @end
