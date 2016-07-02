@@ -29,6 +29,7 @@
 		87923DD71D20C5F7002C496D /* WDRightTableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 87923DD61D20C5F7002C496D /* WDRightTableViewData.m */; };
 		87923DDB1D20C886002C496D /* WDRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87923DD91D20C886002C496D /* WDRightTableViewCell.m */; };
 		87923DDC1D20C886002C496D /* WDRightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87923DDA1D20C886002C496D /* WDRightTableViewCell.xib */; };
+		87A798861D27ADC600270C80 /* NSDate+WDCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A798851D27ADC600270C80 /* NSDate+WDCategory.m */; };
 		87A97B391D2390E90066CCF8 /* WDLoginRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A97B371D2390E90066CCF8 /* WDLoginRegisterViewController.m */; };
 		87A97B3A1D2390E90066CCF8 /* WDLoginRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A97B381D2390E90066CCF8 /* WDLoginRegisterViewController.xib */; };
 		87A97B3D1D23A46A0066CCF8 /* WDVerticalButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A97B3C1D23A46A0066CCF8 /* WDVerticalButton.m */; };
@@ -117,6 +118,8 @@
 		87923DD81D20C885002C496D /* WDRightTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDRightTableViewCell.h; sourceTree = "<group>"; };
 		87923DD91D20C886002C496D /* WDRightTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDRightTableViewCell.m; sourceTree = "<group>"; };
 		87923DDA1D20C886002C496D /* WDRightTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDRightTableViewCell.xib; sourceTree = "<group>"; };
+		87A798841D27ADC600270C80 /* NSDate+WDCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+WDCategory.h"; sourceTree = "<group>"; };
+		87A798851D27ADC600270C80 /* NSDate+WDCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+WDCategory.m"; sourceTree = "<group>"; };
 		87A97B361D2390E90066CCF8 /* WDLoginRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDLoginRegisterViewController.h; sourceTree = "<group>"; };
 		87A97B371D2390E90066CCF8 /* WDLoginRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDLoginRegisterViewController.m; sourceTree = "<group>"; };
 		87A97B381D2390E90066CCF8 /* WDLoginRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDLoginRegisterViewController.xib; sourceTree = "<group>"; };
@@ -482,6 +485,8 @@
 				870DC8271D1BDE49008D72ED /* UIImage+Category.m */,
 				870DC8281D1BDE49008D72ED /* UIView+Category.h */,
 				870DC8291D1BDE49008D72ED /* UIView+Category.m */,
+				87A798841D27ADC600270C80 /* NSDate+WDCategory.h */,
+				87A798851D27ADC600270C80 /* NSDate+WDCategory.m */,
 			);
 			path = "Category-分类";
 			sourceTree = "<group>";
@@ -762,6 +767,7 @@
 				87B877C81D22650B00C53116 /* WDRecommendTagData.m in Sources */,
 				870DC82C1D1BDE49008D72ED /* WDFriendTrendsViewController.m in Sources */,
 				870DC8341D1BDE49008D72ED /* UIImage+Category.m in Sources */,
+				87A798861D27ADC600270C80 /* NSDate+WDCategory.m in Sources */,
 				87923DD71D20C5F7002C496D /* WDRightTableViewData.m in Sources */,
 				87D40A351D24BE0600C54DEB /* WDGuideView.m in Sources */,
 				87233BDE1D2615E500B0AA36 /* WDWordData.m in Sources */,

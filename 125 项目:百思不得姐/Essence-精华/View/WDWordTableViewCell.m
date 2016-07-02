@@ -61,6 +61,7 @@
     
     self.nameLabel.text = data.name;
     
+    // 在create_time的getter方法中对时间进行处理
     self.timeLabel.text = data.create_time;
     
     // 设置下方小按钮的文字
@@ -70,9 +71,6 @@
     [self setButton:self.caiBtn countString:data.cai holder:@"踩"];
     [self setButton:self.repostBtn countString:data.repost holder:@"转发"];
     [self setButton:self.commentBtn countString:data.comment holder:@"评论"];
-    
-    // 时间处理:显示为xx前,比如1分钟前\2小时前\4个月前\2年前
-    [self learnHowToGetTimeInterval:data.create_time];
 }
 
 
