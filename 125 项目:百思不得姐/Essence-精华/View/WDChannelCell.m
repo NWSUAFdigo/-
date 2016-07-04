@@ -1,16 +1,16 @@
 //
-//  WDWordTableViewCell.m
+//  WDChannelCell.m
 //  125 项目:百思不得姐
 //
 //  Created by wudi on 16/7/1.
 //  Copyright © 2016年 wudi. All rights reserved.
 //
 
-#import "WDWordTableViewCell.h"
-#import "WDWordData.h"
+#import "WDChannelCell.h"
+#import "WDChannelCellData.h"
 #import <UIImageView+WebCache.h>
 
-@interface WDWordTableViewCell ()
+@interface WDChannelCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -24,7 +24,7 @@
 @end
 
 
-@implementation WDWordTableViewCell
+@implementation WDChannelCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -53,7 +53,7 @@
 }
 
 
-- (void)setData:(WDWordData *)data{
+- (void)setData:(WDChannelCellData *)data{
     
     _data = data;
     

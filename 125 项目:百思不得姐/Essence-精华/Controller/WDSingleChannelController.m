@@ -1,21 +1,21 @@
 //
-//  WDWordTableViewController.m
+//  WDSingleChannelController.m
 //  125 项目:百思不得姐
 //
 //  Created by wudi on 16/6/30.
 //  Copyright © 2016年 wudi. All rights reserved.
 //
 
-#import "WDWordTableViewController.h"
-#import "WDWordData.h"
-#import "WDWordTableViewCell.h"
+#import "WDSingleChannelController.h"
+#import "WDChannelCellData.h"
+#import "WDChannelCell.h"
 
 #import <MJRefresh.h>
 #import <AFNetworking.h>
 #import <MJExtension.h>
 #import <UIImageView+WebCache.h>
 
-@interface WDWordTableViewController ()
+@interface WDSingleChannelController ()
 
 /** 当前页面所对应的数据数组 */
 @property (nonatomic,strong) NSMutableArray *datas;
@@ -28,7 +28,7 @@
 @end
 
 
-@implementation WDWordTableViewController
+@implementation WDSingleChannelController
 
 
 static NSString * const ID = @"wordCell";
@@ -66,7 +66,7 @@ static NSString * const ID = @"wordCell";
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     
     // 注册cell
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WDWordTableViewCell class]) bundle:nil] forCellReuseIdentifier:ID];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WDChannelCell class]) bundle:nil] forCellReuseIdentifier:ID];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -79,14 +79,14 @@ static NSString * const ID = @"wordCell";
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"a"] = @"list";
     parameters[@"c"] = @"data";
-    parameters[@"type"] = @29;
+    parameters[@"type"] = @(self.typeIdentify);
     
     self.parameters = parameters;
     
     // 模拟网速慢时的网络请求
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-    
+        
         [[AFHTTPSessionManager manager] GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
             
             // 如果同时有多个网络请求,那么只执行最后一次的网络请求
@@ -103,7 +103,7 @@ static NSString * const ID = @"wordCell";
             self.maxtime = responseObject[@"info"][@"maxtime"];
             
             // 使用MJExtension将字典转模型
-            self.datas = [WDWordData mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
+            self.datas = [WDChannelCellData mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
             
             // 刷新表格
             [self.tableView reloadData];
@@ -126,13 +126,13 @@ static NSString * const ID = @"wordCell";
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"a"] = @"list";
     parameters[@"c"] = @"data";
-    parameters[@"type"] = @29;
+    parameters[@"type"] = @(self.typeIdentify);
     parameters[@"maxtime"] = self.maxtime;
     
     self.parameters = parameters;
     
     [[AFHTTPSessionManager manager] GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-
+        
         if (self.parameters != parameters) {
             
             [self.tableView.footer endRefreshing];
@@ -143,7 +143,7 @@ static NSString * const ID = @"wordCell";
         // 记录maxtime
         self.maxtime = responseObject[@"info"][@"maxtime"];
         
-        NSArray *newDatas = [WDWordData mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
+        NSArray *newDatas = [WDChannelCellData mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
         
         // 将新数据添加到数据数组中
         [self.datas addObjectsFromArray:newDatas];
@@ -168,21 +168,21 @@ static NSString * const ID = @"wordCell";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   
-    WDWordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    
+    WDChannelCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
     
     // 取出对应模型
-    WDWordData *data = self.datas[indexPath.row];
+    WDChannelCellData *data = self.datas[indexPath.row];
     
     cell.data = data;
-//
-//    // 对cell进行设置
-//    cell.textLabel.text = data.name;
-//    cell.detailTextLabel.text = data.text;
-//    
-//    // 使用SDWebImage加载网络图片
-//    [cell.imageView sd_setImageWithURL:data.profile_image placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
+    //
+    //    // 对cell进行设置
+    //    cell.textLabel.text = data.name;
+    //    cell.detailTextLabel.text = data.text;
+    //
+    //    // 使用SDWebImage加载网络图片
+    //    [cell.imageView sd_setImageWithURL:data.profile_image placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
     
     return cell;
 }

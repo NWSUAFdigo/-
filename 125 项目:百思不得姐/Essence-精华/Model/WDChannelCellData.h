@@ -1,5 +1,5 @@
 //
-//  WDWordData.h
+//  WDChannelCellData.h
 //  125 项目:百思不得姐
 //
 //  Created by wudi on 16/7/1.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WDWordData : NSObject
+@interface WDChannelCellData : NSObject
 
 /** 头像 */
 @property (nonatomic,copy) NSURL *profile_image;

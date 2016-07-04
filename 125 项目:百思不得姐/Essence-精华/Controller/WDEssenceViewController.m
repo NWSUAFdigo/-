@@ -8,12 +8,7 @@
 
 #import "WDEssenceViewController.h"
 #import "WDRecommendTagTableViewController.h"
-
-#import "WDAllTableViewController.h"
-#import "WDVideoTableViewController.h"
-#import "WDPictureTableViewController.h"
-#import "WDWordTableViewController.h"
-#import "WDSoundTableViewController.h"
+#import "WDSingleChannelController.h"
 
 @interface WDEssenceViewController ()<UIScrollViewDelegate>
 
@@ -168,25 +163,30 @@
 
 - (void)setUpChildViewController{
     
-    WDWordTableViewController *wordVC = [[WDWordTableViewController alloc] init];
-    wordVC.title = @"段子";
-    [self addChildViewController:wordVC];
-    
-    WDAllTableViewController *allVC = [[WDAllTableViewController alloc] init];
+    WDSingleChannelController *allVC = [[WDSingleChannelController alloc] init];
+    allVC.typeIdentify = WDChannelAllTypeIdentify;
     allVC.title = @"全部";
     [self addChildViewController:allVC];
     
-    WDVideoTableViewController *videoVC = [[WDVideoTableViewController alloc] init];
+    WDSingleChannelController *videoVC = [[WDSingleChannelController alloc] init];
+    videoVC.typeIdentify = WDChannelVideoTypeIdentify;
     videoVC.title = @"视频";
     [self addChildViewController:videoVC];
     
-    WDPictureTableViewController *pictureVC = [[WDPictureTableViewController alloc] init];
+    WDSingleChannelController *pictureVC = [[WDSingleChannelController alloc] init];
+    pictureVC.typeIdentify = WDChannelPictureTypeIdentify;
     pictureVC.title = @"图片";
     [self addChildViewController:pictureVC];
     
-    WDSoundTableViewController *soundVC = [[WDSoundTableViewController alloc] init];
-    soundVC.title = @"声音";
-    [self addChildViewController:soundVC];
+    WDSingleChannelController *audioVC = [[WDSingleChannelController alloc] init];
+    audioVC.typeIdentify = WDChannelAudioTypeIdentify;
+    audioVC.title = @"声音";
+    [self addChildViewController:audioVC];
+    
+    WDSingleChannelController *wordVC = [[WDSingleChannelController alloc] init];
+    wordVC.typeIdentify = WDChannelWordTypeIdentify;
+    wordVC.title = @"段子";
+    [self addChildViewController:wordVC];
 }
 
 
