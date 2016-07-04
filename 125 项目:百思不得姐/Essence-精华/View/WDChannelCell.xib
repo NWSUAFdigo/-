@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="253"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="252.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="252"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XiY-W0-zqB" userLabel="头像">
@@ -143,26 +143,42 @@
                             <constraint firstItem="xJE-wD-kN5" firstAttribute="width" secondItem="exf-fL-W3v" secondAttribute="width" id="yuz-Wc-8HM"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ib-6v-p9H">
+                        <rect key="frame" x="10" y="55" width="300" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="gEj-TF-JCa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="2Kh-eZ-zmq"/>
                     <constraint firstItem="XiY-W0-zqB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="5AK-kd-VIF"/>
                     <constraint firstItem="DOX-pl-REy" firstAttribute="bottom" secondItem="XiY-W0-zqB" secondAttribute="bottom" id="AOl-XI-3SC"/>
+                    <constraint firstItem="3ib-6v-p9H" firstAttribute="top" secondItem="XiY-W0-zqB" secondAttribute="bottom" constant="10" id="Feb-A1-diM"/>
                     <constraint firstItem="DOX-pl-REy" firstAttribute="leading" secondItem="uqn-kG-RQF" secondAttribute="leading" id="Nlt-fC-hQ2"/>
                     <constraint firstItem="DOX-pl-REy" firstAttribute="width" secondItem="uqn-kG-RQF" secondAttribute="width" id="Q6g-Ok-OUx"/>
                     <constraint firstAttribute="trailing" secondItem="zyN-1V-Zmb" secondAttribute="trailing" constant="10" id="Vrc-gV-ZVJ"/>
+                    <constraint firstItem="gEj-TF-JCa" firstAttribute="top" secondItem="3ib-6v-p9H" secondAttribute="bottom" constant="10" id="e2U-Az-6O6"/>
                     <constraint firstItem="uqn-kG-RQF" firstAttribute="leading" secondItem="XiY-W0-zqB" secondAttribute="trailing" constant="10" id="eNO-Jd-Enn"/>
                     <constraint firstItem="zyN-1V-Zmb" firstAttribute="leading" secondItem="uqn-kG-RQF" secondAttribute="trailing" constant="10" id="fHT-KM-tsz"/>
                     <constraint firstAttribute="trailing" secondItem="gEj-TF-JCa" secondAttribute="trailing" id="fjf-Tz-5Ug"/>
                     <constraint firstAttribute="bottom" secondItem="gEj-TF-JCa" secondAttribute="bottom" id="g0j-Bw-SUT"/>
+                    <constraint firstAttribute="trailing" secondItem="3ib-6v-p9H" secondAttribute="trailing" constant="10" id="irG-Hi-v8Q"/>
                     <constraint firstItem="XiY-W0-zqB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="jWf-3M-8vW"/>
                     <constraint firstItem="uqn-kG-RQF" firstAttribute="top" secondItem="XiY-W0-zqB" secondAttribute="top" id="jnP-2f-14y"/>
                     <constraint firstItem="zyN-1V-Zmb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="rKp-vd-XPz"/>
+                    <constraint firstItem="3ib-6v-p9H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="xbV-ft-WTr"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="e2U-Az-6O6"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="caiBtn" destination="zKR-LQ-Yxs" id="ick-59-gsM"/>
                 <outlet property="commentBtn" destination="xJE-wD-kN5" id="cPB-4V-jCo"/>
+                <outlet property="contentTextLabel" destination="3ib-6v-p9H" id="bnp-At-Miy"/>
                 <outlet property="dingBtn" destination="exf-fL-W3v" id="o53-a3-RDg"/>
                 <outlet property="iconView" destination="XiY-W0-zqB" id="oKA-1L-8aS"/>
                 <outlet property="nameLabel" destination="uqn-kG-RQF" id="afo-aH-fio"/>

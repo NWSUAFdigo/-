@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *caiBtn;
 @property (weak, nonatomic) IBOutlet UIButton *repostBtn;
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
+@property (weak, nonatomic) IBOutlet UILabel *contentTextLabel;
 
 
 @end
@@ -63,6 +64,8 @@
     
     // 在create_time的getter方法中对时间进行处理
     self.timeLabel.text = data.create_time;
+    
+    self.contentTextLabel.text = data.text;
     
     // 设置下方小按钮的文字
     // 1 如果按钮的数字超过10000,以 1万 表示
