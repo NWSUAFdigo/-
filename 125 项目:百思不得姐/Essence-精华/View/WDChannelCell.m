@@ -8,6 +8,7 @@
 
 #import "WDChannelCell.h"
 #import "WDChannelCellData.h"
+#import "WDChannelCellImageView.h"
 #import <UIImageView+WebCache.h>
 
 @interface WDChannelCell ()
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
 @property (weak, nonatomic) IBOutlet UILabel *contentTextLabel;
 
+@property (nonatomic,weak) WDChannelCellImageView *imageV;
 
 @end
 
@@ -34,10 +36,18 @@
     self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainCellBackground"]];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+- (WDChannelCellImageView *)imageV{
+    
+    if (!_imageV) {
+        
+        WDChannelCellImageView *imageView = [WDChannelCellImageView channelCellImageView];
+        
+        [self.contentView addSubview:imageView];
+        
+        _imageV = imageView;
+    }
+    return _imageV;
 }
 
 
@@ -74,6 +84,18 @@
     [self setButton:self.caiBtn countString:data.cai holder:@"踩"];
     [self setButton:self.repostBtn countString:data.repost holder:@"转发"];
     [self setButton:self.commentBtn countString:data.comment holder:@"评论"];
+    
+    
+    // 判断模型中的type是否为图片数据,如果是图片数据,那么将创建好的xib添加进去
+    if (data.type == WDChannelPictureTypeIdentify) {
+        
+        self.imageV.frame = data.imageFrame;
+        
+        self.imageV.data = data;
+    }else {
+        
+        [self.imageV removeFromSuperview];
+    }
 }
 
 

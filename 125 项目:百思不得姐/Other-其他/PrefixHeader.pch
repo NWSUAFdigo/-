@@ -31,5 +31,14 @@
 // 定义一个背景颜色宏
 #define WDViewBackgroundColor WDColor(223,223,223,1)
 
+// 通过枚举来指定频道的标识
+typedef enum {
+    WDChannelAllTypeIdentify = 1, // "全部"频道
+    WDChannelPictureTypeIdentify = 10, // "图片"频道
+    WDChannelWordTypeIdentify = 29, // "段子"频道
+    WDChannelAudioTypeIdentify = 31, // "音频"频道
+    WDChannelVideoTypeIdentify = 41, // "视频"频道
+}WDChannelTypeIdentify;
+
 
 #endif /* PrefixHeader_pch */

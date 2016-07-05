@@ -174,48 +174,13 @@ static NSString * const ID = @"wordCell";
     WDChannelCellData *data = self.datas[indexPath.row];
     
     cell.data = data;
-    //
-    //    // 对cell进行设置
-    //    cell.textLabel.text = data.name;
-    //    cell.detailTextLabel.text = data.text;
-    //
-    //    // 使用SDWebImage加载网络图片
-    //    [cell.imageView sd_setImageWithURL:data.profile_image placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
     
     return cell;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-//    // 在此计算出cell的高度
-//    
-//    // cell中只有文字内容的高度是不固定的,其他空间的尺寸都是固定的,所以需要计算出文字内容的高度
-//    // 文字的y值
-//    CGFloat contentTextLabelY = channelCellMargin + channelCellIconH + channelCellMargin;
-//    
-//    // 取出对应cell中的文字内容
-//    WDChannelCellData *data = self.datas[indexPath.row];
-//    
-//    NSString *text = data.text;
-//    
-//    // 给定一段文字,计算出文字在指定尺寸下的宽高
-//    // 指定文字的最大尺寸,其中宽度固定,高度设置为最大
-//    CGSize size = CGSizeMake(self.tableView.width - 4 * channelCellMargin, MAXFLOAT);
-//    
-//    // 获得文字的真实尺寸,相当于得到bounds,而不是frame
-//    CGRect rect = [text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15.0f]} context:0];
-//    
-//    CGFloat contentTextLabelH = rect.size.height;
-//    
-//    // 计算cell的真实高度
-//    CGFloat cellH = contentTextLabelY + contentTextLabelH + channelCellMargin + channelCellBottomBarH;
-//    
-//    // 由于在WDChannelCell中将cell的高度减少了10点,因此需要在此将cell的高度增加10以便在cell布局时将这10点减掉
-//    cellH = cellH + channelCellMargin;
 
-    
-    
     // 由于cell的高度只和每一个cell中文字内容的长度有关,所以可以将cell的高度也封装到每一个cell的模型中
     // 并且由于本方法的调用非常频繁,所以可以通过懒加载的方式来获得每一个cell的高度
     

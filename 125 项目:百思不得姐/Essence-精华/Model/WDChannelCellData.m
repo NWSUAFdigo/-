@@ -7,6 +7,7 @@
 //
 
 #import "WDChannelCellData.h"
+#import <MJExtension.h>
 
 @implementation WDChannelCellData
 {
@@ -79,7 +80,30 @@
         
         return _create_time;
     }
+}
 
+
+- (CGFloat)height{
+    
+    CGFloat realHeight = 0;
+    
+    // 如果模型数据为图片数据,那么计算图片的高度
+    if (self.type == WDChannelPictureTypeIdentify) {
+        
+        CGFloat realWidth = [UIScreen mainScreen].bounds.size.width - 4 * channelCellMargin;
+        
+        realHeight = _height / _width * realWidth;
+        
+        // 判断图片高度是否超过1000,如果超过,那么只显示250高度,并且点击图片查看全图
+        if (realHeight >= channelCellPictureMaxH) {
+            
+            realHeight = channelCellPictureClipedH;
+            
+            self.cliped = YES;
+        }
+    }
+    
+    return realHeight;
 }
 
 
@@ -108,12 +132,37 @@
         CGFloat contentTextLabelH = rect.size.height;
         
         // 计算cell的真实高度
-        CGFloat cellH = contentTextLabelY + contentTextLabelH + channelCellMargin + channelCellBottomBarH;
+        CGFloat cellH = contentTextLabelY + contentTextLabelH + channelCellMargin + self.height + channelCellMargin +channelCellBottomBarH;
+        
+        // 计算出图片控件的frame
+        self.imageFrame = CGRectMake(channelCellMargin, contentTextLabelY + contentTextLabelH + channelCellMargin, size.width, self.height);
         
         // 由于在WDChannelCell中将cell的高度减少了10点,因此需要在此将cell的高度增加10以便在cell布局时将这10点减掉
         _cellHeight = cellH + channelCellMargin;
     }
     return _cellHeight;
 }
+
+
+/** 使用MJExtension设置需要替换的属性名 */
++ (NSDictionary *)mj_replacedKeyFromPropertyName{
+    
+    return @{@"smallImage" : @"image0",
+             @"middleImage" : @"image2",
+             @"bigImage" : @"image1"
+             };
+}
+
+
+/** 也可以使用该方法进行属性名替换 */
+/*
++ (NSString *)mj_replacedKeyFromPropertyName121:(NSString *)propertyName{
+    
+    // 例:如果属性名为smallImage,那么它的key为image0
+    if ([propertyName isEqualToString:@"smallImage"]) return @"image0";
+    
+    return propertyName;
+}
+ */
 
 @end

@@ -13,3 +13,5 @@ UIKIT_EXTERN CGFloat const channelViewHeight;
 UIKIT_EXTERN CGFloat const channelCellMargin;
 UIKIT_EXTERN CGFloat const channelCellIconH;
 UIKIT_EXTERN CGFloat const channelCellBottomBarH;
+UIKIT_EXTERN CGFloat const channelCellPictureMaxH;
+UIKIT_EXTERN CGFloat const channelCellPictureClipedH;
