@@ -9,6 +9,7 @@
 #import "WDChannelCellImageView.h"
 #import "WDChannelCellData.h"
 #import <UIImageView+WebCache.h>
+#import "WDProgressView.h"
 
 @interface WDChannelCellImageView ()
 
@@ -16,17 +17,12 @@
 @property (weak, nonatomic) IBOutlet UIImageView *isGifView;
 @property (weak, nonatomic) IBOutlet UIButton *bigImageButton;
 
+@property (weak, nonatomic) IBOutlet WDProgressView *circleProgressView;
 
 @end
 
 
 @implementation WDChannelCellImageView
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder{
-    
-    return [super initWithCoder:aDecoder];
-}
-
 
 + (instancetype)channelCellImageView{
     
@@ -44,15 +40,29 @@
 }
 
 
-- (void)setData:(WDChannelCellData *)data{
+-(void)awakeFromNib{
     
     // 取消autoresizingMask布局
     // 如果发现一个控件的frame设置没有问题,而最终显示的效果不是frame所设置的尺寸时,可能是autoresizingMask对控件进行了约束
     self.autoresizingMask = UIViewAutoresizingNone;
+}
+
+
+- (void)setData:(WDChannelCellData *)data{
     
     _data = data;
     
-    [self.contentImageView sd_setImageWithURL:data.bigImage];
+    [self.contentImageView sd_setImageWithURL:data.bigImage placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        
+        // 图片加载过程中的操作
+        CGFloat progress = receivedSize / expectedSize * 1.0;
+        
+        // 将progress值传递给circleProgressView
+        self.circleProgressView.loadProgress = progress;
+        
+    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        // 图片加载完成后的操作
+    }];
     
     // 判断是否是gif图片
     self.isGifView.hidden = !data.is_gif;
@@ -60,9 +70,6 @@
     
     self.bigImageButton.hidden = !data.isCliped;
 }
-
-
-
 
 
 @end

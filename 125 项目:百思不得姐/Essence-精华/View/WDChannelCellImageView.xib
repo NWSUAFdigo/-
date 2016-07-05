@@ -11,8 +11,39 @@
             <rect key="frame" x="0.0" y="0.0" width="364" height="352"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGI-ap-iB8" userLabel="PlaceholderView">
+                    <rect key="frame" x="82" y="76" width="200" height="200"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSb-HW-alQ" customClass="WDProgressView">
+                            <rect key="frame" x="50" y="50" width="100" height="100"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="Bem-6V-NfW"/>
+                                <constraint firstAttribute="height" constant="100" id="Wcg-j7-9oV"/>
+                            </constraints>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageBackground" translatesAutoresizingMaskIntoConstraints="NO" id="jhp-li-AcL">
+                            <rect key="frame" x="63" y="10" width="75" height="15"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="75" id="Fji-K4-Aan"/>
+                                <constraint firstAttribute="height" constant="15" id="hWZ-VK-1Al"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="07x-IS-50U"/>
+                        <constraint firstItem="MSb-HW-alQ" firstAttribute="centerX" secondItem="hGI-ap-iB8" secondAttribute="centerX" id="2xR-bf-znX"/>
+                        <constraint firstAttribute="width" constant="200" id="5me-mx-R7S"/>
+                        <constraint firstItem="MSb-HW-alQ" firstAttribute="top" secondItem="jhp-li-AcL" secondAttribute="bottom" constant="25" id="ie1-tc-OmK"/>
+                        <constraint firstItem="MSb-HW-alQ" firstAttribute="centerY" secondItem="hGI-ap-iB8" secondAttribute="centerY" id="qL7-hV-w1C"/>
+                        <constraint firstItem="jhp-li-AcL" firstAttribute="centerX" secondItem="hGI-ap-iB8" secondAttribute="centerX" id="rPk-4f-mGm"/>
+                    </constraints>
+                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2SU-QV-rBz">
                     <rect key="frame" x="0.0" y="0.0" width="364" height="352"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common-gif" translatesAutoresizingMaskIntoConstraints="NO" id="M50-6N-CWi">
                     <rect key="frame" x="0.0" y="0.0" width="31" height="31"/>
@@ -31,11 +62,13 @@
                     <state key="normal" title="点击查看原图" image="see-big-picture" backgroundImage="see-big-picture-background"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.80540865380000004" green="0.80540865380000004" blue="0.80540865380000004" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="hGI-ap-iB8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3xg-ec-4Ns"/>
                 <constraint firstAttribute="trailing" secondItem="jfw-c3-Mtp" secondAttribute="trailing" id="8mI-bU-yRG"/>
                 <constraint firstAttribute="trailing" secondItem="2SU-QV-rBz" secondAttribute="trailing" id="Fx7-7g-NXR"/>
                 <constraint firstAttribute="bottom" secondItem="jfw-c3-Mtp" secondAttribute="bottom" id="LCk-5o-NxU"/>
+                <constraint firstItem="hGI-ap-iB8" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ND0-ZS-tm0"/>
                 <constraint firstItem="M50-6N-CWi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Qsg-Nq-jGI"/>
                 <constraint firstAttribute="bottom" secondItem="2SU-QV-rBz" secondAttribute="bottom" id="SgA-hc-Zuz"/>
                 <constraint firstItem="2SU-QV-rBz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Xzz-kg-zkB"/>
@@ -47,6 +80,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="bigImageButton" destination="jfw-c3-Mtp" id="v7O-l2-osZ"/>
+                <outlet property="circleProgressView" destination="MSb-HW-alQ" id="VTw-lN-JpB"/>
                 <outlet property="contentImageView" destination="2SU-QV-rBz" id="0aY-RP-w0M"/>
                 <outlet property="isGifView" destination="M50-6N-CWi" id="6HC-N1-8N7"/>
             </connections>
@@ -55,6 +89,7 @@
     </objects>
     <resources>
         <image name="common-gif" width="31" height="31"/>
+        <image name="imageBackground" width="75" height="15"/>
         <image name="see-big-picture" width="19" height="19"/>
         <image name="see-big-picture-background" width="285" height="43"/>
     </resources>

@@ -28,6 +28,7 @@
 		87233BE61D26511700B0AA36 /* WDChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87233BE41D26511700B0AA36 /* WDChannelCell.xib */; };
 		872938771D2B52BC00AE1509 /* WDChannelCellImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 872938761D2B52BC00AE1509 /* WDChannelCellImageView.m */; };
 		872938791D2B52CE00AE1509 /* WDChannelCellImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872938781D2B52CE00AE1509 /* WDChannelCellImageView.xib */; };
+		8729387C1D2BB7AA00AE1509 /* WDProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729387B1D2BB7AA00AE1509 /* WDProgressView.m */; };
 		87923DD71D20C5F7002C496D /* WDRightTableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 87923DD61D20C5F7002C496D /* WDRightTableViewData.m */; };
 		87923DDB1D20C886002C496D /* WDRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87923DD91D20C886002C496D /* WDRightTableViewCell.m */; };
 		87923DDC1D20C886002C496D /* WDRightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87923DDA1D20C886002C496D /* WDRightTableViewCell.xib */; };
@@ -114,6 +115,8 @@
 		872938751D2B52BC00AE1509 /* WDChannelCellImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDChannelCellImageView.h; sourceTree = "<group>"; };
 		872938761D2B52BC00AE1509 /* WDChannelCellImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDChannelCellImageView.m; sourceTree = "<group>"; };
 		872938781D2B52CE00AE1509 /* WDChannelCellImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDChannelCellImageView.xib; sourceTree = "<group>"; };
+		8729387A1D2BB7AA00AE1509 /* WDProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDProgressView.h; sourceTree = "<group>"; };
+		8729387B1D2BB7AA00AE1509 /* WDProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDProgressView.m; sourceTree = "<group>"; };
 		87923DD51D20C5F7002C496D /* WDRightTableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDRightTableViewData.h; sourceTree = "<group>"; };
 		87923DD61D20C5F7002C496D /* WDRightTableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDRightTableViewData.m; sourceTree = "<group>"; };
 		87923DD81D20C885002C496D /* WDRightTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDRightTableViewCell.h; sourceTree = "<group>"; };
@@ -303,6 +306,8 @@
 				872938751D2B52BC00AE1509 /* WDChannelCellImageView.h */,
 				872938761D2B52BC00AE1509 /* WDChannelCellImageView.m */,
 				872938781D2B52CE00AE1509 /* WDChannelCellImageView.xib */,
+				8729387A1D2BB7AA00AE1509 /* WDProgressView.h */,
+				8729387B1D2BB7AA00AE1509 /* WDProgressView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -763,6 +768,7 @@
 				87233BDE1D2615E500B0AA36 /* WDChannelCellData.m in Sources */,
 				87FC3C401D1CC8C7001013E0 /* WDNavigationController.m in Sources */,
 				870DC8381D1BE5FF008D72ED /* WDTabBarController.m in Sources */,
+				8729387C1D2BB7AA00AE1509 /* WDProgressView.m in Sources */,
 				87A97B391D2390E90066CCF8 /* WDLoginRegisterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
