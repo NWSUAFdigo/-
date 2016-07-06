@@ -29,6 +29,8 @@
 		872938771D2B52BC00AE1509 /* WDChannelCellImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 872938761D2B52BC00AE1509 /* WDChannelCellImageView.m */; };
 		872938791D2B52CE00AE1509 /* WDChannelCellImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872938781D2B52CE00AE1509 /* WDChannelCellImageView.xib */; };
 		8729387C1D2BB7AA00AE1509 /* WDProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729387B1D2BB7AA00AE1509 /* WDProgressView.m */; };
+		872938801D2C046200AE1509 /* WDBigImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729387E1D2C046200AE1509 /* WDBigImageViewController.m */; };
+		872938811D2C046200AE1509 /* WDBigImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8729387F1D2C046200AE1509 /* WDBigImageViewController.xib */; };
 		87923DD71D20C5F7002C496D /* WDRightTableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 87923DD61D20C5F7002C496D /* WDRightTableViewData.m */; };
 		87923DDB1D20C886002C496D /* WDRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87923DD91D20C886002C496D /* WDRightTableViewCell.m */; };
 		87923DDC1D20C886002C496D /* WDRightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87923DDA1D20C886002C496D /* WDRightTableViewCell.xib */; };
@@ -117,6 +119,9 @@
 		872938781D2B52CE00AE1509 /* WDChannelCellImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDChannelCellImageView.xib; sourceTree = "<group>"; };
 		8729387A1D2BB7AA00AE1509 /* WDProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDProgressView.h; sourceTree = "<group>"; };
 		8729387B1D2BB7AA00AE1509 /* WDProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDProgressView.m; sourceTree = "<group>"; };
+		8729387D1D2C046200AE1509 /* WDBigImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDBigImageViewController.h; sourceTree = "<group>"; };
+		8729387E1D2C046200AE1509 /* WDBigImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDBigImageViewController.m; sourceTree = "<group>"; };
+		8729387F1D2C046200AE1509 /* WDBigImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDBigImageViewController.xib; sourceTree = "<group>"; };
 		87923DD51D20C5F7002C496D /* WDRightTableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDRightTableViewData.h; sourceTree = "<group>"; };
 		87923DD61D20C5F7002C496D /* WDRightTableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDRightTableViewData.m; sourceTree = "<group>"; };
 		87923DD81D20C885002C496D /* WDRightTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDRightTableViewCell.h; sourceTree = "<group>"; };
@@ -279,6 +284,9 @@
 				87B877C41D22635A00C53116 /* WDRecommendTagTableViewController.m */,
 				87A798871D280D5300270C80 /* WDSingleChannelController.h */,
 				87A798881D280D5300270C80 /* WDSingleChannelController.m */,
+				8729387D1D2C046200AE1509 /* WDBigImageViewController.h */,
+				8729387E1D2C046200AE1509 /* WDBigImageViewController.m */,
+				8729387F1D2C046200AE1509 /* WDBigImageViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -661,6 +669,7 @@
 				87233BE61D26511700B0AA36 /* WDChannelCell.xib in Resources */,
 				87923DDC1D20C886002C496D /* WDRightTableViewCell.xib in Resources */,
 				872938791D2B52CE00AE1509 /* WDChannelCellImageView.xib in Resources */,
+				872938811D2C046200AE1509 /* WDBigImageViewController.xib in Resources */,
 				87D40A371D24BE1700C54DEB /* WDGuideView.xib in Resources */,
 				87FC3C421D1CE109001013E0 /* WDFriendTrendsViewController.xib in Resources */,
 				87B877CD1D2266EA00C53116 /* WDRecommendTagCell.xib in Resources */,
@@ -767,6 +776,7 @@
 				87D40A351D24BE0600C54DEB /* WDGuideView.m in Sources */,
 				87233BDE1D2615E500B0AA36 /* WDChannelCellData.m in Sources */,
 				87FC3C401D1CC8C7001013E0 /* WDNavigationController.m in Sources */,
+				872938801D2C046200AE1509 /* WDBigImageViewController.m in Sources */,
 				870DC8381D1BE5FF008D72ED /* WDTabBarController.m in Sources */,
 				8729387C1D2BB7AA00AE1509 /* WDProgressView.m in Sources */,
 				87A97B391D2390E90066CCF8 /* WDLoginRegisterViewController.m in Sources */,

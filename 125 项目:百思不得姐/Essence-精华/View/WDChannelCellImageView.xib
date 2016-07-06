@@ -60,6 +60,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="点击查看原图" image="see-big-picture" backgroundImage="see-big-picture-background"/>
+                    <connections>
+                        <action selector="bigImageClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Vw0-QX-9Ip"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.80540865380000004" green="0.80540865380000004" blue="0.80540865380000004" alpha="1" colorSpace="calibratedRGB"/>

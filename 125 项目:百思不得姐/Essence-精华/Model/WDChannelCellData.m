@@ -83,30 +83,6 @@
 }
 
 
-- (CGFloat)height{
-    
-    CGFloat realHeight = 0;
-    
-    // 如果模型数据为图片数据,那么计算图片的高度
-    if (self.type == WDChannelPictureTypeIdentify) {
-        
-        CGFloat realWidth = [UIScreen mainScreen].bounds.size.width - 4 * channelCellMargin;
-        
-        realHeight = _height / _width * realWidth;
-        
-        // 判断图片高度是否超过1000,如果超过,那么只显示250高度,并且点击图片查看全图
-        if (realHeight >= channelCellPictureMaxH) {
-            
-            realHeight = channelCellPictureClipedH;
-            
-            self.cliped = YES;
-        }
-    }
-    
-    return realHeight;
-}
-
-
 - (CGFloat)cellHeight{
     
     if (_cellHeight == 0) {
@@ -131,11 +107,30 @@
         
         CGFloat contentTextLabelH = rect.size.height;
         
+        // 根据条件计算图片控件的高度
+        CGFloat imageH = 0;
+        
+        // 如果模型数据为图片数据,那么计算图片的高度
+        if (self.type == WDChannelPictureTypeIdentify) {
+            
+            CGFloat realWidth = [UIScreen mainScreen].bounds.size.width - 4 * channelCellMargin;
+            
+            imageH = _height / _width * realWidth;
+            
+            // 判断图片高度是否超过1000,如果超过,那么只显示250高度,并且点击图片查看全图
+            if (imageH >= channelCellPictureMaxH) {
+                
+                imageH = channelCellPictureClipedH;
+                
+//                self.cliped = YES;
+            }
+        }
+        
         // 计算cell的真实高度
-        CGFloat cellH = contentTextLabelY + contentTextLabelH + channelCellMargin + self.height + channelCellMargin +channelCellBottomBarH;
+        CGFloat cellH = contentTextLabelY + contentTextLabelH + channelCellMargin + imageH + channelCellMargin +channelCellBottomBarH;
         
         // 计算出图片控件的frame
-        self.imageFrame = CGRectMake(channelCellMargin, contentTextLabelY + contentTextLabelH + channelCellMargin, size.width, self.height);
+        self.imageFrame = CGRectMake(channelCellMargin, contentTextLabelY + contentTextLabelH + channelCellMargin, size.width, imageH);
         
         // 由于在WDChannelCell中将cell的高度减少了10点,因此需要在此将cell的高度增加10以便在cell布局时将这10点减掉
         _cellHeight = cellH + channelCellMargin;

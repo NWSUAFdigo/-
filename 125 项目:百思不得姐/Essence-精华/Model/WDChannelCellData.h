@@ -65,5 +65,7 @@
 @property (nonatomic,assign) CGRect imageFrame;
 /** 图片是否被裁切 */
 @property (nonatomic,assign,getter=isCliped) BOOL cliped;
+/** 当前图片的下载进度 */
+@property (nonatomic,assign) CGFloat progress;
 
 @end
