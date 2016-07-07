@@ -122,7 +122,7 @@
                 
                 imageH = channelCellPictureClipedH;
                 
-//                self.cliped = YES;
+                self.cliped = YES;
             }
         }
         

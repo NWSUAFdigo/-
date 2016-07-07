@@ -20,4 +20,7 @@
 /** 创建一个原始图片的UIImage */
 + (UIImage *)originalImageWithName:(NSString *)name;
 
+/** 按照比例缩放给定的图片 */
+- (UIImage *)zoomImageWithScale:(CGFloat )scale;
+
 @end

@@ -55,6 +55,9 @@
     
     // 给图片控件添加一个点击手势
     [self.contentImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bigImageClick:)]];
+    
+    // 让图片控件的内容位于控件内
+    self.contentImageView.clipsToBounds = YES;
 }
 
 
@@ -87,6 +90,23 @@
         
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         // 图片加载完成后的操作
+        
+        // 如果图片是大图,那么在此处将图片压缩\剪切,在添加到contentImageView上面
+        if (data.isCliped == YES) {
+            
+            // 如果是大图,修改图片填充方式
+            self.contentImageView.contentMode = UIViewContentModeTop;
+            
+            // 给UIImage添加一个分类方法:给定一张图片和比例,返回一张按照比例缩放的图片
+            // 计算缩放比例
+            CGFloat scale = data.imageFrame.size.width / image.size.width;
+            
+            self.contentImageView.image = [image zoomImageWithScale:scale];
+        }else {
+            
+            // 如果不是大图,恢复图片填充方式
+            self.contentImageView.contentMode = UIViewContentModeScaleToFill;
+        }
     }];
     
     // 判断是否是gif图片
