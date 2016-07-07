@@ -7,6 +7,7 @@
 //
 
 #import "WDTabBar.h"
+#import "WDPublishViewController.h"
 
 @interface WDTabBar ()
 
@@ -44,6 +45,9 @@
     [self addSubview:btn];
     
     self.publishBtn = btn;
+    
+    // 监听 +号按钮
+    [btn addTarget:self action:@selector(publishClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
@@ -83,6 +87,14 @@
         
         count ++;
     }
+}
+
+
+- (void)publishClick{
+    
+    WDPublishViewController *vc = [[WDPublishViewController alloc] init];
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:NO completion:nil];
 }
 
 

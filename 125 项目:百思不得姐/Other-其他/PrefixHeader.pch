@@ -40,5 +40,9 @@ typedef enum {
     WDChannelVideoTypeIdentify = 41, // "视频"频道
 }WDChannelTypeIdentify;
 
+// 将屏幕宽高抽成一个宏
+#define WDScreenW [UIScreen mainScreen].bounds.size.width
+#define WDScreenH [UIScreen mainScreen].bounds.size.height
+
 
 #endif /* PrefixHeader_pch */
