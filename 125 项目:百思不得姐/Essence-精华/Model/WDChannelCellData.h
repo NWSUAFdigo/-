@@ -46,6 +46,8 @@
 
 /** 声音时长 */
 @property (nonatomic,assign) NSInteger voicetime;
+/** 视频时长 */
+@property (nonatomic,assign) NSInteger videotime;
 /** 播放次数 */
 @property (nonatomic,assign) NSInteger playcount;
 
@@ -76,5 +78,8 @@
 
 /** 声音view的frame */
 @property (nonatomic,assign) CGRect soundFrame;
+
+/** 视频view的frmae */
+@property (nonatomic,assign) CGRect videoFrame;
 
 @end

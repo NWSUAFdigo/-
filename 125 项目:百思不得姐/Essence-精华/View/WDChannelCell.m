@@ -10,6 +10,7 @@
 #import "WDChannelCellData.h"
 #import "WDChannelCellImageView.h"
 #import "WDChannelCellSoundView.h"
+#import "WDChannelCellVideoView.h"
 #import <UIImageView+WebCache.h>
 
 @interface WDChannelCell ()
@@ -25,6 +26,7 @@
 
 @property (nonatomic,weak) WDChannelCellImageView *imageV;
 @property (nonatomic,weak) WDChannelCellSoundView *soundV;
+@property (nonatomic,weak) WDChannelCellVideoView *videoV;
 
 @end
 
@@ -67,6 +69,20 @@
 }
 
 
+- (WDChannelCellVideoView *)videoV{
+    
+    if (!_videoV) {
+        
+        WDChannelCellVideoView *videoView = [WDChannelCellVideoView channelCellVideoView];
+        
+        [self.contentView addSubview:videoView];
+        
+        _videoV = videoView;
+    }
+    return _videoV;
+}
+
+
 - (void)setFrame:(CGRect)frame{
     
     static CGFloat margin = 10;
@@ -102,6 +118,14 @@
     [self setButton:self.commentBtn countString:data.comment holder:@"评论"];
     
     
+    // 在添加各种view之前,先将cell中已经有的view给移除
+    [self.imageV removeFromSuperview];
+    [self.soundV removeFromSuperview];
+    [self.videoV removeFromSuperview];
+    self.imageV = nil;
+    self.soundV = nil;
+    self.videoV = nil;
+    
     // 判断模型中的type是否为图片数据,如果是图片数据,那么将创建好的xib添加进去
     if (data.type == WDChannelPictureTypeIdentify) {
         
@@ -115,12 +139,11 @@
         
         self.soundV.data = data;
     }
-    
-    else {
+    else if (data.type == WDChannelVideoTypeIdentify) {
         
-        [self.imageV removeFromSuperview];
+        self.videoV.frame = data.videoFrame;
         
-        [self.soundV removeFromSuperview];
+        self.videoV.data = data;
     }
     
 }

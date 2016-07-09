@@ -131,6 +131,12 @@
             
             imageH = _height / _width * realWidth;
         }
+        else if (self.type == WDChannelVideoTypeIdentify) {
+            
+            CGFloat realWidth = [UIScreen mainScreen].bounds.size.width - 4 * channelCellMargin;
+            
+            imageH = _height / _width * realWidth;
+        }
         
         // 计算cell的真实高度
         CGFloat cellH = contentTextLabelY + contentTextLabelH + channelCellMargin + imageH + channelCellMargin +channelCellBottomBarH;
@@ -140,6 +146,9 @@
         
         // 计算出声音控件中图片的frame
         self.soundFrame = self.imageFrame;
+        
+        // 计算出视频控件的图片的frame
+        self.videoFrame = self.imageFrame;
         
         // 由于在WDChannelCell中将cell的高度减少了10点,因此需要在此将cell的高度增加10以便在cell布局时将这10点减掉
         _cellHeight = cellH + channelCellMargin;
