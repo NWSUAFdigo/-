@@ -65,7 +65,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.80540865380000004" green="0.80540865380000004" blue="0.80540865380000004" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.80392156862745101" green="0.80392156862745101" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="hGI-ap-iB8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3xg-ec-4Ns"/>
                 <constraint firstAttribute="trailing" secondItem="jfw-c3-Mtp" secondAttribute="trailing" id="8mI-bU-yRG"/>

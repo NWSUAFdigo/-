@@ -44,6 +44,11 @@
 /** 是否是GIF图片 */
 @property (nonatomic,assign) BOOL is_gif;
 
+/** 声音时长 */
+@property (nonatomic,assign) NSInteger voicetime;
+/** 播放次数 */
+@property (nonatomic,assign) NSInteger playcount;
+
 
 // 添加属性
 /** cell高度 */
@@ -67,5 +72,9 @@
 @property (nonatomic,assign,getter=isCliped) BOOL cliped;
 /** 当前图片的下载进度 */
 @property (nonatomic,assign) CGFloat progress;
+
+
+/** 声音view的frame */
+@property (nonatomic,assign) CGRect soundFrame;
 
 @end

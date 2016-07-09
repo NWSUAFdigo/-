@@ -125,12 +125,21 @@
                 self.cliped = YES;
             }
         }
+        else if (self.type == WDChannelAudioTypeIdentify) {
+            
+            CGFloat realWidth = [UIScreen mainScreen].bounds.size.width - 4 * channelCellMargin;
+            
+            imageH = _height / _width * realWidth;
+        }
         
         // 计算cell的真实高度
         CGFloat cellH = contentTextLabelY + contentTextLabelH + channelCellMargin + imageH + channelCellMargin +channelCellBottomBarH;
         
         // 计算出图片控件的frame
         self.imageFrame = CGRectMake(channelCellMargin, contentTextLabelY + contentTextLabelH + channelCellMargin, size.width, imageH);
+        
+        // 计算出声音控件中图片的frame
+        self.soundFrame = self.imageFrame;
         
         // 由于在WDChannelCell中将cell的高度减少了10点,因此需要在此将cell的高度增加10以便在cell布局时将这10点减掉
         _cellHeight = cellH + channelCellMargin;

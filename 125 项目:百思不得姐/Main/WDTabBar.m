@@ -7,7 +7,7 @@
 //
 
 #import "WDTabBar.h"
-#import "WDPublishViewController.h"
+#import "WDPublishView.h"
 
 @interface WDTabBar ()
 
@@ -92,9 +92,15 @@
 
 - (void)publishClick{
     
-    WDPublishViewController *vc = [[WDPublishViewController alloc] init];
+    WDPublishView *view = [[WDPublishView alloc] init];
     
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:NO completion:nil];
+    // 取出keyWindow
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    
+    // 设置frame
+    view.frame = keyWindow.bounds;
+    
+    [keyWindow addSubview:view];
 }
 
 
