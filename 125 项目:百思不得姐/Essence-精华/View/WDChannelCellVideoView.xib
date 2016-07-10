@@ -11,6 +11,13 @@
             <rect key="frame" x="0.0" y="0.0" width="349" height="257"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="post_placeholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="cnO-aS-Evo">
+                    <rect key="frame" x="137" y="43" width="75" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="RwH-ua-8bM"/>
+                        <constraint firstAttribute="height" constant="15" id="pLi-qZ-2DI"/>
+                    </constraints>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ASO-WJ-vbu">
                     <rect key="frame" x="0.0" y="0.0" width="349" height="257"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -40,13 +47,6 @@
                         <action selector="playClick:" destination="sDN-1j-wMA" eventType="touchUpInside" id="Hmu-BF-9Wc"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="post_placeholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="cnO-aS-Evo">
-                    <rect key="frame" x="137" y="43" width="75" height="15"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="75" id="RwH-ua-8bM"/>
-                        <constraint firstAttribute="height" constant="15" id="pLi-qZ-2DI"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -70,7 +70,7 @@
                 <outlet property="playCountLabel" destination="xgl-oH-wVO" id="C9v-XV-6lX"/>
                 <outlet property="videoTimeLabel" destination="gJk-Vp-Ocl" id="XaT-Z4-lXN"/>
             </connections>
-            <point key="canvasLocation" x="377.5" y="420.5"/>
+            <point key="canvasLocation" x="229.5" y="343.5"/>
         </view>
     </objects>
     <resources>

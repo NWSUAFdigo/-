@@ -9,6 +9,7 @@
 #import "WDChannelCellData.h"
 #import <MJExtension.h>
 #import "WDChannelCellTopcmtData.h"
+#import "WDChannelCellUserData.h"
 
 @implementation WDChannelCellData
 {
@@ -140,25 +141,63 @@
                 
                 self.cliped = YES;
             }
+            
+            // 给图片底部添加间距
+            imageH += channelCellMargin;
         }
         else if (self.type == WDChannelAudioTypeIdentify) {
             
             CGFloat realWidth = [UIScreen mainScreen].bounds.size.width - 4 * channelCellMargin;
             
             imageH = _height / _width * realWidth;
+            
+            // 给图片底部添加间距
+            imageH += channelCellMargin;
         }
         else if (self.type == WDChannelVideoTypeIdentify) {
             
             CGFloat realWidth = [UIScreen mainScreen].bounds.size.width - 4 * channelCellMargin;
             
             imageH = _height / _width * realWidth;
+            
+            // 给图片底部添加间距
+            imageH += channelCellMargin;
+        }
+        
+        
+        // 判断是否有热评,如果有,计算热评view的高度
+        WDChannelCellTopcmtData *topcmtData = [self.top_cmt firstObject];
+        
+        // 指定热评View的高度
+        CGFloat hotcmtViewH = 0;
+        
+        if (topcmtData) {
+            
+            // 如果热评模型有值,取出热评用户模型
+            WDChannelCellUserData *userData = topcmtData.user;
+            
+            // 拼接热评内容字符串
+            NSString *hotcmtContent = [NSString stringWithFormat:@"%@: %@", userData.username, topcmtData.content];
+            
+            // 根据字符串,并指定字体大小和范围,计算字体所占高度
+            CGSize contentMaxSize = size;
+            CGRect contentRealSize = [hotcmtContent boundingRectWithSize:contentMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13.0f]} context:nil];
+            
+            // 得到文字在指定范围的高度
+            CGFloat contentH = contentRealSize.size.height;
+            
+            // 计算热评View的高度
+            hotcmtViewH = channelCellMargin + contentH + channelCellMargin;
+            
+            // 给热评View的底部加上间距
+            hotcmtViewH += channelCellMargin;
         }
         
         // 计算cell的真实高度
-        CGFloat cellH = contentTextLabelY + contentTextLabelH + channelCellMargin + imageH + channelCellMargin +channelCellBottomBarH;
+        CGFloat cellH = contentTextLabelY + contentTextLabelH + channelCellMargin + imageH + hotcmtViewH + channelCellBottomBarH;
         
-        // 计算出图片控件的frame
-        self.imageFrame = CGRectMake(channelCellMargin, contentTextLabelY + contentTextLabelH + channelCellMargin, size.width, imageH);
+        // 计算出图片控件的frame,将imageH中添加的底部间距去掉
+        self.imageFrame = CGRectMake(channelCellMargin, contentTextLabelY + contentTextLabelH + channelCellMargin, size.width, imageH - channelCellMargin);
         
         // 计算出声音控件中图片的frame
         self.soundFrame = self.imageFrame;

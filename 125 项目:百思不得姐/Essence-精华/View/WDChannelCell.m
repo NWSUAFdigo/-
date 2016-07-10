@@ -11,6 +11,8 @@
 #import "WDChannelCellImageView.h"
 #import "WDChannelCellSoundView.h"
 #import "WDChannelCellVideoView.h"
+#import "WDChannelCellTopcmtData.h"
+#import "WDChannelCellUserData.h"
 #import <UIImageView+WebCache.h>
 
 @interface WDChannelCell ()
@@ -23,6 +25,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *repostBtn;
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
 @property (weak, nonatomic) IBOutlet UILabel *contentTextLabel;
+
+@property (weak, nonatomic) IBOutlet UIView *hotCmtView;
+@property (weak, nonatomic) IBOutlet UILabel *hotCmtLabel;
 
 @property (nonatomic,weak) WDChannelCellImageView *imageV;
 @property (nonatomic,weak) WDChannelCellSoundView *soundV;
@@ -146,6 +151,22 @@
         self.videoV.data = data;
     }
     
+    // 取出热评模型
+    WDChannelCellTopcmtData *topcmtData = [data.top_cmt firstObject];
+    
+    if (topcmtData) {
+        
+        // 如果热评模型有值,取出热评用户模型
+        WDChannelCellUserData *userData = topcmtData.user;
+        
+        // 给热评内容label赋值
+        self.hotCmtLabel.text = [NSString stringWithFormat:@"%@: %@", userData.username, topcmtData.content];
+        
+        self.hotCmtView.hidden = NO;
+    } else {
+        
+        self.hotCmtView.hidden = YES;
+    }
 }
 
 

@@ -7,11 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="253" id="KGk-i7-Jjw" customClass="WDChannelCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="253"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="303" id="KGk-i7-Jjw" customClass="WDChannelCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="303"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="252"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="302"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XiY-W0-zqB" userLabel="头像">
@@ -44,7 +44,7 @@
                         <state key="highlighted" image="cellFollowClickIcon"/>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gEj-TF-JCa" userLabel="底部视图">
-                        <rect key="frame" x="0.0" y="212" width="320" height="40"/>
+                        <rect key="frame" x="0.0" y="262" width="320" height="40"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exf-fL-W3v">
                                 <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
@@ -149,11 +149,44 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYH-X3-q58" userLabel="热评View">
+                        <rect key="frame" x="10" y="216" width="300" height="36"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热 评" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0iz-5f-wtf">
+                                <rect key="frame" x="0.0" y="0.0" width="15" height="25"/>
+                                <color key="backgroundColor" red="0.80540865380000004" green="0.80540865380000004" blue="0.80540865380000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="gfT-5g-6bG"/>
+                                    <constraint firstAttribute="height" constant="25" id="y6P-RM-9f9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门评论" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQi-S8-Tzf">
+                                <rect key="frame" x="25" y="10" width="265" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.88623798080000005" green="0.88623798080000005" blue="0.88623798080000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="0iz-5f-wtf" firstAttribute="leading" secondItem="GYH-X3-q58" secondAttribute="leading" id="02T-an-ylE"/>
+                            <constraint firstAttribute="bottom" secondItem="QQi-S8-Tzf" secondAttribute="bottom" constant="10" id="KWz-OB-xfy"/>
+                            <constraint firstItem="0iz-5f-wtf" firstAttribute="top" secondItem="GYH-X3-q58" secondAttribute="top" id="Siw-Sc-oYc"/>
+                            <constraint firstItem="QQi-S8-Tzf" firstAttribute="top" secondItem="GYH-X3-q58" secondAttribute="top" constant="10" id="aJK-ja-8yy"/>
+                            <constraint firstItem="QQi-S8-Tzf" firstAttribute="leading" secondItem="0iz-5f-wtf" secondAttribute="trailing" constant="10" id="idv-uu-QQB"/>
+                            <constraint firstAttribute="trailing" secondItem="QQi-S8-Tzf" secondAttribute="trailing" constant="10" id="vym-yw-d0a"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="gEj-TF-JCa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="2Kh-eZ-zmq"/>
                     <constraint firstItem="XiY-W0-zqB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="5AK-kd-VIF"/>
+                    <constraint firstItem="GYH-X3-q58" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="8ey-Rv-4AU"/>
                     <constraint firstItem="DOX-pl-REy" firstAttribute="bottom" secondItem="XiY-W0-zqB" secondAttribute="bottom" id="AOl-XI-3SC"/>
+                    <constraint firstAttribute="trailing" secondItem="GYH-X3-q58" secondAttribute="trailing" constant="10" id="AWn-Pq-LO7"/>
                     <constraint firstItem="3ib-6v-p9H" firstAttribute="top" secondItem="XiY-W0-zqB" secondAttribute="bottom" constant="10" id="Feb-A1-diM"/>
                     <constraint firstItem="DOX-pl-REy" firstAttribute="leading" secondItem="uqn-kG-RQF" secondAttribute="leading" id="Nlt-fC-hQ2"/>
                     <constraint firstItem="DOX-pl-REy" firstAttribute="width" secondItem="uqn-kG-RQF" secondAttribute="width" id="Q6g-Ok-OUx"/>
@@ -168,6 +201,7 @@
                     <constraint firstItem="uqn-kG-RQF" firstAttribute="top" secondItem="XiY-W0-zqB" secondAttribute="top" id="jnP-2f-14y"/>
                     <constraint firstItem="zyN-1V-Zmb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="rKp-vd-XPz"/>
                     <constraint firstItem="3ib-6v-p9H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="xbV-ft-WTr"/>
+                    <constraint firstItem="gEj-TF-JCa" firstAttribute="top" secondItem="GYH-X3-q58" secondAttribute="bottom" constant="10" id="yM8-0A-Zuw"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
@@ -180,12 +214,14 @@
                 <outlet property="commentBtn" destination="xJE-wD-kN5" id="cPB-4V-jCo"/>
                 <outlet property="contentTextLabel" destination="3ib-6v-p9H" id="bnp-At-Miy"/>
                 <outlet property="dingBtn" destination="exf-fL-W3v" id="o53-a3-RDg"/>
+                <outlet property="hotCmtLabel" destination="QQi-S8-Tzf" id="Qo9-Ge-L7k"/>
+                <outlet property="hotCmtView" destination="GYH-X3-q58" id="xtc-FB-XLa"/>
                 <outlet property="iconView" destination="XiY-W0-zqB" id="oKA-1L-8aS"/>
                 <outlet property="nameLabel" destination="uqn-kG-RQF" id="afo-aH-fio"/>
                 <outlet property="repostBtn" destination="yqd-p1-DTA" id="kq9-lN-fPk"/>
                 <outlet property="timeLabel" destination="DOX-pl-REy" id="AcM-tI-Ydk"/>
             </connections>
-            <point key="canvasLocation" x="392" y="342.5"/>
+            <point key="canvasLocation" x="392" y="367.5"/>
         </tableViewCell>
     </objects>
     <resources>

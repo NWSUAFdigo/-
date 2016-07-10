@@ -11,6 +11,13 @@
             <rect key="frame" x="0.0" y="0.0" width="349" height="257"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="post_placeholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="dhR-fs-Wv6">
+                    <rect key="frame" x="137" y="47" width="75" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="eIh-L0-Uby"/>
+                        <constraint firstAttribute="height" constant="15" id="nT4-Ks-Dha"/>
+                    </constraints>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Oy-XS-Rzy">
                     <rect key="frame" x="0.0" y="0.0" width="349" height="257"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -41,13 +48,6 @@
                         <action selector="playClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="z4L-fm-2Bo"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="post_placeholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="dhR-fs-Wv6">
-                    <rect key="frame" x="137" y="47" width="75" height="15"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="75" id="eIh-L0-Uby"/>
-                        <constraint firstAttribute="height" constant="15" id="nT4-Ks-Dha"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
