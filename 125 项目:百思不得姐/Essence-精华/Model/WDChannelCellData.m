@@ -8,11 +8,27 @@
 
 #import "WDChannelCellData.h"
 #import <MJExtension.h>
+#import "WDChannelCellTopcmtData.h"
 
 @implementation WDChannelCellData
 {
     // 给readonly属性添加成员变量
     CGFloat _cellHeight;
+}
+
+
+/** 设定数组中元素的类型(将数组中的元素转模型) */
+//+ (NSDictionary *)mj_objectClassInArray{
+//    
+//    return @{@"top_cmt" : @"WDChannelCellTopcmtData"};
+//}
+
+
+// 重写数组的setter方法,使用MJExtension的字典转模型方法也可以达到转模型的目的
+// 重写setter方法和使用mj_objectClassInArray方法二选其一即可
+- (void)setTop_cmt:(NSArray *)top_cmt{
+    
+    _top_cmt = [WDChannelCellTopcmtData mj_objectArrayWithKeyValuesArray:top_cmt];
 }
 
 

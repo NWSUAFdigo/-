@@ -51,6 +51,9 @@
 /** 播放次数 */
 @property (nonatomic,assign) NSInteger playcount;
 
+/** 热评模型数组 */
+@property (nonatomic,strong) NSArray *top_cmt;
+
 
 // 添加属性
 /** cell高度 */
