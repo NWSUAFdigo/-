@@ -56,6 +56,8 @@
 		87B877CD1D2266EA00C53116 /* WDRecommendTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87B877CB1D2266EA00C53116 /* WDRecommendTagCell.xib */; };
 		87D40A351D24BE0600C54DEB /* WDGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D40A341D24BE0600C54DEB /* WDGuideView.m */; };
 		87D40A371D24BE1700C54DEB /* WDGuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D40A361D24BE1700C54DEB /* WDGuideView.xib */; };
+		87F39B691D329CDF006CB392 /* WDCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F39B671D329CDF006CB392 /* WDCommentViewController.m */; };
+		87F39B6A1D329CDF006CB392 /* WDCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87F39B681D329CDF006CB392 /* WDCommentViewController.xib */; };
 		87FC3C401D1CC8C7001013E0 /* WDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC3C3F1D1CC8C7001013E0 /* WDNavigationController.m */; };
 		87FC3C421D1CE109001013E0 /* WDFriendTrendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FC3C411D1CE109001013E0 /* WDFriendTrendsViewController.xib */; };
 		87FC3C461D1D1110001013E0 /* WDRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC3C441D1D1110001013E0 /* WDRecommendViewController.m */; };
@@ -173,6 +175,9 @@
 		87D40A331D24BE0600C54DEB /* WDGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGuideView.h; sourceTree = "<group>"; };
 		87D40A341D24BE0600C54DEB /* WDGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGuideView.m; sourceTree = "<group>"; };
 		87D40A361D24BE1700C54DEB /* WDGuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDGuideView.xib; sourceTree = "<group>"; };
+		87F39B661D329CDF006CB392 /* WDCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDCommentViewController.h; sourceTree = "<group>"; };
+		87F39B671D329CDF006CB392 /* WDCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDCommentViewController.m; sourceTree = "<group>"; };
+		87F39B681D329CDF006CB392 /* WDCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDCommentViewController.xib; sourceTree = "<group>"; };
 		87FC3C3E1D1CC8C7001013E0 /* WDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDNavigationController.h; sourceTree = "<group>"; };
 		87FC3C3F1D1CC8C7001013E0 /* WDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDNavigationController.m; sourceTree = "<group>"; };
 		87FC3C411D1CE109001013E0 /* WDFriendTrendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDFriendTrendsViewController.xib; sourceTree = "<group>"; };
@@ -306,6 +311,9 @@
 				87B877C41D22635A00C53116 /* WDRecommendTagTableViewController.m */,
 				87A798871D280D5300270C80 /* WDSingleChannelController.h */,
 				87A798881D280D5300270C80 /* WDSingleChannelController.m */,
+				87F39B661D329CDF006CB392 /* WDCommentViewController.h */,
+				87F39B671D329CDF006CB392 /* WDCommentViewController.m */,
+				87F39B681D329CDF006CB392 /* WDCommentViewController.xib */,
 				8729387D1D2C046200AE1509 /* WDBigImageViewController.h */,
 				8729387E1D2C046200AE1509 /* WDBigImageViewController.m */,
 				8729387F1D2C046200AE1509 /* WDBigImageViewController.xib */,
@@ -705,6 +713,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87F39B6A1D329CDF006CB392 /* WDCommentViewController.xib in Resources */,
 				87A97B3A1D2390E90066CCF8 /* WDLoginRegisterViewController.xib in Resources */,
 				871B91AE1D30974B007CF27C /* WDChannelCellSoundView.xib in Resources */,
 				87FC3C541D1D8845001013E0 /* WDLeftTableViewCell.xib in Resources */,
@@ -792,6 +801,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87B877CC1D2266EA00C53116 /* WDRecommendTagCell.m in Sources */,
+				87F39B691D329CDF006CB392 /* WDCommentViewController.m in Sources */,
 				87233BE11D2646DD00B0AA36 /* WDConst.m in Sources */,
 				87FC3C4F1D1D822A001013E0 /* WDLeftTableViewData.m in Sources */,
 				8719B5961D2E438C00BB19CB /* WDPublishView.m in Sources */,

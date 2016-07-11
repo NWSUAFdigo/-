@@ -9,6 +9,7 @@
 #import "WDSingleChannelController.h"
 #import "WDChannelCellData.h"
 #import "WDChannelCell.h"
+#import "WDCommentViewController.h"
 
 #import <MJRefresh.h>
 #import <AFNetworking.h>
@@ -82,7 +83,7 @@ static NSString * const ID = @"wordCell";
     self.parameters = parameters;
     
     // 模拟网速慢时的网络请求
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         
         [[AFHTTPSessionManager manager] GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
@@ -188,6 +189,16 @@ static NSString * const ID = @"wordCell";
     WDChannelCellData *data = self.datas[indexPath.row];
     
     return data.cellHeight;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    WDCommentViewController *commentVC = [[WDCommentViewController alloc] init];
+    
+    commentVC.data = self.datas[indexPath.row];
+    
+    [self.navigationController pushViewController:commentVC animated:YES];
 }
 
 @end

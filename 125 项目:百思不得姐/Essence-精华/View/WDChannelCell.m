@@ -90,12 +90,29 @@
 
 - (void)setFrame:(CGRect)frame{
     
+//    WDLogFunc;
+    
     static CGFloat margin = 10;
     
     frame.origin.x += margin;
     frame.origin.y += margin;
     frame.size.width -= margin * 2;
-    frame.size.height -= margin;
+    
+    /*
+     注意:
+        本例中,在评论控制器内,将WDChannelCell设置为控制器tableView的HeaderView
+        一旦对tableView设置了HeaderView,系统会不断调用HeaderView的frame,并不断查看其高度
+        如果采用之前的 -= margin来设置高度,那么在评论控制器中,作为HeaderView的WDChannelCell的高度会一直被修改
+        这不是我们希望的结果
+     
+        所以在setFrame:方法中,WDChannelCell的高度必须要固定死
+     
+        如果WDChannelCell不是某个tableView的HeaderView,那么系统就不会持续调用其frame,即使它是HeaderView的子控件(本例)
+        本例中,WDChannelCell是HeaderView的一个subView,所以不会持续调用其frame,下面对于高度的设置哪一个都是可以的
+        但是如果WDChannelCell是HeaderView,那么只能选用第二个方式设置高度
+     */
+//    frame.size.height -= margin;
+    frame.size.height = self.data.cellHeight - margin;
     
     [super setFrame:frame];
 }
