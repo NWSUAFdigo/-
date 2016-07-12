@@ -45,6 +45,10 @@
     
     [self.iconView sd_setImageWithURL:_data.image_list placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
     
+    // 设置圆角
+    self.iconView.layer.cornerRadius = 6;
+    self.iconView.layer.masksToBounds = YES;
+    
     self.nameLabel.text = _data.theme_name;
     
     // 对订阅人数进行处理,如果大于1万,显示为 xx万人订阅;小于1万,显示为 xx人订阅

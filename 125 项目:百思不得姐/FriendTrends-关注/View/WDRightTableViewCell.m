@@ -28,13 +28,6 @@
 }
 
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
-
 - (void)setData:(WDRightTableViewData *)data{
     
     _data = data;
@@ -44,11 +37,15 @@
     self.fansCountLabel.text = [NSString stringWithFormat:@"%lu人已关注", _data.fans_count];
     
     [self.iconView sd_setImageWithURL:_data.header placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
+    self.iconView.layer.masksToBounds = YES;
+    self.iconView.layer.cornerRadius = self.iconView.width * 0.5;
 }
 
 
 - (IBAction)followBtnClick:(id)sender {
     WDLogFunc;
 }
+
+
 
 @end

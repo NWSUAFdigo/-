@@ -9,6 +9,14 @@
 #import "WDCommentViewController.h"
 #import "WDChannelCell.h"
 #import "WDChannelCellData.h"
+#import "WDChannelCellCommentData.h"
+#import "WDChannelCellUserData.h"
+#import "WDHeaderView.h"
+#import "WDCommentTableViewCell.h"
+
+#import <MJRefresh.h>
+#import <MJExtension.h>
+#import <AFNetworking.h>
 
 @interface WDCommentViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -16,10 +24,38 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentBarBottomConstraint;
 /** 评论内容tableView */
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+/** 热评和全部评论模型数组 */
+@property (nonatomic,strong) NSMutableArray<NSArray *> *datas;
+/** tableView的组数量 */
+@property (nonatomic,assign) NSInteger groudCount;
+/** 最后一个评论用户的ID */
+@property (nonatomic,copy) NSString *lastID;
+
+@property (nonatomic,strong) AFHTTPSessionManager *manager;
 
 @end
 
 @implementation WDCommentViewController
+
+
+- (NSMutableArray *)datas{
+    
+    if (!_datas) {
+        
+        _datas = [NSMutableArray array];
+    }
+    return _datas;
+}
+
+
+- (AFHTTPSessionManager *)manager{
+    
+    if (!_manager){
+        
+        _manager = [AFHTTPSessionManager manager];
+    }
+    return _manager;
+}
 
 
 static NSString *const ID = @"commentCell";
@@ -40,8 +76,29 @@ static NSString *const ID = @"commentCell";
     // 设置tableView的contentInset
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     
+    self.tableView.backgroundColor = [UIColor clearColor];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.view.backgroundColor = WDViewBackgroundColor;
+    
+    // 注册评论cell
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WDCommentTableViewCell class]) bundle:nil] forCellReuseIdentifier:ID];
+    
+    // 设置cell的高度为自适应(iOS8之后推出的功能)
+    // 必须首先给cell一个评估高度
+    self.tableView.estimatedRowHeight = 100;
+    // 设置cell高度自适应
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
     // 设置tableHeaderView
     [self setUpTableHeaderView];
+    
+    // 添加顶部下拉刷新
+    [self setUpHeaderRefresh];
+    
+    // 底部添加上拉加载更多
+    [self setUpFootLoadMore];
 }
 
 
@@ -52,7 +109,10 @@ static NSString *const ID = @"commentCell";
     
     view.backgroundColor = WDViewBackgroundColor;
     
-    view.height = self.data.cellHeight + channelCellMargin;
+    // 计算HeaderView的高度:cell的高度 - 热评视图的高度
+    CGFloat viewH = self.data.cellHeight - self.data.hotCmtViewH;
+    
+    view.height = viewH + channelCellMargin;
     
     // 加载WDChannelCell.xib
     WDChannelCell *headerView = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([WDChannelCell class]) owner:nil options:nil] lastObject];
@@ -60,12 +120,127 @@ static NSString *const ID = @"commentCell";
     headerView.data = self.data;
     
     // 设置cell的frame
-    headerView.frame = CGRectMake(0, 0, WDScreenW, self.data.cellHeight);
+    headerView.frame = CGRectMake(0, 0, WDScreenW, viewH);
+    
+    // 在添加WDChannelCell之前,需要将热评view隐藏
+    // 热评view的隐藏需要在WDChannelCell设置data之后,也就是在headerView.data = self.data;这句之后设置
+    headerView.hotCmtViewHidden = YES;
     
     [view addSubview:headerView];
     
     // 必须要在将view设置为headerView之前设置view的高度
     self.tableView.tableHeaderView = view;
+    
+    // 视频讲解中使用的是删除WDChannelCellData中top_cmt模型的方法来修改cell的内容;并在dealloc方法中将top_cmt模型补上
+    // 参考:大神班 --> 08 百思不得姐 --> 0802 --> 09最热评论细节
+}
+
+
+- (void)setUpHeaderRefresh{
+    
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
+    
+    self.tableView.header.autoChangeAlpha = YES;
+    
+    [self.tableView.header beginRefreshing];
+}
+
+
+- (void)refresh{
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"a"] = @"dataList";
+    parameters[@"c"] = @"comment";
+    parameters[@"data_id"] = self.data.ID;
+    parameters[@"hot"] = @1;
+    
+    // 将manager中的所有任务清掉
+    // AFN框架中,如果执行取消任务,会直接调用请求方法的failure block
+    [self.manager.tasks makeObjectsPerformSelector:@selector(cancel)];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+            
+            [self.tableView.header endRefreshing];
+            
+            // 将热评数组和全部评论数组清空
+            [self.datas removeAllObjects];
+            
+            // 将hot数据转为模型
+            NSArray *hotDatas = [WDChannelCellCommentData mj_objectArrayWithKeyValuesArray:responseObject[@"hot"]];
+            
+            // 将全部评论数据转为模型
+            NSMutableArray *totalDatas = [WDChannelCellCommentData mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            
+            // 将模型数组存入到datas中
+            [self.datas addObject:hotDatas];
+            [self.datas addObject:totalDatas];
+            
+            // 计算tableView的组数量
+            // 根据热评数组的元素个数来判断组数量为1还是2
+            self.groudCount = (hotDatas.count == 0) ? 1 : 2;
+            
+            // 刷新数据
+            [self.tableView reloadData];
+            
+            // 记录最后一个评论的ID,用作加载更多时的请求参数
+            WDChannelCellCommentData *lastData = [totalDatas lastObject];
+            self.lastID = lastData.ID;
+//            WDLog(@"%@ -- %@",lastData.ID, lastData.user.ID);
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            
+            [self.tableView.header endRefreshing];
+        }];
+    });
+}
+
+
+- (void)setUpFootLoadMore{
+    
+    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
+}
+
+
+- (void)loadMore{
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"a"] = @"dataList";
+    parameters[@"c"] = @"comment";
+    parameters[@"data_id"] = self.data.ID;
+    parameters[@"lastcid"] = self.lastID;
+    
+    // 首先将manager中的所有任务清掉
+    [self.manager.tasks makeObjectsPerformSelector:@selector(cancel)];
+    
+    [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self.tableView.footer endRefreshing];
+        
+//        WDLog(@"%@", [responseObject class]);
+        
+        // 只有全部评论数量和全部评论模型数量不一致时,才需要将数据存储起来
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            
+            // 将加载的数据存入全部评论数组
+            NSArray *moreDatas = [WDChannelCellCommentData mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            
+            NSMutableArray *totalDatas = (NSMutableArray *)[self.datas lastObject];
+            
+            [totalDatas addObjectsFromArray:moreDatas];
+            
+            [self.tableView reloadData];
+            
+            // 保存最后一个评论的ID
+            self.lastID = [[moreDatas lastObject] ID];
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self.tableView.footer endRefreshing];
+    }];
 }
 
 
@@ -98,6 +273,9 @@ static NSString *const ID = @"commentCell";
 - (void)dealloc{
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    // 取消所有网络请求,并销毁manager
+    [self.manager invalidateSessionCancelingTasks:YES];
 }
 
 
@@ -111,32 +289,89 @@ static NSString *const ID = @"commentCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 10;
+    // 根据组的数量来决定每一种的row数量
+    if (self.groudCount == 1) return [self.datas lastObject].count;
+    else return self.datas[section].count;
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 3;
+    return self.groudCount;
 }
 
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    
+//    if (self.groudCount == 1){
+//        
+//        return @"全部评论";
+//    }
+//    else {
+//        
+//        if (section == 0) return @"热门评论";
+//        else return @"全部评论";
+//    }
+//}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    return [NSString stringWithFormat:@"section-%lu", section];
+    // tableView中的header和footer视图和cell类似,也可以使用循环利用
+    // 不过此时的header和footer视图不再是UIView,而是UITableViewHeaderFooterView
+    // 本例中使用自定义UITableViewHeaderFooterView给其内部封装一个UIlabel
+    
+    static NSString *headerID = @"headerView";
+    
+    WDHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerID];
+    
+    if (headerView == nil) {
+        
+        headerView = [[WDHeaderView alloc] initWithReuseIdentifier:headerID];
+        
+        headerView.label.textColor = [UIColor darkGrayColor];
+        
+        headerView.label.font = [UIFont systemFontOfSize:14.0f];
+    }
+    
+    if (self.groudCount == 1){
+
+        headerView.label.text = @"全部评论";
+    }
+    else {
+
+        if (section == 0) headerView.label.text = @"热门评论";
+        else headerView.label.text = @"全部评论";
+    }
+
+    return headerView;
+}
+
+
+/** 根据section取出相应模型 */
+- (NSArray *)datasOfSection:(NSInteger)section{
+    
+    if (self.groudCount == 1) {
+        
+        return [self.datas lastObject];
+    }else {
+        
+        return self.datas[section];
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    WDCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
-    if (cell == nil) {
-        
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-    }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"hello-%lu-%lu",indexPath.section, indexPath.row];
+    // 取出对应section的模型数据
+    NSArray *sectionDatas = [self datasOfSection:indexPath.section];
+    
+    WDChannelCellCommentData *data = sectionDatas[indexPath.row];
+    
+    cell.data = data;
     
     return cell;
 }

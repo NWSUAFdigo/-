@@ -23,4 +23,6 @@
 /** 语音URL */
 @property (nonatomic,strong) NSURL *voiceuri;
 
+@property (nonatomic,copy) NSString *ID;
+
 @end

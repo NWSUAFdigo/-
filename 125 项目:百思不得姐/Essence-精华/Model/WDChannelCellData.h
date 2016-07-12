@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 //#import <CoreGraphics/CoreGraphics.h>
 
+@class WDChannelCellCommentData;
 @interface WDChannelCellData : NSObject
 
 /** 头像 */
@@ -43,6 +44,8 @@
 @property (nonatomic,assign) CGFloat width;
 /** 是否是GIF图片 */
 @property (nonatomic,assign) BOOL is_gif;
+/** 当前帖子id */
+@property (nonatomic,copy) NSString *ID;
 
 /** 声音时长 */
 @property (nonatomic,assign) NSInteger voicetime;
@@ -51,8 +54,8 @@
 /** 播放次数 */
 @property (nonatomic,assign) NSInteger playcount;
 
-/** 热评模型数组 */
-@property (nonatomic,strong) NSArray *top_cmt;
+/** 热评模型数组中唯一的一个模型 */
+@property (nonatomic,strong) WDChannelCellCommentData *top_cmt;
 
 
 // 添加属性
@@ -84,5 +87,8 @@
 
 /** 视频view的frmae */
 @property (nonatomic,assign) CGRect videoFrame;
+
+/** 热评view的高度 */
+@property (nonatomic,assign) CGFloat hotCmtViewH;
 
 @end

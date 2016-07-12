@@ -12,5 +12,7 @@
 @interface WDChannelCell : UITableViewCell
 
 @property (nonatomic,strong) WDChannelCellData *data;
+/** 热评视图是否隐藏 */
+@property (nonatomic,assign,getter=hotCmtViewIsHidden) BOOL hotCmtViewHidden;
 
 @end

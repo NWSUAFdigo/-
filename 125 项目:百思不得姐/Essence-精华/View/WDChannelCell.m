@@ -11,7 +11,7 @@
 #import "WDChannelCellImageView.h"
 #import "WDChannelCellSoundView.h"
 #import "WDChannelCellVideoView.h"
-#import "WDChannelCellTopcmtData.h"
+#import "WDChannelCellCommentData.h"
 #import "WDChannelCellUserData.h"
 #import <UIImageView+WebCache.h>
 
@@ -105,14 +105,15 @@
         如果采用之前的 -= margin来设置高度,那么在评论控制器中,作为HeaderView的WDChannelCell的高度会一直被修改
         这不是我们希望的结果
      
+        如果WDChannelCell是HeaderView,那么只能选用第二个方式设置高度
         所以在setFrame:方法中,WDChannelCell的高度必须要固定死
      
         如果WDChannelCell不是某个tableView的HeaderView,那么系统就不会持续调用其frame,即使它是HeaderView的子控件(本例)
-        本例中,WDChannelCell是HeaderView的一个subView,所以不会持续调用其frame,下面对于高度的设置哪一个都是可以的
-        但是如果WDChannelCell是HeaderView,那么只能选用第二个方式设置高度
+        本例中,WDChannelCell是HeaderView的一个subView,所以不会持续调用其frame,理论上对于高度的设置,下面哪一个都是可以的
+        不过如果频道cell中有热评view,那么在评论控制器中需要将热评view删除,因此不能将cell的高度固定死
      */
-//    frame.size.height -= margin;
-    frame.size.height = self.data.cellHeight - margin;
+    frame.size.height -= margin;
+//    frame.size.height = self.data.cellHeight - margin;
     
     [super setFrame:frame];
 }
@@ -123,6 +124,9 @@
     _data = data;
     
     [self.iconView sd_setImageWithURL:data.profile_image placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
+    
+    self.iconView.layer.cornerRadius = self.iconView.width * 0.5;
+    self.iconView.layer.masksToBounds = YES;
     
     self.nameLabel.text = data.name;
     
@@ -169,7 +173,7 @@
     }
     
     // 取出热评模型
-    WDChannelCellTopcmtData *topcmtData = [data.top_cmt firstObject];
+    WDChannelCellCommentData *topcmtData = data.top_cmt;
     
     if (topcmtData) {
         
@@ -203,6 +207,15 @@
         
         [btn setTitle:countStr forState:UIControlStateNormal];
     }
+}
+
+
+/** 控制热评视图是否隐藏 */
+- (void)setHotCmtViewHidden:(BOOL)hotCmtViewHidden{
+    
+    _hotCmtViewHidden = hotCmtViewHidden;
+    
+    self.hotCmtView.hidden = _hotCmtViewHidden;
 }
 
 

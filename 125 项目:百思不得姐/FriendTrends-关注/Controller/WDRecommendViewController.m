@@ -329,8 +329,8 @@ static NSString *IDRightCell = @"rightTableViewCell";
 
 - (void)dealloc{
     
-    // 当控制器销毁时(如点击了左上角的返回),需要将所有正在进行的请求任务取消
-    [self.manager.operationQueue cancelAllOperations];
+    // 当控制器销毁时(如点击了左上角的返回),需要将所有正在进行的请求任务取消,并销毁manager
+    [self.manager invalidateSessionCancelingTasks:YES];
 }
 
 

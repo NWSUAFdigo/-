@@ -8,7 +8,7 @@
 
 #import "WDChannelCellData.h"
 #import <MJExtension.h>
-#import "WDChannelCellTopcmtData.h"
+#import "WDChannelCellCommentData.h"
 #import "WDChannelCellUserData.h"
 
 @implementation WDChannelCellData
@@ -21,15 +21,18 @@
 /** 设定数组中元素的类型(将数组中的元素转模型) */
 //+ (NSDictionary *)mj_objectClassInArray{
 //    
-//    return @{@"top_cmt" : @"WDChannelCellTopcmtData"};
+//    return @{@"top_cmt" : @"WDChannelCellCommentData"};
 //}
 
 
 // 重写数组的setter方法,使用MJExtension的字典转模型方法也可以达到转模型的目的
 // 重写setter方法和使用mj_objectClassInArray方法二选其一即可
-- (void)setTop_cmt:(NSArray *)top_cmt{
+- (void)setTop_cmt:(WDChannelCellCommentData *)top_cmt{
     
-    _top_cmt = [WDChannelCellTopcmtData mj_objectArrayWithKeyValuesArray:top_cmt];
+//    _top_cmt = [WDChannelCellCommentData mj_objectArrayWithKeyValuesArray:top_cmt];
+    // 由于在本类的mj_replacedKeyFromPropertyName方法中对top_cmt属性进行了映射
+    // 所以不必再进行字典转模型
+    _top_cmt = top_cmt;
 }
 
 
@@ -166,7 +169,7 @@
         
         
         // 判断是否有热评,如果有,计算热评view的高度
-        WDChannelCellTopcmtData *topcmtData = [self.top_cmt firstObject];
+        WDChannelCellCommentData *topcmtData = self.top_cmt;
         
         // 指定热评View的高度
         CGFloat hotcmtViewH = 0;
@@ -205,6 +208,9 @@
         // 计算出视频控件的图片的frame
         self.videoFrame = self.imageFrame;
         
+        // 获得热评视图的高度
+        self.hotCmtViewH = hotcmtViewH;
+        
         // 由于在WDChannelCell中将cell的高度减少了10点,因此需要在此将cell的高度增加10以便在cell布局时将这10点减掉
         _cellHeight = cellH + channelCellMargin;
     }
@@ -217,7 +223,14 @@
     
     return @{@"smallImage" : @"image0",
              @"middleImage" : @"image2",
-             @"bigImage" : @"image1"
+             @"bigImage" : @"image1",
+             @"ID" : @"id",
+             // 使用MJExtension可以将模型中的数组或字典中某个元素直接映射到模型内
+             // 下面的例子就是将模型中的top_cmt数组的第0个元素映射到模型中的top_cmt属性中
+             @"top_cmt" : @"top_cmt[0]"
+             // 当然也可以对模型中的字典或数组中字典或数组元素映射到模型中,如下例
+//             @"username" : @"top_cmt[0].user.username"
+             // 由于已经有@"",所以使用.xx来代替@"xx"来访问字典的key
              };
 }
 
