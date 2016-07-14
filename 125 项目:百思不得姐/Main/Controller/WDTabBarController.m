@@ -9,6 +9,7 @@
 #import "WDTabBarController.h"
 #import "WDTabBar.h"
 #import "WDNavigationController.h"
+#import "WDTopStatusBarWindow.h"
 
 #import "WDEssenceViewController.h"
 #import "WDNewViewController.h"
@@ -70,5 +71,15 @@
     
     [self addChildViewController:navi];
 }
+
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    
+    // 程序启动完成后,在状态栏的位置添加一个UIWindow,点击该UIWindow将显示的内容回滚到顶部
+    [WDTopStatusBarWindow showWithTapGesture];
+}
+
 
 @end

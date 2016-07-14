@@ -103,9 +103,34 @@
 
 
 // 修改状态栏样式:从iOS7之后,状态栏的样式由控制器来设置
+// 如果屏幕上除了主窗口外还有其他窗口,如本例中在状态栏位置添加了一个UIWindow,那么通过下面方法设置状态栏颜色是不好使的
 - (UIStatusBarStyle)preferredStatusBarStyle{
     
     return UIStatusBarStyleLightContent;
+}
+/*
+ 状态栏颜色设置的两种方式:
+    1 通过控制器的preferredStatusBarStyle方法进行设置 (iOS7之后推出,默认做法)
+    2 通过[UIApplication sharedApplication].statusBarStyle来设置 (iOS7之前的做法)
+ 
+    默认采取方式1来设置状态栏颜色
+    默认情况下,采取方式2是无法设置状态栏颜色的
+    如果想让方式2设置状态栏有效,需要在info.plist文件中,添加View controller-based status bar appearance key值,并将其设置为NO
+    表示状态栏不由控制器来控制,那么就由UIApplication来控制
+ 
+ 本例中,如果想让登录页面的状态栏显示为白色,有如下两种解决方法:
+    1 通过UIApplication来控制状态栏,在进入WDLoginRegisterViewController时设置状态栏为白色,在退出该控制器时设置为黑色
+    2 通过默认的方式1来控制状态栏,在进入WDLoginRegisterViewController时将添加的UIWindow隐藏,在退出控制器时将该UIWindow显示
+ 
+    本例采取第一种解决方法
+        在viewDidAppear方法中设置状态栏为白色
+        在返回按钮点击方法closeClick中设置状态栏为黑色
+ */
+- (void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 
@@ -148,5 +173,7 @@
 - (IBAction)closeClick:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 @end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		55C6C184EEF8026B5BD27112 /* libPods-125 项目:百思不得姐.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2503640E69369E939807B23 /* libPods-125 项目:百思不得姐.a */; };
 		8706317E1D348CCF00F6E768 /* WDVoiceButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8706317D1D348CCF00F6E768 /* WDVoiceButton.m */; };
+		870631811D34CF3100F6E768 /* WDTopStatusBarWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 870631801D34CF3100F6E768 /* WDTopStatusBarWindow.m */; };
 		870DC7BD1D1B7B4E008D72ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 870DC7BC1D1B7B4E008D72ED /* Assets.xcassets */; };
 		870DC7CB1D1B7B4E008D72ED /* _25_________Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7CA1D1B7B4E008D72ED /* _25_________Tests.m */; };
 		870DC7D61D1B7B4E008D72ED /* _25_________UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 870DC7D51D1B7B4E008D72ED /* _25_________UITests.m */; };
@@ -92,6 +93,8 @@
 		45BDA33819051C87F270AB8C /* Pods-125 项目:百思不得姐.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-125 项目:百思不得姐.debug.xcconfig"; path = "Pods/Target Support Files/Pods-125 项目:百思不得姐/Pods-125 项目:百思不得姐.debug.xcconfig"; sourceTree = "<group>"; };
 		8706317C1D348CCF00F6E768 /* WDVoiceButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDVoiceButton.h; sourceTree = "<group>"; };
 		8706317D1D348CCF00F6E768 /* WDVoiceButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDVoiceButton.m; sourceTree = "<group>"; };
+		8706317F1D34CF3100F6E768 /* WDTopStatusBarWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDTopStatusBarWindow.h; sourceTree = "<group>"; };
+		870631801D34CF3100F6E768 /* WDTopStatusBarWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDTopStatusBarWindow.m; sourceTree = "<group>"; };
 		870DC7AD1D1B7B4E008D72ED /* 125 项目:百思不得姐.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "125 项目:百思不得姐.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		870DC7BC1D1B7B4E008D72ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		870DC7C11D1B7B4E008D72ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -527,6 +530,8 @@
 				87D40A321D24BDF700C54DEB /* Guide-引导使用 */,
 				870DC8211D1BDE49008D72ED /* AppDelegate.h */,
 				870DC8221D1BDE49008D72ED /* AppDelegate.m */,
+				8706317F1D34CF3100F6E768 /* WDTopStatusBarWindow.h */,
+				870631801D34CF3100F6E768 /* WDTopStatusBarWindow.m */,
 				870DC82A1D1BDE49008D72ED /* PrefixHeader.pch */,
 				87233BDF1D2646DD00B0AA36 /* WDConst.h */,
 				87233BE01D2646DD00B0AA36 /* WDConst.m */,
@@ -859,6 +864,7 @@
 				87FC3C401D1CC8C7001013E0 /* WDNavigationController.m in Sources */,
 				872938801D2C046200AE1509 /* WDBigImageViewController.m in Sources */,
 				870DC8381D1BE5FF008D72ED /* WDTabBarController.m in Sources */,
+				870631811D34CF3100F6E768 /* WDTopStatusBarWindow.m in Sources */,
 				8706317E1D348CCF00F6E768 /* WDVoiceButton.m in Sources */,
 				8729387C1D2BB7AA00AE1509 /* WDProgressView.m in Sources */,
 				87A97B391D2390E90066CCF8 /* WDLoginRegisterViewController.m in Sources */,

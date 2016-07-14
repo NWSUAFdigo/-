@@ -67,8 +67,7 @@
     
     // 取出模型中的图片下载进度,并设置到circleProgressView上面
     self.circleProgressView.loadProgress = data.progress;
-    
-    
+
     // 将取出的URL赋值给bigImageURL属性
     self.bigImageURL = data.bigImage;
     

@@ -90,4 +90,24 @@
 }
 
 
+- (BOOL)isShowOnKeyWindow{
+    
+    // 转换self的frame到主窗口坐标系上
+    CGRect convertRect = [[UIApplication sharedApplication].keyWindow convertRect:self.frame fromView:self.superview];
+    
+    // 判断转换后的frame和主窗口是否有交集
+    BOOL isIntersects = CGRectIntersectsRect(convertRect, [UIApplication sharedApplication].keyWindow.bounds);
+    
+    
+    // 判断self是否显示
+    BOOL isShow = (self.hidden == NO);
+    
+    // 判断self的透明度是否大于0.01(小于等于0.01即透明)
+    BOOL hasAlpha = (self.alpha > 0.01);
+    
+    // 只有上述三个BOOL值都为YES,才能表示视图显示在主窗口上
+    return isIntersects && isShow && hasAlpha;
+}
+
+
 @end

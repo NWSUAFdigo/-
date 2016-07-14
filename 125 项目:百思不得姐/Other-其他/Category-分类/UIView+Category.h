@@ -28,4 +28,8 @@
     并且只会生成相应getter方法和setter方法的声明,没有实现
  */
 
+
+/** 判断一个UIView是否显示在主窗口上 */
+- (BOOL)isShowOnKeyWindow;
+
 @end
