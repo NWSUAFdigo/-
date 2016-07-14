@@ -10,6 +10,7 @@
 #import "WDChannelCellData.h"
 #import "WDChannelCell.h"
 #import "WDCommentViewController.h"
+#import "WDNewViewController.h"
 
 #import <MJRefresh.h>
 #import <AFNetworking.h>
@@ -26,6 +27,8 @@
 @property (nonatomic,strong) NSMutableDictionary *parameters;
 /** 记录上次选中的tabBar索引 */
 @property (nonatomic,assign) NSInteger lastTabBarSelectedIndex;
+/** 请求参数@"a"的值 */
+@property (nonatomic,copy) NSString * paraA;
 
 @end
 
@@ -39,6 +42,9 @@ static NSString * const ID = @"wordCell";
     
     // 设置tableView
     [self setUpTableView];
+    
+    // 设置请求参数a和上次选中的tabBar索引
+    [self setUpParaAndIndex];
     
     // 使用MJRefresh给tableView添加一个页头
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
@@ -81,19 +87,47 @@ static NSString * const ID = @"wordCell";
 }
 
 
+- (void)setUpParaAndIndex{
+    
+    // 如果当前控制器的父控制器类是WDNewViewController,那么请求参数a为newlist;如果不是,那么请求参数a为list
+    // 注意:不能判断父控制器类是否是WDEssenceViewController,因为WDNewViewController继承自WDEssenceViewController,所以判断父控制器类为WDEssenceViewController没用
+    
+    if ([self.parentViewController isKindOfClass:[WDNewViewController class]]) {
+        
+        self.paraA = @"newlist";
+        self.lastTabBarSelectedIndex = 1;
+    }else{
+        
+        self.paraA = @"list";
+        self.lastTabBarSelectedIndex = 0;
+    }
+}
+
+
 - (void)tabBarItemSelected{
     
     // 获得tabBarController的当前选中按钮(控制器)的索引
     NSInteger selectedIndex = self.tabBarController.selectedIndex;
     
-    // 判断这次选中的索引是否是0,同时上次的索引是也是0
-    if (selectedIndex == 0 && self.lastTabBarSelectedIndex == 0) {
+    // 取出当前索引所对应的控制器
+    UIViewController *vc = self.tabBarController.childViewControllers[selectedIndex];
+    
+    // 判断当前索引对应的控制器是否是self的导航控制器
+    if (vc == self.navigationController) {
         
-        // 判断当前控制器的根视图是否在屏幕上
-        if (self.view.isShowOnKeyWindow) {
+        // 来到这里说明:self的父控制器,也就是WDNewViewController或者WDEssenceViewController正在屏幕上显示
+        // 而我们的目的就是要对正在显示的tableView进行处理,没在屏幕显示的tableView不进行处理
+        
+        // 判断这次选择的tabBarItem和上次选择的是否一致
+        // 注意:如果self的父控制器是WDNewViewController,那么需要将其self.lastTabBarSelectedIndex初始为1
+        if (selectedIndex == self.lastTabBarSelectedIndex) {
             
-            // 如果显示在屏幕上,那么调用其下拉刷新
-            [self.tableView.header beginRefreshing];
+            // 判断当前控制器的根视图是否在屏幕上
+            if (self.view.isShowOnKeyWindow) {
+                
+                // 如果显示在屏幕上,那么调用其下拉刷新
+                [self.tableView.header beginRefreshing];
+            }
         }
     }
     
@@ -102,10 +136,25 @@ static NSString * const ID = @"wordCell";
 }
 
 
+///** 请求参数@"a"的取值 */
+//- (NSString *)parametersA{
+//    
+//    // 如果当前控制器的父控制器类是WDNewViewController,那么请求参数a为newlist;如果不是,那么请求参数a为list
+//    // 注意:不能判断父控制器类是否是WDEssenceViewController,因为WDNewViewController继承自WDEssenceViewController,所以判断父控制器类为WDEssenceViewController没用
+//    
+//    if ([self.parentViewController isKindOfClass:[WDNewViewController class]]) {
+//        
+//        return @"newlist";
+//    }
+//    
+//    return @"list";
+//}
+
+
 - (void)refresh{
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"a"] = @"list";
+    parameters[@"a"] = self.paraA;
     parameters[@"c"] = @"data";
     parameters[@"type"] = @(self.typeIdentify);
     
@@ -152,7 +201,7 @@ static NSString * const ID = @"wordCell";
 - (void)loadMoreData{
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"a"] = @"list";
+    parameters[@"a"] = self.paraA;
     parameters[@"c"] = @"data";
     parameters[@"type"] = @(self.typeIdentify);
     parameters[@"maxtime"] = self.maxtime;

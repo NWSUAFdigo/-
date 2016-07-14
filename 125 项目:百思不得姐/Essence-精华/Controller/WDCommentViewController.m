@@ -160,37 +160,40 @@ static NSString *const ID = @"commentCell";
     // AFN框架中,如果执行取消任务,会直接调用请求方法的failure block
     [self.manager.tasks makeObjectsPerformSelector:@selector(cancel)];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
             
             [self.tableView.header endRefreshing];
             
-            // 将热评数组和全部评论数组清空
-            [self.datas removeAllObjects];
-            
-            // 将hot数据转为模型
-            NSArray *hotDatas = [WDChannelCellCommentData mj_objectArrayWithKeyValuesArray:responseObject[@"hot"]];
-            
-            // 将全部评论数据转为模型
-            NSMutableArray *totalDatas = [WDChannelCellCommentData mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            
-            // 将模型数组存入到datas中
-            [self.datas addObject:hotDatas];
-            [self.datas addObject:totalDatas];
-            
-            // 计算tableView的组数量
-            // 根据热评数组的元素个数来判断组数量为1还是2
-            self.groudCount = (hotDatas.count == 0) ? 1 : 2;
-            
-            // 刷新数据
-            [self.tableView reloadData];
-            
-            // 记录最后一个评论的ID,用作加载更多时的请求参数
-            WDChannelCellCommentData *lastData = [totalDatas lastObject];
-            self.lastID = lastData.ID;
-//            WDLog(@"%@ -- %@",lastData.ID, lastData.user.ID);
-            
+            //
+             if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                
+                // 将热评数组和全部评论数组清空
+                [self.datas removeAllObjects];
+                
+                // 将hot数据转为模型
+                NSArray *hotDatas = [WDChannelCellCommentData mj_objectArrayWithKeyValuesArray:responseObject[@"hot"]];
+                
+                // 将全部评论数据转为模型
+                NSMutableArray *totalDatas = [WDChannelCellCommentData mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+                
+                // 将模型数组存入到datas中
+                [self.datas addObject:hotDatas];
+                [self.datas addObject:totalDatas];
+                
+                // 计算tableView的组数量
+                // 根据热评数组的元素个数来判断组数量为1还是2
+                self.groudCount = (hotDatas.count == 0) ? 1 : 2;
+                
+                // 刷新数据
+                [self.tableView reloadData];
+                
+                // 记录最后一个评论的ID,用作加载更多时的请求参数
+                WDChannelCellCommentData *lastData = [totalDatas lastObject];
+                self.lastID = lastData.ID;
+    //            WDLog(@"%@ -- %@",lastData.ID, lastData.user.ID);
+             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             
             [self.tableView.header endRefreshing];
