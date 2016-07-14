@@ -80,6 +80,8 @@ static NSString *const ID = @"commentCell";
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    
+    
     self.view.backgroundColor = WDViewBackgroundColor;
     
     // 注册评论cell
@@ -284,6 +286,14 @@ static NSString *const ID = @"commentCell";
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     
     [self.view endEditing:YES];
+    
+    // 判断UIMenuController是否显示,如果显示,将其隐藏
+    UIMenuController *menuController = [UIMenuController sharedMenuController];
+    
+    if (menuController.isMenuVisible) {
+        
+        [menuController setMenuVisible:NO animated:YES];
+    }
 }
 
 
@@ -374,6 +384,37 @@ static NSString *const ID = @"commentCell";
     cell.data = data;
     
     return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    // 取出对应的cell,并让其成为第一响应者
+    WDCommentTableViewCell *cell = (WDCommentTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    
+    // 在WDCommentTableViewCell中,重写becomeFirstResponder方法,给其添加UIMenuItem
+    [cell becomeFirstResponder];
+    
+    /*
+     UIMenuController的使用需求:
+        1 点击同一个cell,如果UIMenuController显示,那么将其隐藏;如果其隐藏,将其显示
+        2 点击不同的cell时,正在显示的UIMenuController消失,同时显示将要点击cell的UIMenuController
+        3 滚动tableView时,UIMenuController消失
+     
+        需求1解决:
+            在WDCommentTableViewCell重写的becomeFirstResponder方法中,获得UIMenuController并进行判断
+            如果UIMenuController显示,那么将其隐藏;如果隐藏,那么创建新的UIMenuItem并添加到UIMenuController中
+     
+        需求2解决:
+            如果点击不同的cell,那么会进入即将点击cell的becomeFirstResponder中
+            而重写的becomeFirstResponder方法的第一句代码就是调用父类的该方法,让即将点击的cell成为第一响应者
+            如果一个cell失去了第一响应者这个身份,那么他的UIMenuController将会自动隐藏消失
+     
+            这也解决了点击textField,或者点击导航控制器的返回按钮,UIMenuController的隐藏问题,因为点击这些,第一响应者会发生变化
+     
+        需求3解决:
+            获得UIMenuController,如果其显示,那么将其隐藏
+     */
 }
 
 

@@ -97,4 +97,77 @@
     self.voiceBtn.selected = !self.voiceBtn.selected;
 }
 
+
+- (BOOL)becomeFirstResponder{
+    
+    // 调用父类的该方法
+    // 一旦调用,将会调用下面两个can...方法
+    BOOL flag = [super becomeFirstResponder];
+    
+    // 获得UIMenuController,并添加UIMenuItem
+    UIMenuController *menuController = [UIMenuController sharedMenuController];
+    
+    if (menuController.isMenuVisible) {
+        
+        [menuController setMenuVisible:NO animated:YES];
+    }else {
+        
+        // ** 注意:不管在任何地方,在给UIMenuControl添加Item之前,最好将menuItems数组清空
+        menuController.menuItems = nil;
+    
+        UIMenuItem *dingItem = [[UIMenuItem alloc] initWithTitle:@"顶" action:@selector(ding:)];
+        UIMenuItem *replyItem = [[UIMenuItem alloc] initWithTitle:@"回复" action:@selector(reply:)];
+        UIMenuItem *reportItem = [[UIMenuItem alloc] initWithTitle:@"举报" action:@selector(report:)];
+        
+        menuController.menuItems = @[dingItem, replyItem, reportItem];
+        
+        // 设置UIMenuController的位置和尺寸为cell的下半部分
+        
+        CGRect rect = CGRectMake(0, self.height * 0.5, self.width, self.height * 0.5);
+        
+        [menuController setTargetRect:rect inView:self];
+        
+        [menuController setMenuVisible:YES animated:YES];
+    }
+    
+    return flag;
+}
+
+
+- (BOOL)canBecomeFirstResponder{
+    
+    return YES;
+}
+
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
+    
+    if (action == @selector(ding:) || action == @selector(reply:) || action == @selector(report:))
+        
+        return YES;
+        
+    return NO;
+}
+
+
+/** 顶 回调 */
+- (void)ding:(id)sender{
+    
+    WDLogFunc;
+}
+
+
+/** 回复 回调 */
+- (void)reply:(id)sender{
+    
+    WDLogFunc;
+}
+
+
+/** 举报 回到 */
+- (void)report:(id)sender{
+    
+    WDLogFunc;
+}
+
 @end
