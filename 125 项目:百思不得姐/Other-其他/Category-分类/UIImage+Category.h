@@ -23,4 +23,7 @@
 /** 按照比例缩放给定的图片 */
 - (UIImage *)zoomImageWithScale:(CGFloat )scale;
 
+/** 将给定的图片变为圆形 */
+- (UIImage *)circleImage;
+
 @end

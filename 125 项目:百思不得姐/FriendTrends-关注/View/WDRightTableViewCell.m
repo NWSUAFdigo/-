@@ -36,9 +36,13 @@
     
     self.fansCountLabel.text = [NSString stringWithFormat:@"%lu人已关注", _data.fans_count];
     
-    [self.iconView sd_setImageWithURL:_data.header placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
-    self.iconView.layer.masksToBounds = YES;
-    self.iconView.layer.cornerRadius = self.iconView.width * 0.5;
+    [self.iconView sd_setImageWithURL:_data.header placeholderImage:[[UIImage imageNamed:@"defaultUserIcon"] circleImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        if (image) {
+            
+            self.iconView.image = [image circleImage];
+        }
+    }];
 }
 
 

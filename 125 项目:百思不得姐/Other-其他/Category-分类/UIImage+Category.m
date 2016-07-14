@@ -40,4 +40,32 @@
 }
 
 
+- (UIImage *)circleImage{
+    
+    // 为保证绘制出来的图形为圆形,使用宽度或高度的最小值来作为半径进行绘制
+    CGFloat imageWH = MIN(self.size.width, self.size.height);
+    
+    // 开启位图上下文
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(imageWH, imageWH), NO, 0);
+    
+    // 创建一个椭圆贝塞尔路径
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, imageWH, imageWH)];
+    
+    // 添加剪切
+    [path addClip];
+    
+    // 添加图片
+    [self drawInRect:CGRectMake(0, 0, imageWH, imageWH)];
+    
+    // 获得裁切后图片
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // 关闭上下文
+    UIGraphicsEndImageContext();
+    
+    return image;
+    
+}
+
+
 @end

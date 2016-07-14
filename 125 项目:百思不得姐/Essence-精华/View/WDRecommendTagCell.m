@@ -43,11 +43,13 @@
     
     _data = data;
     
-    [self.iconView sd_setImageWithURL:_data.image_list placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
-    
-    // 设置圆角
-    self.iconView.layer.cornerRadius = 6;
-    self.iconView.layer.masksToBounds = YES;
+    [self.iconView sd_setImageWithURL:_data.image_list placeholderImage:[[UIImage imageNamed:@"defaultUserIcon"] circleImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        if (image) {
+        
+            self.iconView.image = [image circleImage];
+        }
+    }];
     
     self.nameLabel.text = _data.theme_name;
     
@@ -73,8 +75,6 @@
     2 本例中,在tableView的cellForRowAtIndexPath方法中修改cell的尺寸是不好使的
  */
 - (void)setFrame:(CGRect)frame{
-
-    WDLog(@"%@", NSStringFromCGRect(frame));
     
     // 对frame进行修改
     CGFloat offsetX = 7;

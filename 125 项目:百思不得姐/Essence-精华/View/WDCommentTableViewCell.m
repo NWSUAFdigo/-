@@ -34,10 +34,13 @@
     
     _data = data;
     
-    [self.iconView sd_setImageWithURL:data.user.profile_image placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
-    
-    self.iconView.layer.cornerRadius = self.iconView.width * 0.5;
-    self.iconView.layer.masksToBounds = YES;
+    [self.iconView sd_setImageWithURL:data.user.profile_image placeholderImage:[[UIImage imageNamed:@"defaultUserIcon"] circleImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        if (image) {
+            
+            self.iconView.image = [image circleImage];
+        }
+    }];
     
     if ([data.user.sex isEqualToString:WDMale]) {
         

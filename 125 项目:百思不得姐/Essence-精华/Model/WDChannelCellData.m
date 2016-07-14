@@ -184,7 +184,7 @@
             
             // 根据字符串,并指定字体大小和范围,计算字体所占高度
             CGSize contentMaxSize = size;
-            CGRect contentRealSize = [hotcmtContent boundingRectWithSize:contentMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13.0f]} context:nil];
+            CGRect contentRealSize = [hotcmtContent boundingRectWithSize:contentMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13]} context:nil];
             
             // 得到文字在指定范围的高度
             CGFloat contentH = contentRealSize.size.height;
