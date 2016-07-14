@@ -15,3 +15,6 @@ UIKIT_EXTERN CGFloat const channelCellIconH;
 UIKIT_EXTERN CGFloat const channelCellBottomBarH;
 UIKIT_EXTERN CGFloat const channelCellPictureMaxH;
 UIKIT_EXTERN CGFloat const channelCellPictureClipedH;
+
+/** tabBar点击某个按钮的通知 */
+UIKIT_EXTERN NSString * const WDTabBarSelectedItemNoti;

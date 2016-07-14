@@ -10,7 +10,7 @@
 #import "WDTabBarController.h"
 #import "WDGuideView.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -22,15 +22,30 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    self.window.rootViewController = [[WDTabBarController alloc] init];
+    WDTabBarController *tabBarC = [[WDTabBarController alloc] init];
+    
+    self.window.rootViewController = tabBarC;
     
     [self.window makeKeyAndVisible];
     
     // 判断是否显示引导使用页
     [WDGuideView show];
     
+    // 将AppDelegate作为WDTabBarController的代理,监听tabBarItem的点击
+    tabBarC.delegate = self;
+    
     return YES;
 }
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    
+    // 每点击tabBar上面的某个按钮,就会来到该方法
+    // 由于tabBar上的按钮和控制器相对应,所以点击按钮相当于选择了某个控制器
+    
+    // 在该方法中发出一个通知,内容为tabBar上的某个按钮被点击
+    [[NSNotificationCenter defaultCenter] postNotificationName:WDTabBarSelectedItemNoti object:nil];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

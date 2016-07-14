@@ -24,7 +24,8 @@
 @property (nonatomic,copy) NSString *maxtime;
 
 @property (nonatomic,strong) NSMutableDictionary *parameters;
-
+/** 记录上次选中的tabBar索引 */
+@property (nonatomic,assign) NSInteger lastTabBarSelectedIndex;
 
 @end
 
@@ -50,6 +51,13 @@ static NSString * const ID = @"wordCell";
     
     // 使用MJRefresh添加一个页尾
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
+    // self成为观察者,监听tabBar按钮的点击
+    // 由于WDSingleChannelController类一共创建了5个对象(全部\视频\图片\声音\段子),所以最终会有5个对象成为tabBar按钮点击的观察者
+    // 但是WDSingleChannelController对象想要成为观察者,必须先创建并调用viewDidLoad方法
+    // 所以程序一启动后,只有 全部 频道的viewDidLoad调用了,所以程序一启动只有 全部 频道一个观察者
+    // 滑动屏幕,某个频道调用viewDidLoad方法后,那么该频道对象就成为观察者了
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabBarItemSelected) name:WDTabBarSelectedItemNoti object:nil];
 }
 
 
@@ -70,6 +78,27 @@ static NSString * const ID = @"wordCell";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.tableView.backgroundColor = [UIColor clearColor];
+}
+
+
+- (void)tabBarItemSelected{
+    
+    // 获得tabBarController的当前选中按钮(控制器)的索引
+    NSInteger selectedIndex = self.tabBarController.selectedIndex;
+    
+    // 判断这次选中的索引是否是0,同时上次的索引是也是0
+    if (selectedIndex == 0 && self.lastTabBarSelectedIndex == 0) {
+        
+        // 判断当前控制器的根视图是否在屏幕上
+        if (self.view.isShowOnKeyWindow) {
+            
+            // 如果显示在屏幕上,那么调用其下拉刷新
+            [self.tableView.header beginRefreshing];
+        }
+    }
+    
+    // 记录这次选中的索引
+    self.lastTabBarSelectedIndex = selectedIndex;
 }
 
 
