@@ -7,44 +7,34 @@
 //
 
 #import "WDMeViewController.h"
+#import "WDMeTableViewCell.h"
+#import "WDTableFooterView.h"
 
 @implementation WDMeViewController
 
+static NSString *ID = @"meCell";
 - (void)viewDidLoad{
     
     [super viewDidLoad];
+
+    // 设置导航栏
+    [self setUpNaviBar];
     
+    self.view.backgroundColor = WDViewBackgroundColor;
+    
+    // 注册cell
+    [self.tableView registerClass:[WDMeTableViewCell class] forCellReuseIdentifier:ID];
+    
+    // 设置tableView
+    [self setUpTableView];
+}
+
+
+/** 设置导航栏按钮 */
+- (void)setUpNaviBar{
+
     // 设置导航栏标题
     self.navigationItem.title = @"我的";
-    
-//    // 设置右侧按钮 mine-setting-icon mine-moon-icon
-//    UIButton *settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    
-//    [settingBtn setImage:[UIImage imageNamed:@"mine-setting-icon"] forState:UIControlStateNormal];
-//    
-//    [settingBtn setImage:[UIImage imageNamed:@"mine-setting-icon-click"] forState:UIControlStateHighlighted];
-//    
-//    settingBtn.size = settingBtn.currentImage.size;
-//    
-//    
-//    UIButton *moonBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    
-//    [moonBtn setImage:[UIImage imageNamed:@"mine-moon-icon"] forState:UIControlStateNormal];
-//    
-//    [moonBtn setImage:[UIImage imageNamed:@"mine-moon-icon-click"] forState:UIControlStateHighlighted];
-//    
-//    moonBtn.size = moonBtn.currentImage.size;
-//    
-//    
-//    self.navigationItem.rightBarButtonItems = @[
-//                                                [[UIBarButtonItem alloc] initWithCustomView:settingBtn],
-//                                                [[UIBarButtonItem alloc] initWithCustomView:moonBtn]
-//                                                ];
-//    
-//    // 给按钮添加事件
-//    [settingBtn addTarget:self action:@selector(settingBtnClick) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    [moonBtn addTarget:self action:@selector(moonBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *settingItem = [UIBarButtonItem barButtonItemWithImageName:@"mine-setting-icon" highlightedImageName:@"mine-setting-icon-click" target:self action:@selector(settingBtnClick)];
     
@@ -52,8 +42,53 @@
     
     self.navigationItem.rightBarButtonItems = @[settingItem, moonItem];
     // 注意:rightBarButtonItems数组中,先添加的Item位于右侧,后添加的Item位于先添加的Item的左侧
+}
+
+
+/** 设置tableView */
+- (void)setUpTableView{
     
-    self.view.backgroundColor = WDViewBackgroundColor;
+    // 如果tableView的样式为grouped,那么tableView中cell的间距受以下几个属性影响:
+    // tableHeaderView  sectionHeaderHeight  sectionFooterHeight  tableFooterView
+    /*
+     说明:
+        1 如果tableHeaderView 或者 tableFooterView 没有设置,那么默认在tableView的顶部或底部有35点的间距
+        2 如果设置了tableHeaderView 或者 tableFooterView,但是没有设置高度,那么仍然是35点间距
+        3 只有设置了tableHeaderView 或者 tableFooterView,并且设置高度值不为0,那么顶部或底部的间距才是设置的高度
+     
+        3 默认已经为sectionHeaderHeight 和 sectionFooterHeight 设置了一定的数值
+        4 如果用户自行设置了sectionHeaderHeight 或 sectionFooterHeight,那么会以用户设置的数值为准,此时高度可以设置为0
+     */
+    
+    // 添加一个tableHeaderView,并设置高度.目的是修改tableView的头部高度
+    UIView *headerView = [[UIView alloc] init];
+    
+    headerView.height = channelCellMargin;
+    
+    self.tableView.tableHeaderView = headerView;
+    
+    // 设置section的头部和底部高度
+    self.tableView.sectionHeaderHeight = 0;
+    self.tableView.sectionFooterHeight = channelCellMargin;
+    
+    // 创建一个tableFooterView
+    WDTableFooterView *footerView = [[WDTableFooterView alloc] init];
+    
+//    footerView.backgroundColor = [UIColor redColor];
+//    footerView.height = 600;
+    
+    self.tableView.tableFooterView = footerView;
+}
+
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    
+    // bug:点击footerView的按钮进入WDFootButtonViewController,然后返回到本控制器时,footerView的滚动发生了改变
+    CGSize contentSize = self.tableView.contentSize;
+    contentSize.height = CGRectGetMaxY(self.tableView.tableFooterView.frame);
+    self.tableView.contentSize = contentSize;
 }
 
 
@@ -66,6 +101,39 @@
 - (void)moonBtnClick{
     
     WDLogFunc;
+}
+
+
+#pragma mark - <UITableViewDataSource>
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 1;
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return 2;
+}
+
+
+#pragma mark - <UITableViewDelegate>
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    WDMeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    
+    if (indexPath.section == 0) {
+        
+        cell.imageView.image = [UIImage imageNamed:@"setup-head-default"];
+        
+        cell.textLabel.text = @"登录/注册";
+    }else if (indexPath.section == 1) {
+        
+        cell.imageView.image = nil;
+        
+        cell.textLabel.text = @"离线下载";
+    }
+    return cell;
 }
 
 
