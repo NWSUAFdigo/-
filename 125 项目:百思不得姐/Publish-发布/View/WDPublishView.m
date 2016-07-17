@@ -9,6 +9,7 @@
 #import "WDPublishView.h"
 #import "WDVerticalButton.h"
 #import "WDLoginRegisterViewController.h"
+#import "WDWriteWordController.h"
 #import <POP.h>
 
 
@@ -131,8 +132,8 @@
         animation.beginTime = CACurrentMediaTime() + i * 0.1;
         
         // 设置弹簧系数
-        animation.springSpeed = 8;
-        animation.springBounciness = 14;
+        animation.springSpeed = 18;
+        animation.springBounciness = 6;
         
         // 判断是否是倒数第4个按钮
         if (i == publishBtnData.count - 4) {
@@ -147,8 +148,8 @@
                 anim.fromValue = [NSValue valueWithCGPoint:CGPointMake(WDScreenW * 0.5, -self.titleView.height)];
                 anim.toValue = [NSValue valueWithCGPoint:CGPointMake(WDScreenW * 0.5, 100)];
                 
-                anim.springSpeed = 8;
-                anim.springBounciness = 14;
+                anim.springSpeed = 18;
+                anim.springBounciness = 6;
                 
                 // 标题视图动画执行完成后将contentView视图的交互打开
                 [anim setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
@@ -257,9 +258,21 @@
         
         [self removeFromSuperview];
         
-        WDLoginRegisterViewController *vc = [[WDLoginRegisterViewController alloc] init];
+        if (button == self.publishBtnArray[2]) {
+            
+            UITabBarController *rootVC = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+            
+            WDWriteWordController *writeWordVC = [[WDWriteWordController alloc] init];
+            
+            UINavigationController *naviC = [[UINavigationController alloc] initWithRootViewController:writeWordVC];
+            
+            [rootVC presentViewController:naviC animated:YES completion:nil];
+        } else {
+        
+            WDLoginRegisterViewController *vc = [[WDLoginRegisterViewController alloc] init];
 
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
+        }
     }];
 }
 

@@ -30,8 +30,9 @@
 		8715452D1D387EBA00882795 /* WDMeFooterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8715452C1D387EBA00882795 /* WDMeFooterButton.m */; };
 		871545311D38BA3F00882795 /* WDFootButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8715452F1D38BA3F00882795 /* WDFootButtonViewController.m */; };
 		871545321D38BA3F00882795 /* WDFootButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871545301D38BA3F00882795 /* WDFootButtonViewController.xib */; };
-		8719B5961D2E438C00BB19CB /* WDPublishView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8719B5951D2E438C00BB19CB /* WDPublishView.m */; };
-		8719B5981D2E439600BB19CB /* WDPublishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8719B5971D2E439600BB19CB /* WDPublishView.xib */; };
+		8715453A1D38E52D00882795 /* WDPublishView.m in Sources */ = {isa = PBXBuildFile; fileRef = 871545381D38E52D00882795 /* WDPublishView.m */; };
+		8715453B1D38E52D00882795 /* WDPublishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871545391D38E52D00882795 /* WDPublishView.xib */; };
+		8715453E1D38E59900882795 /* WDWriteWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8715453D1D38E59900882795 /* WDWriteWordController.m */; };
 		871B91AC1D309736007CF27C /* WDChannelCellSoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 871B91AB1D309736007CF27C /* WDChannelCellSoundView.m */; };
 		871B91AE1D30974B007CF27C /* WDChannelCellSoundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871B91AD1D30974B007CF27C /* WDChannelCellSoundView.xib */; };
 		871B91B11D30A640007CF27C /* WDChannelCellVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 871B91B01D30A640007CF27C /* WDChannelCellVideoView.m */; };
@@ -143,9 +144,11 @@
 		8715452E1D38BA3F00882795 /* WDFootButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDFootButtonViewController.h; sourceTree = "<group>"; };
 		8715452F1D38BA3F00882795 /* WDFootButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDFootButtonViewController.m; sourceTree = "<group>"; };
 		871545301D38BA3F00882795 /* WDFootButtonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDFootButtonViewController.xib; sourceTree = "<group>"; };
-		8719B5941D2E438C00BB19CB /* WDPublishView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDPublishView.h; sourceTree = "<group>"; };
-		8719B5951D2E438C00BB19CB /* WDPublishView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDPublishView.m; sourceTree = "<group>"; };
-		8719B5971D2E439600BB19CB /* WDPublishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDPublishView.xib; sourceTree = "<group>"; };
+		871545371D38E52D00882795 /* WDPublishView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDPublishView.h; sourceTree = "<group>"; };
+		871545381D38E52D00882795 /* WDPublishView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDPublishView.m; sourceTree = "<group>"; };
+		871545391D38E52D00882795 /* WDPublishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDPublishView.xib; sourceTree = "<group>"; };
+		8715453C1D38E59900882795 /* WDWriteWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDWriteWordController.h; sourceTree = "<group>"; };
+		8715453D1D38E59900882795 /* WDWriteWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDWriteWordController.m; sourceTree = "<group>"; };
 		871B91AA1D309736007CF27C /* WDChannelCellSoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDChannelCellSoundView.h; sourceTree = "<group>"; };
 		871B91AB1D309736007CF27C /* WDChannelCellSoundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDChannelCellSoundView.m; sourceTree = "<group>"; };
 		871B91AD1D30974B007CF27C /* WDChannelCellSoundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDChannelCellSoundView.xib; sourceTree = "<group>"; };
@@ -289,7 +292,7 @@
 				870DC8061D1BDE49008D72ED /* FriendTrends-关注 */,
 				870DC8141D1BDE49008D72ED /* Me-我 */,
 				87A97B321D2390C10066CCF8 /* LoginRegister-登录注册 */,
-				8719B58E1D2DE1DE00BB19CB /* Publish-发布 */,
+				871545331D38E52D00882795 /* Publish-发布 */,
 				870DC8201D1BDE49008D72ED /* Other-其他 */,
 				870DC7B01D1B7B4E008D72ED /* Supporting Files */,
 			);
@@ -583,14 +586,40 @@
 			path = "Category-分类";
 			sourceTree = "<group>";
 		};
-		8719B58E1D2DE1DE00BB19CB /* Publish-发布 */ = {
+		871545331D38E52D00882795 /* Publish-发布 */ = {
 			isa = PBXGroup;
 			children = (
-				8719B5941D2E438C00BB19CB /* WDPublishView.h */,
-				8719B5951D2E438C00BB19CB /* WDPublishView.m */,
-				8719B5971D2E439600BB19CB /* WDPublishView.xib */,
+				871545341D38E52D00882795 /* Controller */,
+				871545351D38E52D00882795 /* Model */,
+				871545361D38E52D00882795 /* View */,
 			);
 			path = "Publish-发布";
+			sourceTree = "<group>";
+		};
+		871545341D38E52D00882795 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8715453C1D38E59900882795 /* WDWriteWordController.h */,
+				8715453D1D38E59900882795 /* WDWriteWordController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		871545351D38E52D00882795 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		871545361D38E52D00882795 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				871545371D38E52D00882795 /* WDPublishView.h */,
+				871545381D38E52D00882795 /* WDPublishView.m */,
+				871545391D38E52D00882795 /* WDPublishView.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		87A97B321D2390C10066CCF8 /* LoginRegister-登录注册 */ = {
@@ -770,9 +799,9 @@
 				87FC3C541D1D8845001013E0 /* WDLeftTableViewCell.xib in Resources */,
 				87FC3C471D1D1110001013E0 /* WDRecommendViewController.xib in Resources */,
 				87233BE61D26511700B0AA36 /* WDChannelCell.xib in Resources */,
+				8715453B1D38E52D00882795 /* WDPublishView.xib in Resources */,
 				871B91B31D30A64B007CF27C /* WDChannelCellVideoView.xib in Resources */,
 				87923DDC1D20C886002C496D /* WDRightTableViewCell.xib in Resources */,
-				8719B5981D2E439600BB19CB /* WDPublishView.xib in Resources */,
 				872938791D2B52CE00AE1509 /* WDChannelCellImageView.xib in Resources */,
 				871545321D38BA3F00882795 /* WDFootButtonViewController.xib in Resources */,
 				872938811D2C046200AE1509 /* WDBigImageViewController.xib in Resources */,
@@ -857,7 +886,6 @@
 				87F39B691D329CDF006CB392 /* WDCommentViewController.m in Sources */,
 				87233BE11D2646DD00B0AA36 /* WDConst.m in Sources */,
 				87FC3C4F1D1D822A001013E0 /* WDLeftTableViewData.m in Sources */,
-				8719B5961D2E438C00BB19CB /* WDPublishView.m in Sources */,
 				8715452D1D387EBA00882795 /* WDMeFooterButton.m in Sources */,
 				87A97B3D1D23A46A0066CCF8 /* WDVerticalButton.m in Sources */,
 				87233BE51D26511700B0AA36 /* WDChannelCell.m in Sources */,
@@ -870,6 +898,7 @@
 				871545271D387A5300882795 /* WDTableFooterView.m in Sources */,
 				87FC3C461D1D1110001013E0 /* WDRecommendViewController.m in Sources */,
 				8715452A1D387CB000882795 /* WDMeFooterViewData.m in Sources */,
+				8715453E1D38E59900882795 /* WDWriteWordController.m in Sources */,
 				87923DDB1D20C886002C496D /* WDRightTableViewCell.m in Sources */,
 				87A97B431D240DBF0066CCF8 /* WDTextFieldTwo.m in Sources */,
 				871B91B11D30A640007CF27C /* WDChannelCellVideoView.m in Sources */,
@@ -891,6 +920,7 @@
 				871B91AC1D309736007CF27C /* WDChannelCellSoundView.m in Sources */,
 				87923DD71D20C5F7002C496D /* WDRightTableViewData.m in Sources */,
 				87D40A351D24BE0600C54DEB /* WDGuideView.m in Sources */,
+				8715453A1D38E52D00882795 /* WDPublishView.m in Sources */,
 				871B91F81D314B71007CF27C /* WDChannelCellUserData.m in Sources */,
 				871B91FB1D314B8A007CF27C /* WDChannelCellCommentData.m in Sources */,
 				87233BDE1D2615E500B0AA36 /* WDChannelCellData.m in Sources */,
