@@ -11,6 +11,7 @@
 #import "WDMeFooterButton.h"
 #import "WDTabBarController.h"
 #import "WDFootButtonViewController.h"
+#import "WDMeViewController.h"
 
 #import <AFNetworking.h>
 #import <MJExtension.h>
@@ -29,6 +30,9 @@
     
     self.backgroundColor = [UIColor clearColor];
     
+    // 设定初始offset
+    self.offset = CGPointMake(0, -64);
+    
     // 发送请求
     [self postRequest];
 }
@@ -39,6 +43,9 @@
     if (self = [super initWithFrame:frame]) {
         
         self.backgroundColor = [UIColor clearColor];
+        
+        // 设定初始offset
+        self.offset = CGPointMake(0, -64);
         
         [self postRequest];
     }
@@ -172,7 +179,14 @@
     footerBtnVC.title = button.data.name;
     footerBtnVC.url = button.data.url;
     
+    // 拿到导航控制器的栈顶控制器
+    WDMeViewController *meVC = (WDMeViewController *)selectedNaviC.topViewController;
+    
+    // 记录WDMeViewController的tableView滚动位置
+    self.offset = meVC.tableView.contentOffset;
+    
     [selectedNaviC pushViewController:footerBtnVC animated:YES];
+    
 }
 
 @end

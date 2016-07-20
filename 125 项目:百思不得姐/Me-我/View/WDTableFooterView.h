@@ -10,4 +10,7 @@
 
 @interface WDTableFooterView : UIView
 
+/** 记录点击按钮,跳转控制器前,tableView的contentOffset */
+@property (nonatomic,assign) CGPoint offset;
+
 @end

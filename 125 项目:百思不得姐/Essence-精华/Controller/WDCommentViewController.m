@@ -80,8 +80,6 @@ static NSString *const ID = @"commentCell";
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    
-    
     self.view.backgroundColor = WDViewBackgroundColor;
     
     // 注册评论cell

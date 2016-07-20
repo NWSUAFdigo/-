@@ -10,6 +10,7 @@
 #import "WDVerticalButton.h"
 #import "WDLoginRegisterViewController.h"
 #import "WDWriteWordController.h"
+#import "WDNavigationController.h"
 #import <POP.h>
 
 
@@ -264,7 +265,7 @@
             
             WDWriteWordController *writeWordVC = [[WDWriteWordController alloc] init];
             
-            UINavigationController *naviC = [[UINavigationController alloc] initWithRootViewController:writeWordVC];
+            WDNavigationController *naviC = [[WDNavigationController alloc] initWithRootViewController:writeWordVC];
             
             [rootVC presentViewController:naviC animated:YES completion:nil];
         } else {

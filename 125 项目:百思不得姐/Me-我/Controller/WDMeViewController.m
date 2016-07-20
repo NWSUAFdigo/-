@@ -74,21 +74,24 @@ static NSString *ID = @"meCell";
     // 创建一个tableFooterView
     WDTableFooterView *footerView = [[WDTableFooterView alloc] init];
     
-//    footerView.backgroundColor = [UIColor redColor];
-//    footerView.height = 600;
-    
     self.tableView.tableFooterView = footerView;
 }
 
 
-- (void)viewDidAppear:(BOOL)animated{
+/** 该方法在tableView滚动过程中持续调用 */
+- (void)viewDidLayoutSubviews{
     
-    [super viewDidAppear:animated];
+    [super viewDidLayoutSubviews];
+    
+    WDTableFooterView *footerView = (WDTableFooterView *)self.tableView.tableFooterView;
     
     // bug:点击footerView的按钮进入WDFootButtonViewController,然后返回到本控制器时,footerView的滚动发生了改变
     CGSize contentSize = self.tableView.contentSize;
-    contentSize.height = CGRectGetMaxY(self.tableView.tableFooterView.frame);
+    contentSize.height = CGRectGetMaxY(footerView.frame);
     self.tableView.contentSize = contentSize;
+    
+//    self.tableView.contentOffset = footerView.offset;
+    // 无法在此处设置tableView的contentOffset,因为该方法中,contentOffset一直在变化
 }
 
 

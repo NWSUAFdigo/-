@@ -7,10 +7,14 @@
 //
 
 #import "WDWriteWordController.h"
+#import "WDPlaceholderTextView.h"
+#import "WDPlaceholderLabel.h"
+#import "WDBottomBar.h"
 
-@interface WDWriteWordController ()
+@interface WDWriteWordController ()<UITextViewDelegate>
 
-@property (nonatomic,weak) UITextView * textView;
+@property (nonatomic,weak) WDPlaceholderTextView *textView;
+@property (nonatomic,weak) WDBottomBar * bottomBar;
 
 @end
 
@@ -24,8 +28,11 @@
     // 设置导航栏
     [self setupNaviBarItem];
     
-    // 
+    // 添加textView
     [self setupTextView];
+    
+    // 添加底部工具条
+    [self setupBottomBar];
 }
 
 
@@ -53,11 +60,21 @@
     /*
      说明:
         1 不能将UIBarButtonItem的disabled状态在viewDidLoad方法中进行设置
-        2 应该在viewWillAppear 或者 viewDidAppear方法中进行设置
+        2 应该在viewWillAppear方法中进行设置
         3 如果使用setTitleTextAttributes: forState:方法只是修改了disabled状态下的文字属性,那么该修改将不会起作用
-        4 在修改disabled状态的同时,还需要修改其他状态(本例中修改了normal和disabled状态),才能使disabled状态的文字属性起作用.同时还必须在viewWillAppear 或者 viewDidAppear方法中设置UIBarButtonItem的enabled属性为NO(disabled状态)
+        4 在修改disabled状态的同时,还需要修改其他状态(本例中修改了normal和disabled状态),才能使disabled状态的文字属性起作用.同时还必须在viewWillAppear方法中设置UIBarButtonItem的enabled属性为NO(disabled状态)
      */
     self.navigationItem.rightBarButtonItem.enabled = NO;
+
+    // 键盘弹出操作在viewDidAppear方法中设置
+}
+
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    
+    [self.textView becomeFirstResponder];
 }
 
 
@@ -78,17 +95,49 @@
 
 - (void)setupTextView{
     
-    UITextView *textView = [[UITextView alloc] init];
+    WDPlaceholderTextView *textView = [[WDPlaceholderTextView alloc] init];
     
     textView.frame = CGRectMake(0, 0, WDScreenW, WDScreenH);
     
     textView.backgroundColor = [UIColor whiteColor];
     
-    textView.text = @"ailhialnilhaioghioahoierhnlaiailhialnilhaioghioahoierhnlaiailhialnilhaioghioahoierhnlaiailhialnilhaioghioahoierhnlaiailhialnilhaioghioahoierhnlaiailhialnilhaioghioahoierhnlaiailhialnilhaioghioahoierhnlaiailhialnilhaioghioahoierhnlaiailhialnilhaioghioahoierhnlai";
+    textView.placeholderLabel.text = @"这里添加文字，请勿发布色情、政治等违反国家法律的内容，违者封号处理。";
     
     [self.view addSubview:textView];
     
     self.textView = textView;
+    
+    self.textView.delegate = self;
+}
+
+
+- (void)setupBottomBar{
+    
+    WDBottomBar *bottomBar = [WDBottomBar bottomBar];
+    
+    bottomBar.width = WDScreenW;
+    
+    bottomBar.y = WDScreenH - bottomBar.height;
+    
+    [self.view addSubview:bottomBar];
+    
+    self.bottomBar = bottomBar;
+    
+    // 监听键盘弹出和关闭的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+
+- (void)keyboardWillChangeFrame:(NSNotification *)noti{
+    
+    CGRect keyboardFrame = [noti.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    CGFloat duration = [noti.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    
+    [UIView animateWithDuration:duration animations:^{
+        
+        self.bottomBar.y = keyboardFrame.origin.y - self.bottomBar.height;
+    }];
 }
 
 
@@ -104,6 +153,34 @@
 - (void)publishClick{
     
     WDLogFunc;
+    
+    // 测试placeholder是否完善
+//    self.textView.placeholderLabel.text = @"FBI Director James Comey recently spoke at a congressional hearing about the possibility of domestic terrorism.";
+//    self.textView.placeholderLabel.font = [UIFont systemFontOfSize:20];
+//    self.textView.placeholderLabel.textColor = [UIColor redColor];
+//    self.textView.font = [UIFont systemFontOfSize:25.0f];
+//    self.textView.text = @"hello world";
+//    
+//    self.textView.width = WDScreenW * 0.5;
+}
+
+
+- (void)dealloc{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+#pragma mark - <UITextViewDelegate>
+- (void)textViewDidChange:(UITextView *)textView{
+    
+    self.navigationItem.rightBarButtonItem.enabled = (self.textView.text.length);
+}
+
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    
+    [self.view endEditing:YES];
 }
 
 @end
