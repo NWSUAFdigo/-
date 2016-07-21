@@ -143,4 +143,23 @@ static NSString *ID = @"meCell";
 }
 
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == 0) {
+        
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        cell.selected = NO;
+        
+        if ([WDLoginTool getUid]) {
+            
+            WDLog(@"登录账号");
+        }else {
+            
+            [WDLoginTool modalLoginController];
+        }
+    }
+}
+
+
 @end

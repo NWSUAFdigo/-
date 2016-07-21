@@ -23,19 +23,20 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 
 - (IBAction)tagBtnClick:(id)sender {
     
-    WDLogFunc;
+    if ([WDLoginTool getUid]) {
+        
+        WDLog(@"自己账号订阅该频道内容");
+    }else {
+        
+        [WDLoginTool modalLoginController];
+    }
 }
 
 

@@ -39,6 +39,7 @@ static NSString *ID = @"recommendTag";
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    
     [self loadRequest];
 }
 

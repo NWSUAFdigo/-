@@ -130,43 +130,46 @@
         // 根据条件计算图片控件的高度
         CGFloat imageH = 0;
         
-        // 如果模型数据为图片数据,那么计算图片的高度
-        if (self.type == WDChannelPictureTypeIdentify) {
+        // 判断服务器返回的width和height是否为0
+        if (_width != 0 && _height != 0) {
             
-            CGFloat realWidth = [UIScreen mainScreen].bounds.size.width - 4 * channelCellMargin;
-            
-            imageH = _height / _width * realWidth;
-            
-            // 判断图片高度是否超过1000,如果超过,那么只显示250高度,并且点击图片查看全图
-            if (imageH >= channelCellPictureMaxH) {
+            // 如果模型数据为图片数据,那么计算图片的高度
+            if (self.type == WDChannelPictureTypeIdentify) {
                 
-                imageH = channelCellPictureClipedH;
+                CGFloat realWidth = [UIScreen mainScreen].bounds.size.width - 4 * channelCellMargin;
                 
-                self.cliped = YES;
+                imageH = _height / _width * realWidth;
+                
+                // 判断图片高度是否超过1000,如果超过,那么只显示250高度,并且点击图片查看全图
+                if (imageH >= channelCellPictureMaxH) {
+                    
+                    imageH = channelCellPictureClipedH;
+                    
+                    self.cliped = YES;
+                }
+                
+                // 给图片底部添加间距
+                imageH += channelCellMargin;
             }
-            
-            // 给图片底部添加间距
-            imageH += channelCellMargin;
+            else if (self.type == WDChannelAudioTypeIdentify) {
+                
+                CGFloat realWidth = [UIScreen mainScreen].bounds.size.width - 4 * channelCellMargin;
+                
+                imageH = _height / _width * realWidth;
+                
+                // 给图片底部添加间距
+                imageH += channelCellMargin;
+            }
+            else if (self.type == WDChannelVideoTypeIdentify) {
+                
+                CGFloat realWidth = [UIScreen mainScreen].bounds.size.width - 4 * channelCellMargin;
+                
+                imageH = _height / _width * realWidth;
+                
+                // 给图片底部添加间距
+                imageH += channelCellMargin;
+            }
         }
-        else if (self.type == WDChannelAudioTypeIdentify) {
-            
-            CGFloat realWidth = [UIScreen mainScreen].bounds.size.width - 4 * channelCellMargin;
-            
-            imageH = _height / _width * realWidth;
-            
-            // 给图片底部添加间距
-            imageH += channelCellMargin;
-        }
-        else if (self.type == WDChannelVideoTypeIdentify) {
-            
-            CGFloat realWidth = [UIScreen mainScreen].bounds.size.width - 4 * channelCellMargin;
-            
-            imageH = _height / _width * realWidth;
-            
-            // 给图片底部添加间距
-            imageH += channelCellMargin;
-        }
-        
         
         // 判断是否有热评,如果有,计算热评view的高度
         WDChannelCellCommentData *topcmtData = self.top_cmt;

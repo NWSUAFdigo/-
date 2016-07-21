@@ -249,7 +249,39 @@ static NSString *const ID = @"commentCell";
 
 - (void)rightBarButtomItemClick{
     
-    WDLogFunc;
+    // 弹出alertSheet
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"收藏" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        if ([WDLoginTool getUid]) {
+            
+            WDLog(@"收藏到自己账号");
+        }else {
+            
+            [WDLoginTool modalLoginController];
+        }
+    }];
+    
+    UIAlertAction *reportAction = [UIAlertAction actionWithTitle:@"举报" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        if ([WDLoginTool getUid]) {
+            
+            WDLog(@"本账号举报该条内容");
+        }else {
+            
+            [WDLoginTool modalLoginController];
+        }
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
+    // 添加两个action
+    [alert addAction:saveAction];
+    [alert addAction:reportAction];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

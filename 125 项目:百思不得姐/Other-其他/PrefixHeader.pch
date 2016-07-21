@@ -14,6 +14,7 @@
 #import "UIBarButtonItem+Category.h"
 #import "NSDate+WDCategory.h"
 #import "WDConst.h"
+#import "WDLoginTool.h"
 
 // 自定义一个打印宏,在调试阶段打印,在发布阶段不打印
 #if DEBUG

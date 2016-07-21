@@ -199,6 +199,9 @@
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="loginClick:" destination="-1" eventType="touchUpInside" id="XvA-ha-vLq"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d56-ho-DW4">
                             <rect key="frame" x="365" y="162" width="68" height="30"/>
@@ -314,7 +317,7 @@
                     <exclude reference="KnD-LK-3vw"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="345" y="431"/>
+            <point key="canvasLocation" x="425" y="261"/>
         </view>
     </objects>
     <resources>

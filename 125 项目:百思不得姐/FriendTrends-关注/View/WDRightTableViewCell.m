@@ -23,8 +23,10 @@
 @implementation WDRightTableViewCell
 
 - (void)awakeFromNib {
+    
     [super awakeFromNib];
-    // Initialization code
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 
@@ -47,9 +49,14 @@
 
 
 - (IBAction)followBtnClick:(id)sender {
-    WDLogFunc;
+    
+    if ([WDLoginTool getUid]) {
+        
+        WDLog(@"关注该账号");
+    }else {
+        
+        [WDLoginTool modalLoginController];
+    }
 }
-
-
 
 @end

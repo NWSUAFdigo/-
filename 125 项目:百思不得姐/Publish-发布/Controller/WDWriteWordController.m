@@ -152,16 +152,18 @@
 
 - (void)publishClick{
     
-    WDLogFunc;
+    [self.view endEditing:YES];
     
-    // 测试placeholder是否完善
-//    self.textView.placeholderLabel.text = @"FBI Director James Comey recently spoke at a congressional hearing about the possibility of domestic terrorism.";
-//    self.textView.placeholderLabel.font = [UIFont systemFontOfSize:20];
-//    self.textView.placeholderLabel.textColor = [UIColor redColor];
-//    self.textView.font = [UIFont systemFontOfSize:25.0f];
-//    self.textView.text = @"hello world";
-//    
-//    self.textView.width = WDScreenW * 0.5;
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+        if ([WDLoginTool getUid]) {
+            
+            WDLog(@"发布段子");
+        }else {
+            
+            [WDLoginTool modalLoginController];
+        }
+    }];
 }
 
 

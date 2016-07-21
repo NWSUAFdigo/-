@@ -176,4 +176,11 @@
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
+
+
+/** 登录按钮点击 */
+- (IBAction)loginClick:(id)sender {
+    
+    WDLog(@"将账号密码发送给服务器,登录成功则服务器返回一个uid,将uid保存到沙盒中");
+}
 @end

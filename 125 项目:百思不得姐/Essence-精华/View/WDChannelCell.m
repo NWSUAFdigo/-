@@ -222,4 +222,17 @@
 }
 
 
+/** 关注按钮点击 */
+- (IBAction)followBtnClick:(id)sender {
+    
+    // 判断沙盒中是否有uid值
+    if ([WDLoginTool getUid]) {
+        
+        WDLog(@"关注到自己账号中");
+    }else {
+        
+        [WDLoginTool modalLoginController];
+    }
+}
+
 @end
