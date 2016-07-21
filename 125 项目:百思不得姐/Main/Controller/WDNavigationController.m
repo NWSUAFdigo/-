@@ -22,6 +22,16 @@
 }
 
 
+- (void)viewDidLoad{
+    
+    [super viewDidLoad];
+    
+    // 如果自定义了导航栏的leftBarButtonItem,那么导航栏边缘右滑返回功能将会消失
+    // 只需要将边缘右滑手势的代理清空即可
+    self.interactivePopGestureRecognizer.delegate = nil;
+}
+
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     
     // 设置非栈底控制器的导航栏左侧为返回

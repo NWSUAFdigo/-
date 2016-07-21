@@ -9,6 +9,7 @@
 #import "WDMeViewController.h"
 #import "WDMeTableViewCell.h"
 #import "WDTableFooterView.h"
+#import "WDSettingTableViewController.h"
 
 @implementation WDMeViewController
 
@@ -97,7 +98,9 @@ static NSString *ID = @"meCell";
 
 - (void)settingBtnClick{
     
-    WDLogFunc;
+    WDSettingTableViewController *settingVC = [[WDSettingTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    [self.navigationController pushViewController:settingVC animated:YES];
 }
 
 

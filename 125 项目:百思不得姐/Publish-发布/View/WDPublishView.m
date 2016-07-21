@@ -73,8 +73,12 @@
     UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"app_slogan"]];
     
     // 如果使用POP来给控件添加动画,最好不要在控件创立时给其设置位置和尺寸
+    // 当然也可以像本例中给控件一个初始位置
     // 因为通过POP来修改控件的尺寸和位置会最终真实修改控件的尺寸和位置,而通过coreAnimation不会最终修改控件的位置和尺寸
-    //    titleView.center = CGPointMake(WDScreenW * 0.5, 100);
+    
+    // 本例中,如果没有给titleView一个位置,那么默认它的位置为(0,0),在执行动画的时候会先从这个位置闪到动画开始点
+    // 所以在titleView创建的时候给它一个位置,本例中设置其位置为动画开始点的位置
+    titleView.center = CGPointMake(WDScreenW * 0.5, -titleView.height);
     
     [self.contentView addSubview:titleView];
     

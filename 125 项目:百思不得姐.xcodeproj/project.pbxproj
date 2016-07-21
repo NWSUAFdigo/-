@@ -59,6 +59,7 @@
 		87371EAA1D33E4EF00BFFBCF /* WDCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87371EA81D33E4EF00BFFBCF /* WDCommentTableViewCell.xib */; };
 		874B10FA1D3B72E2000A2729 /* WDPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 874B10F91D3B72E2000A2729 /* WDPlaceholderTextView.m */; };
 		876135B11D3DFE0B008BD1DE /* WDAddTagTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 876135B01D3DFE0B008BD1DE /* WDAddTagTextField.m */; };
+		877FF22C1D3F258B00AC90BF /* WDSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877FF22B1D3F258B00AC90BF /* WDSettingTableViewController.m */; };
 		87923DD71D20C5F7002C496D /* WDRightTableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 87923DD61D20C5F7002C496D /* WDRightTableViewData.m */; };
 		87923DDB1D20C886002C496D /* WDRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87923DD91D20C886002C496D /* WDRightTableViewCell.m */; };
 		87923DDC1D20C886002C496D /* WDRightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87923DDA1D20C886002C496D /* WDRightTableViewCell.xib */; };
@@ -202,6 +203,8 @@
 		874B10F91D3B72E2000A2729 /* WDPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDPlaceholderTextView.m; sourceTree = "<group>"; };
 		876135AF1D3DFE0B008BD1DE /* WDAddTagTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDAddTagTextField.h; sourceTree = "<group>"; };
 		876135B01D3DFE0B008BD1DE /* WDAddTagTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDAddTagTextField.m; sourceTree = "<group>"; };
+		877FF22A1D3F258B00AC90BF /* WDSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSettingTableViewController.h; sourceTree = "<group>"; };
+		877FF22B1D3F258B00AC90BF /* WDSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSettingTableViewController.m; sourceTree = "<group>"; };
 		87923DD51D20C5F7002C496D /* WDRightTableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDRightTableViewData.h; sourceTree = "<group>"; };
 		87923DD61D20C5F7002C496D /* WDRightTableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDRightTableViewData.m; sourceTree = "<group>"; };
 		87923DD81D20C885002C496D /* WDRightTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDRightTableViewCell.h; sourceTree = "<group>"; };
@@ -519,6 +522,8 @@
 				8715452E1D38BA3F00882795 /* WDFootButtonViewController.h */,
 				8715452F1D38BA3F00882795 /* WDFootButtonViewController.m */,
 				871545301D38BA3F00882795 /* WDFootButtonViewController.xib */,
+				877FF22A1D3F258B00AC90BF /* WDSettingTableViewController.h */,
+				877FF22B1D3F258B00AC90BF /* WDSettingTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -966,6 +971,7 @@
 				8715453A1D38E52D00882795 /* WDPublishView.m in Sources */,
 				873444021D3CBDD700515E33 /* WDBottomBar.m in Sources */,
 				8734440A1D3CCD3500515E33 /* WDTagButton.m in Sources */,
+				877FF22C1D3F258B00AC90BF /* WDSettingTableViewController.m in Sources */,
 				871B91F81D314B71007CF27C /* WDChannelCellUserData.m in Sources */,
 				874B10FA1D3B72E2000A2729 /* WDPlaceholderTextView.m in Sources */,
 				871B91FB1D314B8A007CF27C /* WDChannelCellCommentData.m in Sources */,
