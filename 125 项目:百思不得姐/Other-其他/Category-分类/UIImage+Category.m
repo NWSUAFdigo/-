@@ -68,4 +68,19 @@
 }
 
 
+- (UIImage *)wd_imageNamed:(NSString *)name{
+    
+    // 从沙盒中取出当前主题
+    NSString *theme = [[NSUserDefaults standardUserDefaults] stringForKey:@"theme"];
+    
+    // 拼接文件在沙盒中的路径
+    NSString *filePath = [NSString stringWithFormat:@"skins/%@", [theme stringByAppendingPathComponent:name]];
+    
+    // 获取文件全路径
+    filePath = [[NSBundle mainBundle] pathForResource:filePath ofType:@"png"];
+    
+    return [UIImage imageWithContentsOfFile:filePath];
+}
+
+
 @end

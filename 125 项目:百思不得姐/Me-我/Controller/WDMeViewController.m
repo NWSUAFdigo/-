@@ -106,7 +106,12 @@ static NSString *ID = @"meCell";
 
 - (void)moonBtnClick{
     
-    WDLogFunc;
+    // 点击夜间模式,将沙盒中的主题key修改为dark
+//    [[NSUserDefaults standardUserDefaults] setObject:@"dark" forKey:@"theme"];
+    
+    // 发出通知,告知所有需要更换皮肤的控件更换皮肤
+
+    WDLog(@"修改沙盒中的主题key,并发出通知,让控件更换皮肤");
 }
 
 

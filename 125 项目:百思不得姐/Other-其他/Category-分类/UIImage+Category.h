@@ -26,4 +26,7 @@
 /** 将给定的图片变为圆形 */
 - (UIImage *)circleImage;
 
+/** 项目中统一使用该方法设置图片 */
+- (UIImage *)wd_imageNamed:(NSString *)name;
+
 @end

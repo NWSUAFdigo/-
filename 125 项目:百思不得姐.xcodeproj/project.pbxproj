@@ -78,6 +78,8 @@
 		87D40A351D24BE0600C54DEB /* WDGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D40A341D24BE0600C54DEB /* WDGuideView.m */; };
 		87D40A371D24BE1700C54DEB /* WDGuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D40A361D24BE1700C54DEB /* WDGuideView.xib */; };
 		87DECDD51D40AE87008870A1 /* WDLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DECDD41D40AE87008870A1 /* WDLoginTool.m */; };
+		87DECDD71D40C5EA008870A1 /* skins in Resources */ = {isa = PBXBuildFile; fileRef = 87DECDD61D40C5EA008870A1 /* skins */; };
+		87DECDDA1D40C8D8008870A1 /* UIColor+WDCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DECDD91D40C8D8008870A1 /* UIColor+WDCategory.m */; };
 		87F39B691D329CDF006CB392 /* WDCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F39B671D329CDF006CB392 /* WDCommentViewController.m */; };
 		87F39B6A1D329CDF006CB392 /* WDCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87F39B681D329CDF006CB392 /* WDCommentViewController.xib */; };
 		87FC3C401D1CC8C7001013E0 /* WDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC3C3F1D1CC8C7001013E0 /* WDNavigationController.m */; };
@@ -238,6 +240,9 @@
 		87D40A361D24BE1700C54DEB /* WDGuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDGuideView.xib; sourceTree = "<group>"; };
 		87DECDD31D40AE87008870A1 /* WDLoginTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDLoginTool.h; sourceTree = "<group>"; };
 		87DECDD41D40AE87008870A1 /* WDLoginTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDLoginTool.m; sourceTree = "<group>"; };
+		87DECDD61D40C5EA008870A1 /* skins */ = {isa = PBXFileReference; lastKnownFileType = folder; path = skins; sourceTree = "<group>"; };
+		87DECDD81D40C8D8008870A1 /* UIColor+WDCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WDCategory.h"; sourceTree = "<group>"; };
+		87DECDD91D40C8D8008870A1 /* UIColor+WDCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WDCategory.m"; sourceTree = "<group>"; };
 		87F39B661D329CDF006CB392 /* WDCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDCommentViewController.h; sourceTree = "<group>"; };
 		87F39B671D329CDF006CB392 /* WDCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDCommentViewController.m; sourceTree = "<group>"; };
 		87F39B681D329CDF006CB392 /* WDCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDCommentViewController.xib; sourceTree = "<group>"; };
@@ -331,6 +336,7 @@
 		870DC7B01D1B7B4E008D72ED /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				87DECDD61D40C5EA008870A1 /* skins */,
 				870DC7BC1D1B7B4E008D72ED /* Assets.xcassets */,
 				870DC7C11D1B7B4E008D72ED /* Info.plist */,
 			);
@@ -611,6 +617,8 @@
 				870DC8251D1BDE49008D72ED /* UIBarButtonItem+Category.m */,
 				870DC8261D1BDE49008D72ED /* UIImage+Category.h */,
 				870DC8271D1BDE49008D72ED /* UIImage+Category.m */,
+				87DECDD81D40C8D8008870A1 /* UIColor+WDCategory.h */,
+				87DECDD91D40C8D8008870A1 /* UIColor+WDCategory.m */,
 				870DC8281D1BDE49008D72ED /* UIView+Category.h */,
 				870DC8291D1BDE49008D72ED /* UIView+Category.m */,
 				87A798841D27ADC600270C80 /* NSDate+WDCategory.h */,
@@ -853,6 +861,7 @@
 				873444041D3CBDE700515E33 /* WDBottomBar.xib in Resources */,
 				872938791D2B52CE00AE1509 /* WDChannelCellImageView.xib in Resources */,
 				871545321D38BA3F00882795 /* WDFootButtonViewController.xib in Resources */,
+				87DECDD71D40C5EA008870A1 /* skins in Resources */,
 				872938811D2C046200AE1509 /* WDBigImageViewController.xib in Resources */,
 				87D40A371D24BE1700C54DEB /* WDGuideView.xib in Resources */,
 				87371EAA1D33E4EF00BFFBCF /* WDCommentTableViewCell.xib in Resources */,
@@ -943,6 +952,7 @@
 				870DC8311D1BDE49008D72ED /* WDNewViewController.m in Sources */,
 				87B877C51D22635A00C53116 /* WDRecommendTagTableViewController.m in Sources */,
 				876135B11D3DFE0B008BD1DE /* WDAddTagTextField.m in Sources */,
+				87DECDDA1D40C8D8008870A1 /* UIColor+WDCategory.m in Sources */,
 				870DC8331D1BDE49008D72ED /* UIBarButtonItem+Category.m in Sources */,
 				873444071D3CC72600515E33 /* WDAddTagViewController.m in Sources */,
 				870DC8351D1BDE49008D72ED /* UIView+Category.m in Sources */,

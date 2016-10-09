@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ToolBarBg</key>
+	<string>152,124,235</string>
+	<key>NaviBarBg</key>
+	<string>154,234,135</string>
+	<key>ChannelCellBg</key>
+	<string>235,56,67</string>
+</dict>
+</plist>
